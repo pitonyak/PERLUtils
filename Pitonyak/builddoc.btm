@@ -1,0 +1,39 @@
+
+@Echo off
+
+SETLOCAL
+
+set destdir=.
+
+REM cd modules
+
+REM echo %@cwds[%_disk:]
+
+
+for %f in (*.pm *.pl) (
+
+  ECHO %f
+   set destname=%destdir%\%f%.pod.html
+   REM The problem is that pod2html causes a complete exit from executing a batch file.
+   REM In other words, pod2html is a bat file which contains an exit or something
+   REM similar.
+   set rc=%@EXEC[pod2html --infile "%@cwds[%_disk:]%f" --outfile "%@cwds[%_disk:]%destname"]
+
+)
+
+del *.tmp /q
+
+REM cd ..
+REM cd bin
+REM
+REM for %f in (*.pl) (
+REM    set destname=%destdir%\%f%.pod.html
+REM    set rc=%@EXEC[pod2html --title "%f" --infile "%@cwds[%_disk:]%f" --outfile "%@cwds[%_disk:]%destname"]
+REM )
+REM
+REM del *.tmp /q
+REM cd ..
+
+
+
+

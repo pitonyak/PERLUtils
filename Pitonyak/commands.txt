@@ -1,0 +1,27 @@
+pod2html --infile ADPLogger.pm            --outfile ADPLogger.pm.pod.html
+pod2html --infile CommandLineProcessor.pm --outfile CommandLineProcessor.pm.pod.html
+pod2html --infile DateUtil.pm             --outfile DateUtil.pm.pod.html
+pod2html --infile SafeGlob.pm             --outfile SafeGlob.pm.pod.html
+pod2html --infile SmallLogger.pm          --outfile SmallLogger.pm.pod.html
+pod2html --infile StringUtil.pm           --outfile StringUtil.pm.pod.html
+pod2html --infile BayesianTokenCounter.pm --outfile BayesianTokenCounter.pm.pod.html
+pod2html --infile ConfigFileParser.pm     --outfile ConfigFileParser.pm.pod.html
+pod2html --infile DeepCopy.pm             --outfile DeepCopy.pm.pod.html
+pod2html --infile SmallLoggerNoXML.pm     --outfile SmallLoggerNoXML.pm.pod.html
+pod2html --infile SocketUtil.pm           --outfile SocketUtil.pm.pod.html
+pod2html --infile XMLUtil.pm              --outfile XMLUtil.pm.pod.html
+
+
+perl -w code2html.pl ADPLogger.pm            ADPLogger.pm.html
+perl -w code2html.pl CommandLineProcessor.pm CommandLineProcessor.pm.html
+perl -w code2html.pl DateUtil.pm             DateUtil.pm.html
+perl -w code2html.pl SafeGlob.pm             SafeGlob.pm.html
+perl -w code2html.pl SmallLogger.pm          SmallLogger.pm.html
+perl -w code2html.pl StringUtil.pm           StringUtil.pm.html
+perl -w code2html.pl BayesianTokenCounter.pm BayesianTokenCounter.pm.html
+perl -w code2html.pl ConfigFileParser.pm     ConfigFileParser.pm.html
+perl -w code2html.pl DeepCopy.pm             DeepCopy.pm.html
+perl -w code2html.pl SmallLoggerNoXML.pm     SmallLoggerNoXML.pm.html
+perl -w code2html.pl SocketUtil.pm           SocketUtil.pm.html
+perl -w code2html.pl XMLUtil.pm              XMLUtil.pm.html
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Pitonyak::DeepCopy - Copy an object reference with new copies, even if it contains references.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">Methods</a></li>
+	<ul>
+
+		<li><a href="#deep_copy">deep_copy</a></li>
+	</ul>
+
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#modification_history">Modification History</a></li>
+	<ul>
+
+		<li><a href="#september_01__2002">September 01, 2002</a></li>
+		<li><a href="#september_10__2002">September 10, 2002</a></li>
+		<li><a href="#january_18__2007">January 18, 2007</a></li>
+		<li><a href="#january_18__2007">January 18, 2007</a></li>
+		<li><a href="#january_18__2007">January 18, 2007</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Pitonyak::DeepCopy - Copy an object reference with new copies, even if it contains references.</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p><code>use Pitonyak::DeepCopy;</code>
+<a href="#deep_copy"><code>my $new_hash_ref = Pitonyak::DeepCopy::deep_copy(\%original_hash);</code></a></p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Assume the hash A% contains a hash.
+Now, copy the elements from A% into B%.</p>
+<p>The obvious solution enumerates the keys and assigns the value from
+A% to B%. Something like this:</p>
+<p><code>foreach (keys A%) $B{$_} = $A{$_};</code></p>
+<p>Unfortunately, the contained hash is a reference, %A and %B both reference
+the same hash. In other words, if you modify the contained hash in %A or %B,
+you change it in both.</p>
+<p>The proper solution is obtained using</p>
+<p><a href="#deep_copy"><code>my $hash_ref = Pitonyak::DeepCopy::deep_copy(\%A);</code></a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">Methods</a></h1>
+<p>
+</p>
+<h2><a name="deep_copy">deep_copy</a></h2>
+<dl>
+<dt><strong><a name="deep_copy" class="item"><code>deep_copy(ref_to_object)</code></a></strong></dt>
+
+<dd>
+<p>Accept a reference to an object and return a reference to a new copy of the object.</p>
+<p><a href="#deep_copy"><code>$copy_ref = deep_copy(\%hash_ref);</code></a></p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright 1998-2012, Andrew Pitonyak</p>
+<p>I Andrew Pitonyak wrote this code for my own use and I own it.
+That said, you may do as you desire with this code. Use it,
+change it, whatever, just don't claim that it is your own.</p>
+<p>Also, what ever you do with the code is your own problem.
+Although many of my libraries are in production use, I make
+no claims to usability, suitability, or reliability.</p>
+<p>Although you may do as you desire with the code, I do
+appreciate knowing what was done with my code and
+interesting changes made by you may be incorporated into
+my own copies if you provide them to me.</p>
+<p>
+</p>
+<hr />
+<h1><a name="modification_history">Modification History</a></h1>
+<p>
+</p>
+<h2><a name="september_01__2002">September 01, 2002</a></h2>
+<p>Version 1.00 First release</p>
+<p>
+</p>
+<h2><a name="september_10__2002">September 10, 2002</a></h2>
+<p>Version 1.01 Changed internal documentation to POD documentation. Added parameter checking.</p>
+<p>
+</p>
+<h2><a name="january_18__2007">January 18, 2007</a></h2>
+<p>Version 1.02 Updated POD and reformatted.</p>
+<p>
+</p>
+<h2><a name="january_18__2007">January 18, 2007</a></h2>
+<p>Version 1.03 Removed reference to Carp library, because it is not used.</p>
+<p>
+</p>
+<h2><a name="january_18__2007">January 18, 2007</a></h2>
+<p>Version 1.04 Copyright and moved POD around.</p>
+
+</body>
+
+</html>

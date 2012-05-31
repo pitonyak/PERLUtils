@@ -1,0 +1,560 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Pitonyak::StringUtil - General string utilities.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#array_width">array_width</a></li>
+		<li><a href="#center_fmt">center_fmt</a></li>
+		<li><a href="#compact_space">compact_space</a></li>
+		<li><a href="#delimited_values">delimited_values</a></li>
+		<li><a href="#substr_no_space">substr_no_space</a></li>
+		<li><a href="#hash_key_width">hash_key_width</a></li>
+		<li><a href="#hash_val_width">hash_val_width</a></li>
+		<li><a href="#left_fmt">left_fmt</a></li>
+		<li><a href="#num_int_digits">num_int_digits</a></li>
+		<li><a href="#num_with_leading_zeros">num_with_leading_zeros</a></li>
+		<li><a href="#trans_blank">trans_blank</a></li>
+		<li><a href="#trim_fmt">trim_fmt</a></li>
+		<li><a href="#trim_space">trim_space</a></li>
+		<li><a href="#right_fmt">right_fmt</a></li>
+		<li><a href="#smart_printer">smart_printer</a></li>
+		<li><a href="#smart_printer_default">smart_printer_default</a></li>
+	</ul>
+
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#modification_history">Modification History</a></li>
+	<ul>
+
+		<li><a href="#march_13__1998">March 13, 1998</a></li>
+		<li><a href="#september_10__2002">September 10, 2002</a></li>
+		<li><a href="#january_24__2007">January 24, 2007</a></li>
+		<li><a href="#september_16__2008">September 16, 2008</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Pitonyak::StringUtil - General string utilities.</p>
+<p>String module created by Andrew Pitonyak for his personal use
+to format strings for pretty output.</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>The subroutines in this module are intended to be used as methods, not as
+calls on an object. Therefore, you should call all methods directly.</p>
+<p>Many of the subroutines modify the arguments. For example, when you trim space
+from a string, the argument is modified.</p>
+<p>Methods are not available unless they are specifically imported. So, to use
+the <a href="#smart_printer_default"><code>smart_printer_default</code></a> routine, you must first import it. For example,</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(smart_printer_default);        <br/>
+my %hash2 = ('a' => 'A', 'b' => 'B');                      <br/>
+my @strings = ('123456789', '123', \%hash2);               <br/>
+my %hash1 = ('one' => 1, 'two' => 2, 'ary' => \@strings);  <br/>
+print smart_printer_default(\%hash1);                      <br/>
+</code>
+</TD></TR></table><p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="array_width">array_width</a></h2>
+<p>Return the length of the longest string in an array.</p>
+<p>Arguments are not modified.</p>
+<dl>
+<dt><strong><a name="array_width" class="item"><code>array_width([arg1], [arg2], ... [argn])</code></a></strong></dt>
+
+<dd>
+<p>Each argument or array element should be a scalar or a reference to an array.
+The primary usage is to print a group of strings in a fixed width field.
+For example:</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(array_width right_fmt);    <br/>
+                                                          <br/>
+my @strings = ('one', 'two', 'three', 'four');            <br/>
+foreach (right_fmt(array_width(@strings), @strings)) {    <br/>
+&nbsp;  print "$_\n";                                     <br/>
+}                                                         <br/>
+</code></TD></TR></table><p>produces:</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>&nbsp;&nbsp;one  <br/>
+&nbsp;&nbsp;two  <br/>
+three            <br/>
+&nbsp;four       <br/></code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="center_fmt">center_fmt</a></h2>
+<p>Modify the arguments to be strings centered in the specified width.
+A string that is longer than the specified width is truncated.</p>
+<p>In array context, return the entire array.</p>
+<p>In scalar context, return only the first string.</p>
+<dl>
+<dt><strong><a name="center_fmt" class="item"><code>center_fmt($width_to_use, @strings_to_format)</code></a></strong></dt>
+
+<dd>
+<p>Modify the arguments to be strings centered in the specified width.</p>
+<UL>
+  <LI>Modify the arguments to be strings centered in C<< $width_to_use >>.   </LI>
+  <LI>The strings are left and right padded to use the entire width.         </LI>
+  <LI>The strings are truncated to fit into the space if they are too long.  </LI>
+</UL><br/>
+<table BORDER='1' CELLPADDING="10"> <TR><TD> <code>
+use Pitonyak::StringUtil qw(center_fmt);         <br/>
+                                                    <br/>
+my $long_str = 'I am really long';                  <br/>
+my @strings = ('one', 'two', 'three', 'four');      <br/>
+foreach (center_fmt(8, @strings, $long_str)) {      <br/>
+&nbsp;&nbsp;print "$_\n";                           <br/>
+}
+</code></TD></TR></table><p>produces:</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>&nbsp;&nbsp;one  <br/>
+&nbsp;&nbsp;two  <br/>
+&nbsp;three      <br/>
+&nbsp;&nbsp;four <br/>
+I am rea         <br/></code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="compact_space">compact_space</a></h2>
+<p>Modify each argument to change runs of white space to a single space.</p>
+<dl>
+<dt><strong><a name="compact_space" class="item"><code>compact_space(@list_of_strings)</code></a></strong></dt>
+
+<dd>
+<p>Modify each argument to change runs of white space to a single space.</p>
+<UL>
+  <LI>Arguments are modified.                         </LI>
+  <LI>Continuous spaces are changed to a single space.</LI>
+  <LI>Leading and trailing spaces are removed.        </LI>
+<UL>
+<br/>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(compact_space); <br/>
+                                               <br/>
+my $test_str = '  one  two  ';                 <br/>
+compact_space($test_str);                      <br/>
+print "($test_str)\n";
+</code>
+</TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="delimited_values">delimited_values</a></h2>
+<dl>
+<dt><strong><a name="delimited_values" class="item"><code>delimited_values($delimiter, @values)</code></a></strong></dt>
+
+<dd>
+<p>For each string in <code>@values</code>, split it based on the delimiter.
+White space is trimmed from the front and rear.
+An array of values is returned.</p>
+<p><a href="#delimited_values"><code>delimited_values(',', '1, 2, 3, 4');</code></a></p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="substr_no_space">substr_no_space</a></h2>
+<dl>
+<dt><strong><a name="substr_no_space" class="item"><code>substr_no_space($line, $start, $len)</code></a></strong></dt>
+
+<dd>
+<p>Extract text from <code>$line</code> starting at the zero based
+location <code>$start</code>, with length <code>$len</code>.</p>
+<p>Leading and trailing spaces are removed.</p>
+<p>Bounds are checked to avoid errors.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="hash_key_width">hash_key_width</a></h2>
+<dl>
+<dt><strong><a name="hash_key_width" class="item"><code>hash_key_width($hash_reference)</code></a></strong></dt>
+
+<dd>
+<p>Determine the maximum width of the keys in a hash reference.
+Usually used to right justify hash keys. For example:</p>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+use Pitonyak::StringUtil qw(hash_key_width right_fmt); <br/>
+my %map = ('one'=>1, 'two'=> 2, 'three'=>3, 'four'=>4);   <br/>
+my $width = hash_key_width(%map);                         <br/>
+while ( my ($key, $value) = each(%map) ) {                <br/>
+&nbsp;&nbsp;print right_fmt($width, $key)." => $value\n"; <br/>
+}
+</code>
+</TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+three => 3            <br/>
+&nbsp;&nbsp;one => 1  <br/>
+&nbsp;&nbsp;two => 2  <br/>
+&nbsp;four => 4       <br/>
+</code>
+</TD></TR></table><p>The function is defined as <a href="#hash_key_width"><code>sub hash_key_width(\%)</code></a>,
+so Perl automatically uses a hash reference for the call;
+in the example above, <code>%map</code> is used rather than <code>\%map</code>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="hash_val_width">hash_val_width</a></h2>
+<dl>
+<dt><strong><a name="hash_val_width" class="item"><code>hash_val_width($hash_reference)</code></a></strong></dt>
+
+<dd>
+<p>Determine the maximum width of the values in a hash.
+The usage is the same as <a href="#hash_key_width"><code>hash_key_width</code></a>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="left_fmt">left_fmt</a></h2>
+<p>Modify the arguments by appending space to force them to be the specified length.</p>
+<dl>
+<dt><strong><a name="left_fmt" class="item">left_fmt($width_to_use, @strings_to_format)</a></strong></dt>
+
+<dd>
+<p>Modify the arguments by appending space to force them to be the specified length.</p>
+<UL>
+  <LI>Arguments are modified.                                     </LI>
+  <LI>Append spaces so that each argument is the requested width. </LI>
+  <LI>Do not truncate arguments even if they are too long.        </LI>
+</UL>
+<br/>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+use Pitonyak::StringUtil qw(hash_key_width left_fmt);  <br/>
+my %map = ('one'=>1, 'two'=> 2, 'three'=>3, 'four'=>4);   <br/>
+my $width = hash_key_width(%map);                         <br/>
+while ( my ($key, $value) = each(%map) ) {                <br/>
+&nbsp;&nbsp;print left_fmt($width, $key)." => $value\n"; <br/>
+}
+</code>
+</TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+three => 3            <br/>
+one&nbsp;&nbsp; => 1  <br/>
+two&nbsp;&nbsp; => 2  <br/>
+four&nbsp; => 4       <br/>
+</code>
+</TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="num_int_digits">num_int_digits</a></h2>
+<dl>
+<dt><strong><a name="num_int_digits" class="item"><code>num_int_digits($integer_number)</code></a></strong></dt>
+
+<dd>
+<p>Return the number of digits in this integer.
+This method fails if the number is not an integer.
+For example, consider the following example:</p>
+</dd>
+</dl>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+use Pitonyak::StringUtil qw(num_int_digits right_fmt);              <br/>
+my @numbers = (7, '00554', '+32', '-677', '123.456', 3.1415, 1.9e23);  <br/>
+foreach my $num (@numbers) {                                           <br/>
+&nbsp;&nbsp;print right_fmt(9, $num)." = ".num_int_digits($num)." = ".right_fmt(9, 0+$num)." = ".right_fmt(4, sprintf( "%d", $num ))."\n"; <br/>
+}
+</code>
+</TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD><code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 = 1 =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 =&nbsp;&nbsp;&nbsp;&nbsp;7 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;00554 = 3 =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;554 =&nbsp;&nbsp;554 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +32 = 2 =&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;32 =&nbsp;&nbsp;&nbsp;32 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-677 = 4 =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-677 = -677           <br/>
+&nbsp;&nbsp;123.456 = 3 =&nbsp;&nbsp;&nbsp;123.456 =&nbsp;&nbsp;123 <br/>
+&nbsp;&nbsp;&nbsp;3.1415 = 1 =&nbsp;&nbsp;&nbsp;&nbsp;3.1415 =&nbsp;&nbsp;&nbsp;&nbsp;3 <br/>
+&nbsp;1.9e+023 = 2 =&nbsp;&nbsp;1.9e+023 =&nbsp;&nbsp;&nbsp;-1 <br/>
+</code></TD></TR></table><p>Make special note of the results for numbers with decimals, and especially
+for numbers that are very large in magnitude (as in much larger than an integer).</p>
+<p>
+</p>
+<h2><a name="num_with_leading_zeros">num_with_leading_zeros</a></h2>
+<p>Format numbers to contain leading zeros.</p>
+<dl>
+<dt><strong><a name="num_with_leading_zeros" class="item">num_with_leading_zeros(($width_to_use, @numbers_to_format)</a></strong></dt>
+
+<dd>
+<p>Return N-digit strings representing the number with leading zeros.</p>
+<UL>
+  <LI>Arguments are <B>NOT</B> modified.                             </LI>
+  <LI>Negative signs are not returned unless the width is negative.  </LI>
+  <LI>Prepend the number with leading zeros to force the string to the specified length.</LI>
+  <LI>Numbers are printed as integers, and really large numbers are a problem (see example).</LI>
+</UL>
+<br/>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(num_with_leading_zeros);                <br/>
+my @numbers = (7, '00554', '+32', '-677', '123.456', 3.1415, 1.9e23);  <br/>
+foreach my $num (@numbers) {                                           <br/>
+&nbsp;&nbsp;print num_with_leading_zeros(-5, $num)." <= $num\n";       <br/>
+}
+</code></TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+00007 <= 7          <br/>
+00554 <= 00554      <br/>
+00032 <= +32        <br/>
+-0677 <= -677       <br/>
+00123 <= 123.456    <br/>
+00003 <= 3.1415     <br/>
+-0001 <= 1.9e+023   <br/>
+</code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="trans_blank">trans_blank</a></h2>
+<dl>
+<dt><strong><a name="trans_blank" class="item"><code>trans_blank($value)</code></a></strong></dt>
+
+<dd>
+<p>Return <code>$value</code> if it is defined, and an empty string if it is not.
+The <a href="#trans_blank"><code>trans_blank</code></a> method is roughly equivalent to:</p>
+<p><code>return defined($value) ? $value : '';</code></p>
+<p>The primary purpose is to avoid warnings such as
+&quot;Use of uninitialized value in concatenation (.) or string at...&quot;.</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(trans_blank); <br/>
+my $x;                                       <br/>
+my $y = '7';                                 <br/>
+                                             <br/>
+print "($x)\n";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Casues a warning message.   <br/>
+print '('.trans_blank($x).")\n"; #No warning message.  <br/>
+print '('.trans_blank($y).")\n"; #No warning message.  <br/>
+</code></TD></TR></table>
+<br/></dd>
+<dt><strong><code>trans_blank($value, $default)</code></strong></dt>
+
+<dd>
+<p>Returns $value if it is defined with length greater than zero and <code>$default</code> if it is not.
+In other words, a string of length zero is treated the same as an undefined value.
+A typical value for <code>$default</code> is the empty string, which means <a href="#trans_blank"><code>trans_blank</code></a>
+is rarely called with two arguments.</p>
+<p>Return <code>$value</code> if it is defined, and <code>$default</code> if it is not.
+The <a href="#trans_blank"><code>trans_blank</code></a> method is roughly equivalent to:</p>
+<p><code>return defined($value) ? $value : $default;</code></p>
+<p>The primary purpose is to avoid warnings such as
+&quot;Use of uninitialized value in concatenation (.) or string at...&quot;.</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(trans_blank);  <br/>
+my $x;                                        <br/>
+my $y = '7';                                  <br/>
+                                              <br/>
+print '('.trans_blank($x, '&lt;empty&gt;').")\n"; # Print (&lt;empty&gt;)  <br/>
+print '('.trans_blank($y, '&lt;empty&gt;').")\n"; # Print (7)        <br/>
+</code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="trim_fmt">trim_fmt</a></h2>
+<dl>
+<dt><strong><a name="trim_fmt" class="item"><code>trim_fmt($width_to_use, @strings_to_format)</code></a></strong></dt>
+
+<dd>
+<p>Trim all strings so that their length is not greater than
+<code>$width_to_use</code>. Strings that are too long are truncated.
+The string arguments are modified.</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(trim_fmt); <br/>
+my @strings = ('123456789', '123');       <br/>
+trim_fmt(5, @strings);                    <br/>
+print '('.join('), (', @strings).")\n";   <br/>
+</code></TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+(12345), (123)
+</code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="trim_space">trim_space</a></h2>
+<dl>
+<dt><strong><a name="trim_space" class="item"><code>trim_space(@strings_to_format)</code></a></strong></dt>
+
+<dd>
+<p>Remove leading and trailing white space.
+The parameters are modified.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="right_fmt">right_fmt</a></h2>
+<pre>
+
+Modify the arguments by prepending space to force them to be the specified length.</pre>
+<dl>
+<dt><strong><a name="right_fmt" class="item"><code>right_fmt($width_to_use, @strings_to_format)</code></a></strong></dt>
+
+<dd>
+<p>Modify the arguments by prepending space to force them to be the specified length.</p>
+<UL>
+  <LI>Arguments are modified.                                      </LI>
+  <LI>Prepend spaces so that each argument is the requested width. </LI>
+  <LI>Do not truncate arguments even if they are too long.         </LI>
+</UL>
+<br/>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+use Pitonyak::StringUtil qw(hash_key_width right_fmt); <br/>
+my %map = ('one'=>1, 'two'=> 2, 'three'=>3, 'four'=>4);   <br/>
+my $width = hash_key_width(%map);                         <br/>
+while ( my ($key, $value) = each(%map) ) {                <br/>
+&nbsp;&nbsp;print right_fmt($width, $key)." => $value\n"; <br/>
+}
+</code>
+</TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10">
+<TR><TD>
+<code>
+three => 3            <br/>
+&nbsp;&nbsp;one => 1  <br/>
+&nbsp;&nbsp;two => 2  <br/>
+&nbsp;four => 4       <br/>
+</code>
+</TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<h2><a name="smart_printer">smart_printer</a></h2>
+<dl>
+<dt><strong><a name="smart_printer" class="item"><code>smart_printer($left, $left_grow, $separator, @Things_to_print)</code></a></strong></dt>
+
+<dd>
+<p>Print the argument in a pleasing way depending on the type.
+The arguments are not modified. The first three arguments direct how
+items are printed.</p>
+<OL>
+  <LI>Left margin when an item is printed.                 </LI>
+  <LI>How to grow the left indent for recursive printing.  </LI>
+  <LI>Separator used for items.                            </LI>
+</OL>
+<br/>
+</code><p>An item is printed based on its type.</p>
+<UL>
+  <LI>Left margin when an item is printed.                 </LI>
+  <LI>How to grow the left indent for recursive printing.  </LI>
+  <LI>Separator used for items.                            </LI>
+  <LI>A scalar is printed directly.                        </LI>
+  <LI>A Hash is printed as { key =&gt; value ... }.
+      Each key value pair is separated by the item separator (usually a new line). </LI>
+  <LI>An Array is printed as ( value ... ).
+      Each value is separated by the item separator (usually a new line). </LI>
+  <LI>Keys and values can also be references.              </LI>
+</UL><p>See <a href="#smart_printer_default"><code>smart_printer_default</code></a> to see a typical example.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="smart_printer_default">smart_printer_default</a></h2>
+<dl>
+<dt><strong><a name="smart_printer_default" class="item">smart_printer_default(Things to print)</a></strong></dt>
+
+<dd>
+<p>Simple wrapper to call <a href="#smart_printer"><code>smart_printer</code></a>.</p>
+<UL>
+  <LI>Items are printed with no initial left indent. </LI>
+  <LI>Recursive indents using two extra spaces.      </LI>
+  <LI>A new line is the item separator.              </LI>
+</UL>
+<br/>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+use Pitonyak::StringUtil qw(smart_printer_default);     <br/>
+my %hash2 = ('a' => 'A', 'b' => 'B');                      <br/>
+my @strings = ('123456789', '123', \%hash2);               <br/>
+my %hash1 = ('one' => 1, 'two' => 2, 'ary' => \@strings);  <br/>
+print smart_printer_default(\%hash1);                      <br/>
+}
+</code>
+</TD></TR></table><p>produces</p>
+<table BORDER='1' CELLPADDING="10"><TR><TD><code>
+{                                                       <br/>
+&nbsp;&nbsp;one => 1                                    <br/>
+&nbsp;&nbsp;two => 2                                    <br/>
+&nbsp;&nbsp;ary =>                                      <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(                               <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;123456789           <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;123                 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{                   <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a => A  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b => B  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                   <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)                               <br/>
+}
+</code></TD></TR></table></dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:andrew@pitonyak.org">andrew@pitonyak.org</a>)</p>
+<p>I Andrew Pitonyak wrote this code for my own use and I own it.
+That said, you may do as you desire with this code. Use it,
+change it, whatever, just don't claim that it is your own.</p>
+<p>Also, what ever you do with the code is your own problem.
+Although many of my libraries are in production use, I make
+no claims to usability, suitability, or reliability.</p>
+<p>Although you may do as you desire with the code, I do
+appreciate knowing what was done with my code and
+interesting changes made by you may be incorporated into
+my own copies if you provide them to me.</p>
+<p>
+</p>
+<hr />
+<h1><a name="modification_history">Modification History</a></h1>
+<p>
+</p>
+<h2><a name="march_13__1998">March 13, 1998</a></h2>
+<p>Version 1.00 First release</p>
+<p>
+</p>
+<h2><a name="september_10__2002">September 10, 2002</a></h2>
+<p>Version 1.01 Changed internal documentation to POD</p>
+<p>
+</p>
+<h2><a name="january_24__2007">January 24, 2007</a></h2>
+<p>Version 1.02 Updated POD and package name for use in CEFM project.
+Fixed a bug where each negative number caused the
+width to become smaller for the next iteration if multiple numbers
+were passed at the same time.</p>
+<p>
+</p>
+<h2><a name="september_16__2008">September 16, 2008</a></h2>
+<p>Version 1.03 Updated POD for minor corrections.</p>
+
+</body>
+
+</html>

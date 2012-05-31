@@ -1,0 +1,221 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Pitonyak::DateUtil - Format and convert Time/Date strings</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#time_date_str">time_date_str</a></li>
+		<li><a href="#invert_time_date_str">invert_time_date_str</a></li>
+		<li><a href="#time_date_str_to_int">time_date_str_to_int</a></li>
+		<li><a href="#change_time_date_str">change_time_date_str</a></li>
+		<li><a href="#day_in_month">day_in_month</a></li>
+		<li><a href="#est_str_to_utc_str">est_str_to_utc_str</a></li>
+		<li><a href="#is_int_time_in_dst">is_int_time_in_dst</a></li>
+	</ul>
+
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#modification_history">Modification History</a></li>
+	<ul>
+
+		<li><a href="#march_13__1998">March 13, 1998</a></li>
+		<li><a href="#september_10__2002">September 10, 2002</a></li>
+		<li><a href="#january_24__2012">January 24, 2012</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Pitonyak::DateUtil - Format and convert Time/Date strings</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>use Pitonyak::DateUtil;</p>
+<pre>
+
+=head1 Formatting</pre>
+<p>A time is formatted based on a format string.
+The number of times that a special character exists indicates the number of digits that will be used.
+The format character 'YYYYMMDD.hhmmss' yields a four digit year, two digit month, two digit day,
+a period, two digit hour, etc... Characters that are not considered special are inserted verbatim.
+Characters that are escaped with a backslash '\' are also inserted verbatim. Use '\\' to insert a backslash.</p>
+<p>The special format characters are as follows:</p>
+<dl>
+<dt><strong><a name="hour" class="item">h = hour (0-24)</a></strong></dt>
+
+<dt><strong><a name="minute" class="item">m = minute (0-59)</a></strong></dt>
+
+<dt><strong><a name="second" class="item">s = second (0-59)</a></strong></dt>
+
+<dt><strong><a name="y_year" class="item">Y = year</a></strong></dt>
+
+<dd>
+<p>In Perl, the earliest year is 1900.</p>
+</dd>
+<dt><strong><a name="month" class="item">M = Month (1-12)</a></strong></dt>
+
+<dd>
+<p>Perl uses (0-11)</p>
+</dd>
+<dt><strong>W = Month (JANUARY, FEBRUARY, ..., DECEMBER)</strong></dt>
+
+<dd>
+<p>I really should allow these to be in other languages as well.</p>
+</dd>
+<dt><strong><a name="day" class="item">y = year day (0-364)</a></strong></dt>
+
+<dt><strong>D = month day (0-30)</strong></dt>
+
+<dt><strong>w = week day (1=Sunday, ..., 7=Saturday)</strong></dt>
+
+<dd>
+<p>Perl uses (0=Sunday, ... , 6=Saturday)</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Convert time and date information between different formats.
+This can convert between text representations and an integer.</p>
+<p>
+</p>
+<h2><a name="time_date_str">time_date_str</a></h2>
+<dl>
+<dt><strong><a name="time_date_str" class="item">time_date_str($format_string, [$time_integer])</a></strong></dt>
+
+</dl>
+<p>Ignoring the time to make the call, both of the following calls are equivalent.</p>
+<p><a href="#time_date_str"><code>time_date_str($format_string)</code></a>;
+time_date_str($format_string, time());</p>
+<p>This will return a formatted string with the specified time.</p>
+<p>
+</p>
+<h2><a name="invert_time_date_str">invert_time_date_str</a></h2>
+<dl>
+<dt><strong><a name="invert_time_date_str" class="item">invert_time_date_str($format_string, $formatted_time_date_string)</a></strong></dt>
+
+</dl>
+<p>Convert a formatted time/date string to the same output as <code>timelocal()</code>.</p>
+<p>returns ($sec, $min, $hours, $mday, $mon, $year) where the $year will be -1 on error.
+December is mapped to 11 and the year 1900 is mapped to 0. One digit years are always
+mapped to 200y and two digit years are windowed so that 00-79 map to 20xx and 80-99 map to 19xx.
+Three digit years are obvious</p>
+<p>
+</p>
+<h2><a name="time_date_str_to_int">time_date_str_to_int</a></h2>
+<dl>
+<dt><strong><a name="time_date_str_to_int" class="item">time_date_str_to_int($format_string, $formatted_time_date_string)</a></strong></dt>
+
+</dl>
+<p>Convert a formatted time/date string to an integer. -1 is returned on error.
+The integer can be used as input to other routines.</p>
+<p>
+</p>
+<h2><a name="change_time_date_str">change_time_date_str</a></h2>
+<dl>
+<dt><strong><a name="change_time_date_str" class="item">change_time_date_str($desired_format, $current_format, $formatted_time_date_string)</a></strong></dt>
+
+</dl>
+<p>Change a formatted time/date string to a different format.</p>
+<p>This is nothing more than a shortcut to using time_date_str($desired_format, time_date_str_to_int($current_format, $formatted_time_date_string));</p>
+<p>
+</p>
+<h2><a name="day_in_month">day_in_month</a></h2>
+<p>Return a date object corresponding to a specified instance of a specific week day
+in a given year and month.</p>
+<dl>
+<dt><strong><a name="day_in_month" class="item"><code>day_in_month($year, $month, $day_of_month, $instance)</code></a></strong></dt>
+
+<dd>
+<p>An example is worth a thousand words.
+The call <a href="#day_in_month"><code>day_in_month(2007, 3, 1, 2)</code></a>
+returns the second Monday in March 2007. The day of the month must be in the
+range 0=Sunday to 6=Saturday. No error checking is performed to verify that
+there are two Mondays in March.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="est_str_to_utc_str">est_str_to_utc_str</a></h2>
+<p>Convert a date/time string in EST to a date/time string in UTC.</p>
+<dl>
+<dt><strong><a name="est_str_to_utc_str" class="item"><code>est_str_to_utc_str($date_time, $input_fmt, $output_fmt)</code></a></strong></dt>
+
+</dl>
+<p>
+</p>
+<h2><a name="is_int_time_in_dst">is_int_time_in_dst</a></h2>
+<dl>
+<dt><strong><a name="is_int_time_in_dst" class="item"><code>is_int_time_in_dst($date_time_int)</code></a></strong></dt>
+
+<dd>
+<p>Return 1 if the specified date/time value is during daylight savings time in EST.
+most of the U.S. will begin Daylight Saving Time at 2:00 a.m. on the second
+Sunday in March and revert to standard time on the first Sunday in November.
+In the U.S., each time zone switches at a different time.</p>
+<p>At 2:00 AM on the second Sunday in March, the time immediately turns into 3:00 AM.
+It is, therefore, easy to determine if these times use DST.
+It is more difficult to determine when the time ends. Times from 1:00 AM until
+2:00 AM are repeated, which is a very real problem. Luckily, this routine
+is based on the number of seconds since a specific point in time.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright 1998-2012, Andrew Pitonyak</p>
+<p>I Andrew Pitonyak wrote this code for my own use and I own it.
+That said, you may do as you desire with this code. Use it,
+change it, whatever, just don't claim that it is your own.</p>
+<p>Also, what ever you do with the code is your own problem.
+Although many of my libraries are in production use, I make
+no claims to usability, suitability, or reliability.</p>
+<p>Although you may do as you desire with the code, I do
+appreciate knowing what was done with my code and
+interesting changes made by you may be incorporated into
+my own copies if you provide them to me.</p>
+<p>
+</p>
+<hr />
+<h1><a name="modification_history">Modification History</a></h1>
+<p>
+</p>
+<h2><a name="march_13__1998">March 13, 1998</a></h2>
+<p>Version 1.00 First release</p>
+<p>
+</p>
+<h2><a name="september_10__2002">September 10, 2002</a></h2>
+<p>Version 1.01 Changed internal documentation to POD documentation. Added parameter checking.</p>
+<p>
+</p>
+<h2><a name="january_24__2012">January 24, 2012</a></h2>
+<p>Version 1.03 Updated copyrights. Noticed I did not document changes for 1.02.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+@echo off
+:: make_web_index.btm
+  *setlocal
+  *unalias *
+  ::on error goto done
+  on break goto done
+
+if "%1"=="" goto usage
+if not exist %1 goto path_not_found
+
+goto start
+
+:PATH_NOT_FOUND
+echo.
+echo Unable to find path: %1
+
+:usage
+echo.
+echo Usage: %0 path [path] [title] [suppress]
+echo.
+echo path     - Path from which to build the index
+echo title    - Title of the web page
+echo suppress - Files to not include in the list. Default is "*.php *.htm* *.bak *~"
+echo.
+goto done
+
+:start
+  set f="index.php"
+  rem set suppress=/[!*.ion index*.htm *.ba*]
+  set suppress=/[!*.php *.htm* *.bak *~]
+  set d="%@full[%1]"
+  set based=%@filename[%d]
+  set title=%@strip[%=",%2]
+  if ".%title."==".." set %title=%d
+  if not ".%3."==".." set suppress=/[!%@strip[%=",%3]]
+  echo %=nUsage: %0 path [path] [title] [suppress]
+  echo %=n%@upper[%0]:  Hit Ctrl-C to abort or press any key to
+  pause %@if[exist %f,re,]build %f from %d.
+  cdd %d
+  >!%f
+  echo %=<HTML%=>%=<HEAD%=> >> %f
+  echo %=<TITLE%=>%title%=</TITLE%=> >> %f
+  echo %=</HEAD%=> >> %f
+  echo %=<BODY%=> >> %f
+  echo %=<CENTER%=> >> %f
+  echo %=<H1%=>%title%=</H1%=> >> %f
+  echo %=<P%=> >> %f
+
+text >> %f
+<CENTER>
+<P>
+<INPUT type="button" value="Click here to go back" onClick="history.back()"/>
+</P>
+</CENTER>
+<TABLE ALIGN=CENTER BORDERCOLOR="#0000FF" BORDER="5" WIDTH="98%">
+<TR>
+<TD BGCOLOR="WHITE"><CENTER><B>Name</B></CENTER></TD>
+<TD BGCOLOR="WHITE"><CENTER><B>Date</B></CENTER></TD>
+<TD BGCOLOR="WHITE"><CENTER><B>Size</B></CENTER></TD>
+<TD BGCOLOR="WHITE"><CENTER><B>Description</B></CENTER></TD>
+</TR>
+endtext
+
+  set n=0
+  dir %suppress /a:-d /b > clip:
+  for %ii in (@clip:) (
+    echo %=<TR%=> >> %f
+    echo %=<TD%=>%=<A HREF="%ii"%=>%ii%=</A%=>%=</TD%=> >> %f
+
+    echo %=<TD ALIGN=CENTER%=>%@filedate["%ii",w,4]%=</TD%=> >> %f
+    echo %=<TD ALIGN=RIGHT%=>%@format[5,%@filesize["%ii",K]]K%=</TD%=> >> %f
+    set base_name=%@LEFT[%@index[%ii,.],%ii]
+    set description=%@descript["%ii"]
+    if "%description"=="" (
+        if "%ii"=="DESCRIPT.ION" set description=Contains file descriptions as used by 4NT
+        if "%ii"=="%based%.zip"  set description=Compressed copy of entire directory
+    )
+
+    iff exist "%base_name%.html" then (
+       if "%description"=="" set description=%base_name.html
+       echo %=<TD%=>%=<A HREF="%base_name.html"%=>%description%%=</A%=>%=</TD%=> >>%f
+    )
+    else
+        echo %=<TD%=>%description%=</TD%=> >>%f
+    endiff
+    echo %=</TR%=> >> %f
+    set n=%@inc[%n]
+  )
+  echo %=</TABLE%=> >>%f
+  echo %=<P%=>[%n files indexed on %@makedate[%@date[%_date],4] at %_time >> %f
+  echo by %=<BIG%=>%=<A HREF="http://jpsoft.com/"%=>4NT!%=</A >> %f
+  echo %=>%=</BIG%=> ] >> %f
+  echo %=<P%=> >> %f
+
+
+text >> %f
+<CENTER>
+<P>
+<INPUT type="button" value="Click here to go back" onClick="history.back()"/>
+</P>
+</CENTER>
+<HR/>
+
+<SMALL>
+<A href="http://validator.w3.org/check/referer">HTML4.0 Verified</A>
+Last Modified<?php print date("F j, Y h:i:s A T", filemtime($PATH_TRANSLATED));?>
+&copy; 1999-<?php print date("Y");?> Andrew Pitonyak
+</SMALL>
+</BODY>
+</HTML>
+endtext
+
+  echo %n files indexed on %ymd at %_time
+
+:done

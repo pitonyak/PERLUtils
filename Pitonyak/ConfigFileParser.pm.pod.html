@@ -1,0 +1,437 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Pitonyak::ConfigFileParser - Handle a configuration file.</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#copyright">Copyright</a></li>
+	<ul>
+
+		<li><a href="#clear">clear</a></li>
+		<li><a href="#clear_key_value">clear_key_value</a></li>
+		<li><a href="#config_name">config_name</a></li>
+		<li><a href="#config_path">config_path</a></li>
+		<li><a href="#copy">copy</a></li>
+		<li><a href="#contains_key">contains_key</a></li>
+		<li><a href="#get_class_attribute">get_class_attribute</a></li>
+		<li><a href="#get_config_full_name">get_config_full_name</a></li>
+		<li><a href="#get_hash_ref">get_hash_ref</a></li>
+		<li><a href="#get_keys">get_keys</a></li>
+		<li><a href="#get_value">get_value</a></li>
+		<li><a href="#get_value_default">get_value_default</a></li>
+		<li><a href="#get_delimited_values">get_delimited_values</a></li>
+		<li><a href="#new">new</a></li>
+		<li><a href="#read_config_file">read_config_file</a></li>
+		<li><a href="#set_key_value">set_key_value</a></li>
+	</ul>
+
+	<li><a href="#private_methods">Private Methods</a></li>
+	<ul>
+
+		<li><a href="#initialize">initialize</a></li>
+	</ul>
+
+	<li><a href="#copyright">COPYRIGHT</a></li>
+	<li><a href="#modification_history">Modification History</a></li>
+	<ul>
+
+		<li><a href="#march_1998">March 1998</a></li>
+		<li><a href="#september_10__2002">September 10, 2002</a></li>
+		<li><a href="#january_2012">January 2012</a></li>
+	</ul>
+
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Pitonyak::ConfigFileParser - Handle a configuration file.</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p><code>
+use Pitonyak::ConfigFileParser;                        <br/>
+                                                       <br/>
+my $cfg = new Pitonyak::ConfigFileParser();            <br/>
+$cfg->read_config_file('./modules/sample.cfg');        <br/>
+print 'keys = ('.join(', ', $cfg->get_keys()).")\n";   <br/>
+</code></p><p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>One might argue that this is nothing more than a light wrapper to read a
+configuration file into a hash. The <code>read_config_file method()</code>
+is pretty smart at processing the file to increase ease of use.</p>
+<p>The configuration/properties file contains lines of the form:</p>
+<p><code>&lt;left hand side&gt; = &lt;right hand side&gt;</code></p>
+<p>The following parsing rules are used:</p>
+<dl>
+<dt><strong><a name="blank_lines_are_ignored" class="item">Blank lines are ignored.</a></strong></dt>
+
+<dt><strong><a name="is_a_comment_character" class="item"># is a comment character.</a></strong></dt>
+
+<dt><strong><a name="replace_key_with_the_key_value_in_the_hash" class="item">Replace ${key} with the key value in the hash.</a></strong></dt>
+
+<dt><strong><a name="the_equal_sign_separates_the_keys_from_the_values" class="item">The equal sign separates the keys from the values.</a></strong></dt>
+
+<dt><strong><a name="leading_and_trailing_space_is_removed" class="item">leading and trailing space is removed.</a></strong></dt>
+
+<dt><strong><a name="space_around_the_equal_sign_is_removed" class="item">space around the equal sign is removed.</a></strong></dt>
+
+<dt><strong><a name="use_a_backslash_as_the_escape_character" class="item">Use a backslash as the escape character.</a></strong></dt>
+
+</dl>
+<p>Use the escape character to insert special characters such as the comment, $,
+character, equal sign, leading or trailing space, or an escape character.
+Escaping characters with no special meaning, such as an 'a', evaluates to
+the character 'a'.</p>
+<p>You can prevent substitution of ${key} text by using \${key}.
+Substitution is done before escape characters are removed. So,the sequence
+${\key} looks to see if there is a key named '\key' for replacement.</p>
+<p>Consider the following configuration:</p>
+<p><code>
+file_base = ./files/                      <br/>
+partner = john                            <br/>
+${partner}.loc = ${file_base}${partner}/  <br/>
+</code></p><p>This is equivalent to</p>
+<p><code>
+file_base = ./files/                      <br/>
+partner = john                            <br/>
+john.loc = ./files/john/                  <br/>
+</code></p><p>
+</p>
+<hr />
+<h1><a name="copyright">Copyright</a></h1>
+<p>Copyright 1998-2009 by Andrew Pitonyak</p>
+<p>More reworked code from Andrew's library. As with most of my
+code libraries, the code is free as free can be.</p>
+<p>
+</p>
+<h2><a name="clear">clear</a></h2>
+<dl>
+<dt><strong><a name="clear" class="item"><code>$cfg-&gt;clear()</code></a></strong></dt>
+
+<dd>
+<p>Clear the entire configuration hash.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="clear_key_value">clear_key_value</a></h2>
+<dl>
+<dt><strong><a name="clear_key_value" class="item"><code>$cfg-&gt;clear_key_value('key_text')</code></a></strong></dt>
+
+<dd>
+<p>Clear the specified key so that it is no longer in the configuration hash.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="config_name">config_name</a></h2>
+<p>The config_name is the name of the configuration file with the file extension.
+The full file name is built by concatenating <a href="#config_path"><code>config_path()</code></a> and <a href="#config_name"><code>config_name()</code></a>.
+The extension is not assumed because it might be '.cfg' or '.properties'.</p>
+<dl>
+<dt><strong><a name="config_name" class="item"><code>config_name()</code></a></strong></dt>
+
+<dd>
+<p>Return the default file name with file extension.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;config_name()</code></strong></dt>
+
+<dd>
+<p>Return the base configuration file name.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;config_name(file_name)</code></strong></dt>
+
+<dd>
+<p>Set the file name with extension, used for the next read.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="config_path">config_path</a></h2>
+<p>The config_path identifies the directory containing the file.
+The full file name is built by concatinating <a href="#config_path"><code>config_path()</code></a> and <a href="#config_name"><code>config_name()</code></a>.</p>
+<dl>
+<dt><strong><a name="config_path" class="item"><code>config_path()</code></a></strong></dt>
+
+<dd>
+<p>Return the default path during initialization, which is './'.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;config_path()</code></strong></dt>
+
+<dd>
+<p>Return the the path to the next configuration file to read.
+Reading a configuration file with a fully specified file name
+does not cause the path or the file name to be set.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;config_path(path)</code></strong></dt>
+
+<dd>
+<p>Set the path for the configuration file, which will be used for the next read
+operation if the file name is not specified.
+If the provided path does not contain '/' or '\', then '/' is appended to
+to the path. The path itself is not checked for validity.</p>
+<p>If the provided path is an empty string, then the path is set to the
+default value.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="copy">copy</a></h2>
+<dl>
+<dt><strong><a name="copy" class="item"><code>copy($config_object)</code></a></strong></dt>
+
+<dd>
+<p>Make a copy of one ConfigFileParser into another</p>
+<p><code>$obj1-</code>copy($obj2)&gt; is the same as <code>$obj1 = $obj2</code>.
+The receiving ConfigFileParser is closed first.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="contains_key">contains_key</a></h2>
+<dl>
+<dt><strong><a name="contains_key" class="item"><code>$cfg-&gt;contains_key(key_name)</code></a></strong></dt>
+
+<dd>
+<p>Return 1 if the hash contains the key name and 0 otherwise.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_class_attribute">get_class_attribute</a></h2>
+<p>The get_class_attribute method utilizes the fact that
+<code>$obj-&gt;method(@parms)</code> is the same as
+<code>method($obj, @parms)</code>. This method does not perform type checking
+to verify that this is true.</p>
+<p>The <a href="#get_class_attribute"><code>get_class_attribute</code></a> method is rarely called directly.</p>
+<dl>
+<dt><strong><a name="get_class_attribute" class="item"><code>Pitonyak::ConfigFileParser::get_class_attribute($attribute_name)</code></a></strong></dt>
+
+<dd>
+<p>With only one paramter, the first parameter is
+assumed to be an attribute name and the default attribute value
+is returned.</p>
+</dd>
+<dt><strong><code>$obj-&gt;get_class_attribute($attribute_name)</code></strong></dt>
+
+<dd>
+<p>With two arguments, the first is assumed
+to be a <code>ConfigFileParser</code> object and the second is
+assumed to be an attribute name.
+The attribute value for the object is returned.</p>
+<pre>
+
+=item C&lt;&lt; $obj-&gt;get_class_attribute($attribute_value, $attribute_name) &gt;&gt;</pre>
+<p>With three arguments, the first is assumed to be the object,
+the second is a new attribute value, and the third is the attribute
+name to set. Although the order seems odd, this is intentional.</p>
+<p>Consider the method <code>is_ok</code> defined as <a href="#get_class_attribute"><code>return get_class_attribute( @_, 'is_ok' );</code></a></p>
+<p>Remember that <code>@_</code> refers to the argument list passed to the method. In all cases, the last argument
+passed to <a href="#get_class_attribute"><code>get_class_attribute</code></a> is the attribute name. If the method is called directly,
+this is the only argument.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_config_full_name">get_config_full_name</a></h2>
+<dl>
+<dt><strong><a name="get_config_full_name" class="item"><code>$cfg-&gt;get_config_full_name()</code></a></strong></dt>
+
+<dd>
+<p>Build and return the full path to the configuration file.
+Remember that <a href="#config_path"><code>$cfg-&gt;config_path()</code></a>
+returns a string with a trailing '/', so the value returned is equivalent to:</p>
+<p><a href="#config_path"><code>$cfg-&gt;config_path().$cfg-&gt;config_name()</code></a></p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_hash_ref">get_hash_ref</a></h2>
+<dl>
+<dt><strong><a name="get_hash_ref" class="item"><code>$cfg-&gt;get_hash_ref()</code></a></strong></dt>
+
+<dd>
+<p>Return a reference to the hash containing the properties.
+For example, to obtain the value for the key 'peter', you
+can use <a href="#get_hash_ref"><code>$cfg-&gt;get_hash_ref()-&gt;{'peter'}</code></a> or
+<a href="#get_value"><code>$cfg-&gt;get_value('peter')</code></a>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_keys">get_keys</a></h2>
+<dl>
+<dt><strong><a name="get_keys" class="item"><code>$cfg-&gt;get_keys()</code></a></strong></dt>
+
+<dd>
+<p>Return the keys in the hash as an array.
+This is equivalent to
+<code>keys(%{$cfg-&gt;get_hash_ref()})</code>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_value">get_value</a></h2>
+<dl>
+<dt><strong><a name="get_value" class="item"><code>$cfg-&gt;get_value('key')</code></a></strong></dt>
+
+<dd>
+<p>Return the property value for the specified key.
+To obtain the value for the key 'peter', you
+can use <a href="#get_hash_ref"><code>$cfg-&gt;get_hash_ref()-&gt;{'peter'}</code></a> or
+<a href="#get_value"><code>$cfg-&gt;get_value('peter')</code></a>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_value_default">get_value_default</a></h2>
+<dl>
+<dt><strong><a name="get_value_default" class="item"><code>$cfg-&gt;get_value_default('key')</code></a></strong></dt>
+
+<dd>
+<p>This version is identical to <a href="#get_value_default"><code>$cfg-&gt;get_value_default('key')</code></a>,
+except that it returns an empty string if the key does not exist.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;get_value_default('key', 'default')</code></strong></dt>
+
+<dd>
+<p>If the property exists, return the value. If the property
+does not exist, return the specified default value.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="get_delimited_values">get_delimited_values</a></h2>
+<dl>
+<dt><strong><a name="get_delimited_values" class="item"><code>$cfg-&gt;get_delimited_values('key')</code></a></strong></dt>
+
+<dd>
+<p>Omitting the delimiter is the same as calling
+<a href="#get_delimited_values"><code>$cfg-&gt;get_delimited_values('key', ',')</code></a>.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;get_delimited_values('key', 'delimiter')</code></strong></dt>
+
+<dd>
+<p>Extract the specified key from the configuration item.
+Assume that the key contains a list of items delimited with the
+specified delimiter.
+Leading and trailing spaces are removed.
+All of the values are returned as an array.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<dl>
+<dt><strong><a name="new" class="item"><code>$cfg_copy = $cfg-&gt;new()</code></a></strong></dt>
+
+<dd>
+<p>Generate a new copy of a configuration object.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="read_config_file">read_config_file</a></h2>
+<p>Read a config/properties file from disk and populate this object.
+The current object is cleared reading the file.
+Any current values are over-written.</p>
+<dl>
+<dt><strong><a name="read_config_file" class="item"><code>$cfg-&gt;read_config_file()</code></a></strong></dt>
+
+<dd>
+<p>The directory
+and name must be set using <a href="#config_path"><code>config_path()</code></a> and <a href="#config_name"><code>config_name()</code></a>.
+<a href="#get_config_full_name"><code>get_config_full_name()</code></a> is used to build the full path.</p>
+</dd>
+<dt><strong><code>$cfg-&gt;read_config_file('full_path_to_file')</code></strong></dt>
+
+<dd>
+<p>Neither <a href="#config_path"><code>config_path()</code></a> nor <a href="#config_name"><code>config_name()</code></a> are updated.</p>
+</dd>
+</dl>
+<p>
+</p>
+<h2><a name="set_key_value">set_key_value</a></h2>
+<dl>
+<dt><strong><a name="set_key_value" class="item"><code>$cfg-&gt;set_key_value(key, value)</code></a></strong></dt>
+
+<dd>
+<p>Set the specified key to the specified value.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="private_methods">Private Methods</a></h1>
+<p>
+</p>
+<h2><a name="initialize">initialize</a></h2>
+<dl>
+<dt><strong><a name="initialize" class="item"><code>initialize()</code></a></strong></dt>
+
+<dd>
+<p>The <a href="#initialize"><code>initialize()</code></a> method is called automatically when an object is created.
+The new method also calls <a href="#initialize"><code>initialize()</code></a> directly</p>
+<p>Initialize the data structure by copying values from the initial attributes hash
+into the newly created object. Finally, set the read properties hash to
+an empty reference.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
+<p>I Andrew Pitonyak wrote this code for my own use and I own it.
+That said, you may do as you desire with this code. Use it,
+change it, whatever, just don't claim that it is your own.</p>
+<p>Also, what ever you do with the code is your own problem.
+Although many of my libraries are in production use, I make
+no claims to usability, suitability, or reliability.</p>
+<p>Although you may do as you desire with the code, I do
+appreciate knowing what was done with my code and
+interesting changes made by you may be incorporated into
+my own copies if you provide them to me.</p>
+<p>
+</p>
+<hr />
+<h1><a name="modification_history">Modification History</a></h1>
+<p>
+</p>
+<h2><a name="march_1998">March 1998</a></h2>
+<p>Version 1.00 First release</p>
+<p>
+</p>
+<h2><a name="september_10__2002">September 10, 2002</a></h2>
+<p>Version 1.01 Changed internal documentation to POD documentation. Added parameter checking.</p>
+<p>
+</p>
+<h2><a name="january_2012">January 2012</a></h2>
+<p>Version 1.04 Fixed an issue with a regular expression that prevented proper parsing of substitution variables.</p>
+
+</body>
+
+</html>

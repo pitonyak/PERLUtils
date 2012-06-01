@@ -42,40 +42,6 @@ Searched 69 files and found 3 duplicate files<br/>
 #************************************************************
 
 
-#************************************************************
-
-=pod
-
-=head1 COPYRIGHT
-
-Copyright 2010-2012, Andrew Pitonyak (perlboy@pitonyak.org)
-
-I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.
-
-Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.
-
-Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.
-
-=head1 Modification History
-
-
-=head2 May 31, 2012
-
-Pushed to github.
-
-=cut
-
-#************************************************************
-
-
-
 # Before I ccould use this, I had to install the
 # CRC32 code using cpan.
 
@@ -242,3 +208,38 @@ foreach (@ARGV)
   }
 }
 print_results();
+
+
+
+#************************************************************
+
+=pod
+
+=head1 COPYRIGHT
+
+Copyright 2010-2012, Andrew Pitonyak (perlboy@pitonyak.org)
+
+I Andrew Pitonyak wrote this code for my own use and I own it.
+That said, you may do as you desire with this code. Use it,
+change it, whatever, just don't claim that it is your own.
+
+Also, what ever you do with the code is your own problem.
+Although many of my libraries are in production use, I make
+no claims to usability, suitability, or reliability.
+
+Although you may do as you desire with the code, I do
+appreciate knowing what was done with my code and
+interesting changes made by you may be incorporated into
+my own copies if you provide them to me.
+
+=head1 Modification History
+
+
+=head2 May 31, 2012
+
+Pushed to github.
+
+=cut
+
+#************************************************************
+

@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::SafeGlob - Regular expressions and file specs for finding files and directories.</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -10,56 +10,51 @@
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<ul>
-
-		<li><a href="#new">new</a></li>
-		<li><a href="#case_sensitive">case_sensitive</a></li>
-		<li><a href="#copy">copy</a></li>
-		<li><a href="#get_class_attribute">get_class_attribute</a></li>
-		<li><a href="#glob_regex">glob_regex</a></li>
-		<li><a href="#glob_regex_dirs">glob_regex_dirs</a></li>
-		<li><a href="#glob_regex_files">glob_regex_files</a></li>
-		<li><a href="#glob_spec">glob_spec</a></li>
-		<li><a href="#glob_spec_from_path">glob_spec_from_path</a></li>
-		<li><a href="#recurse">recurse</a></li>
-		<li><a href="#return_dirs">return_dirs</a></li>
-		<li><a href="#return_files">return_files</a></li>
-	</ul>
-
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#modification_history">Modification History</a></li>
-	<ul>
-
-		<li><a href="#july_17__2009">July 17, 2009</a></li>
-		<li><a href="#april_4__2007">April 4, 2007</a></li>
-		<li><a href="#september_10__2002">September 10, 2002</a></li>
-		<li><a href="#march_13__1998">March 13, 1998</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#new">new</a></li>
+      <li><a href="#case_sensitive">case_sensitive</a></li>
+      <li><a href="#copy">copy</a></li>
+      <li><a href="#get_class_attribute">get_class_attribute</a></li>
+      <li><a href="#append_list_attribute">append_list_attribute</a></li>
+      <li><a href="#glob_regex">glob_regex</a></li>
+      <li><a href="#glob_regex_dirs">glob_regex_dirs</a></li>
+      <li><a href="#glob_regex_files">glob_regex_files</a></li>
+      <li><a href="#glob_spec">glob_spec</a></li>
+      <li><a href="#glob_spec_from_path">glob_spec_from_path</a></li>
+      <li><a href="#recurse">recurse</a></li>
+      <li><a href="#return_dirs">return_dirs</a></li>
+      <li><a href="#return_files">return_files</a></li>
+      <li><a href="#ignore_file_list_reg">ignore_file_list_reg</a></li>
+    </ul>
+  </li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#Modification-History">Modification History</a>
+    <ul>
+      <li><a href="#July-17-2009">July 17, 2009</a></li>
+      <li><a href="#November-1-2014">November 1, 2014</a></li>
+      <li><a href="#April-4-2007">April 4, 2007</a></li>
+      <li><a href="#September-10-2002">September 10, 2002</a></li>
+      <li><a href="#March-13-1998">March 13, 1998</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
 <p>Pitonyak::SafeGlob - Regular expressions and file specs for finding files and directories.</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
 <p>File and directory scanning based on regular expressions.</p>
-<p><code>use Pitonyak::SafeGlob;                                              <br/>
+
+
+
+use Pitonyak::SafeGlob;                                              <br/>
                                                                      <br/>
 my @full_specs = ('c:\*.txt', 'C:\Andy\Dev\Perl\Pitonyak\*.p?');     <br/>
 my @file_specs = ('*.pl', '*.pm');                                   <br/>
@@ -85,206 +80,263 @@ foreach ($g->glob_spec('c:\Andy\Dev\Perl\Pitonyak', @file_specs))    <br/>
 foreach ($g->glob_regex('c:\Andy\Dev\Perl\Pitonyak', @file_regs))    <br/>
 {                                                                    <br/>
   print "glob_regex => $_\n";                                        <br/>
-}</code></p><pre>
+}</code></p>
 
-=head1 DESCRIPTION</pre>
-<p>There was a time when <code>glob()</code> returned an empty list if there were too many files in a directory.
-This module avoids this problem.</p>
-<p>In the following routines, if the <code>$use_case</code> parameter evaluates to true,
-then matching will be done in a case sensitive manner. Matches are not
-case sensitive otherwise.</p>
-<p>In the following routines, if the <code>$include_files</code> parameter evaluates to true,
-then files that match will be returned.</p>
-<p>In the following routines, if the <code>$include_dirs</code> parameter evaluates to true,
-then directories that match will be returned.</p>
-<p>
-</p>
-<h2><a name="new">new</a></h2>
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>There was a time when glob() returned an empty list if there were too many files in a directory. This module avoids this problem.</p>
+
+<p>In the following routines, if the <code>$use_case</code> parameter evaluates to true, then matching will be done in a case sensitive manner. Matches are not case sensitive otherwise.</p>
+
+<p>In the following routines, if the <code>$include_files</code> parameter evaluates to true, then files that match will be returned.</p>
+
+<p>In the following routines, if the <code>$include_dirs</code> parameter evaluates to true, then directories that match will be returned.</p>
+
+<h2 id="new">new</h2>
+
 <dl>
-<dt><strong><a name="new" class="item"><code>new()</code></a></strong></dt>
 
+<dt id="new1">new()</dt>
 <dd>
-<p>Note that this is written in such a manner that it can be inherited.
-Also note that it is written such that $obj2 = $obj1-&gt;<a href="#new"><code>new()</code></a> is valid!</p>
+
+<p>Note that this is written in such a manner that it can be inherited. Also note that it is written such that $obj2 = $obj1-&gt;new() is valid!</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="case_sensitive">case_sensitive</a></h2>
-<dl>
-<dt><strong><a name="case_sensitive" class="item">case_sensitive([0|1])</a></strong></dt>
 
+<h2 id="case_sensitive">case_sensitive</h2>
+
+<dl>
+
+<dt id="case_sensitive-0-1">case_sensitive([0|1])</dt>
 <dd>
+
 <p>Set the attribute if a parameter is present.</p>
+
 <p>Return the state of the parameter.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="copy">copy</a></h2>
-<dl>
-<dt><strong><a name="copy" class="item"><code>copy($object)</code></a></strong></dt>
 
+<h2 id="copy">copy</h2>
+
+<dl>
+
+<dt id="copy-object">copy($object)</dt>
 <dd>
+
 <p>Make a copy of this object</p>
+
 <p><code>$obj1-</code>copy($obj2)&gt; is the same as <code>$obj1 = $obj2</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_class_attribute">get_class_attribute</a></h2>
-<p>Remember that the call <code>$obj-&gt;method(@parms)</code> is the same as
-<code>method($obj, @parms)</code>.</p>
+
+<h2 id="get_class_attribute">get_class_attribute</h2>
+
+<p>Remember that the call <code>$obj-&lt;gt</code>method(@parms)&gt; is the same as <code>method($obj, @parms)</code>.</p>
+
 <dl>
-<dt><strong><a name="get_class_attribute" class="item">SafeGlob::get_class_attribute($attribute_name)</a></strong></dt>
 
+<dt id="SafeGlob::get_class_attribute-attribute_name">SafeGlob::get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there is only one paramter, the first parameter is
-assumed to be an attribute name and the default attribute value
-is returned.</p>
+
+<p>If there is only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;<code>get_class_attribute($attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name">$obj-&gt;get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there are two parameters, then the first parameter is assumed
-to be a <code>SafeGlob</code> object and the second parameter is
-assumed to be an attribute name.
-The attribute value for the object is returned.</p>
+
+<p>If there are two parameters, then the first parameter is assumed to be a <code>SafeGlob</code> object and the second parameter is assumed to be an attribute name. The attribute value for the object is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;get_class_attribute($attribute_name, $attribute_value)</strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_value-attribute_name">$obj-&gt;get_class_attribute($attribute_value, $attribute_name)</dt>
 <dd>
-<p>If three parameters are given, then the first parameter is the object,
-the second parameter
-is used to set a new value for the attribute,
-and the third parameter is the attribute name,
-The attribute value is then returned.</p>
+
+<p>If three parameters are given, then the first parameter is the object, the second parameter is used to set a new value for the attribute, and the third parameter is the attribute name, The attribute value is then returned.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="glob_regex">glob_regex</a></h2>
-<dl>
-<dt><strong><a name="glob_regex" class="item">glob_regex($path, [@regular_expressions])</a></strong></dt>
 
-</dl>
-<p>All regular expressions are assumed to follow the path.
-This returns the files and/or directories that match the regular expression in the given path.
-The directory tree is recursed if the recursion flag is set.</p>
-<p>
-</p>
-<h2><a name="glob_regex_dirs">glob_regex_dirs</a></h2>
-<dl>
-<dt><strong><a name="glob_regex_dirs" class="item">glob_regex_dirs($path, [@dir_regular_expressions])</a></strong></dt>
+<h2 id="append_list_attribute">append_list_attribute</h2>
 
-</dl>
-<p>All regular expressions are assumed to follow the path.
-This returns the directories that match the regular expression in the given path.
-Recursion is done if the recurse parameter is set.</p>
-<p>
-</p>
-<h2><a name="glob_regex_files">glob_regex_files</a></h2>
-<dl>
-<dt><strong><a name="glob_regex_files" class="item">glob_regex_files($path, [@file_regular_expressions])</a></strong></dt>
+<p>Remember that the call <code>$obj-&lt;gt</code>method(@parms)&gt; is the same as <code>method($obj, @parms)</code>.</p>
 
-</dl>
-<p>All regular expressions are assumed to follow the path.
-This returns the files that match the regular expression in the given path.
-Recursion is done if the recurse parameter is set.</p>
-<p>
-</p>
-<h2><a name="glob_spec">glob_spec</a></h2>
 <dl>
-<dt><strong><a name="glob_spec" class="item">glob_spec($path, [@file_specs])</a></strong></dt>
 
-</dl>
-<p>All file specs are assumed to follow the path.
-The file specs are turned into regular expressions and then glob_regex is called.
-This returns the files that match the file specification in the given path.</p>
-<p>
-</p>
-<h2><a name="glob_spec_from_path">glob_spec_from_path</a></h2>
-<dl>
-<dt><strong><a name="glob_spec_from_path" class="item"><code>glob_spec_from_path([@file_specs_with_dirs])</code></a></strong></dt>
-
-</dl>
-<p>This assumes that it is given a list of file specs where the file specs
-contain leading directory entries.
-The file spec and path are separated using File::Basename::fileparse()
-and then glob_spec is called.</p>
-<p>
-</p>
-<h2><a name="recurse">recurse</a></h2>
-<dl>
-<dt><strong><a name="recurse" class="item">recurse([0|1])</a></strong></dt>
-
+<dt id="SafeGlob::append_list_attribute-attribute_name">SafeGlob::append_list_attribute($attribute_name)</dt>
 <dd>
+
+<p>If there is only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned. The returned value is a reference to an array so you should derference it if you want to use it as an array.</p>
+
+</dd>
+<dt id="obj-append_list_attribute-attribute_name">$obj-&gt;append_list_attribute($attribute_name)</dt>
+<dd>
+
+<p>If there are two parameters, then the first parameter is assumed to be a <code>SafeGlob</code> object and the second parameter is assumed to be an attribute name. The attribute value for the object is returned. The returned value is a reference to an array so you should derference it if you want to use it as an array.</p>
+
+</dd>
+<dt id="obj-append_list_attribute-attribute_values-attribute_name">$obj-&gt;append_list_attribute($attribute_values, $attribute_name)</dt>
+<dd>
+
+<p>If more than three parameters are given, the first parameter is the object, the last parameter is the attribute name, and the rest are appended to the end of the list referenced by attribute name. The current / new attribute value is then returned. The returned value is a reference to an array so derference it if you want to use it as an array.</p>
+
+</dd>
+</dl>
+
+<h2 id="glob_regex">glob_regex</h2>
+
+<dl>
+
+<dt id="glob_regex-path-regular_expressions">glob_regex($path, [@regular_expressions])</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>All regular expressions are assumed to follow the path. This returns the files and/or directories that match the regular expression in the given path. The directory tree is recursed if the recursion flag is set.</p>
+
+<h2 id="glob_regex_dirs">glob_regex_dirs</h2>
+
+<dl>
+
+<dt id="glob_regex_dirs-path-dir_regular_expressions">glob_regex_dirs($path, [@dir_regular_expressions])</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>All regular expressions are assumed to follow the path. This returns the directories that match the regular expression in the given path. Recursion is done if the recurse parameter is set.</p>
+
+<p>Directory names that match the ignore regular expression list are not returned.</p>
+
+<h2 id="glob_regex_files">glob_regex_files</h2>
+
+<dl>
+
+<dt id="glob_regex_files-path-file_regular_expressions">glob_regex_files($path, [@file_regular_expressions])</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>All regular expressions are assumed to follow the path. This returns the files that match the regular expression in the given path. Recursion is done if the recurse parameter is set.</p>
+
+<p>File names that match the ignore regular expression list are not returned.</p>
+
+<h2 id="glob_spec">glob_spec</h2>
+
+<dl>
+
+<dt id="glob_spec-path-file_specs">glob_spec($path, [@file_specs])</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>All file specs are assumed to follow the path. The file specs are turned into regular expressions and then glob_regex is called. This returns the files that match the file specification in the given path.</p>
+
+<h2 id="glob_spec_from_path">glob_spec_from_path</h2>
+
+<dl>
+
+<dt id="glob_spec_from_path-file_specs_with_dirs">glob_spec_from_path([@file_specs_with_dirs])</dt>
+<dd>
+
+</dd>
+</dl>
+
+<p>This assumes that it is given a list of file specs where the file specs contain leading directory entries. The file spec and path are separated using File::Basename::fileparse() and then glob_spec is called.</p>
+
+<h2 id="recurse">recurse</h2>
+
+<dl>
+
+<dt id="recurse-0-1">recurse([0|1])</dt>
+<dd>
+
 <p>Set the attribute if a parameter is present.</p>
-<p>Return the state of the parameter.</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="return_dirs">return_dirs</a></h2>
-<dl>
-<dt><strong><a name="return_dirs" class="item">return_dirs([0|1])</a></strong></dt>
 
-<dd>
-<p>Set the attribute if a parameter is present.</p>
 <p>Return the state of the parameter.</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="return_files">return_files</a></h2>
-<dl>
-<dt><strong><a name="return_files" class="item">return_files([0|1])</a></strong></dt>
 
-<dd>
-<p>Set the attribute if a parameter is present.</p>
-<p>Return the state of the parameter.</p>
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.</p>
-<p>
-</p>
-<hr />
-<h1><a name="modification_history">Modification History</a></h1>
-<p>
-</p>
-<h2><a name="july_17__2009">July 17, 2009</a></h2>
-<p>Change some wording, and a few minor fixes such sa removing references to
-a logger.</p>
-<p>
-</p>
-<h2><a name="april_4__2007">April 4, 2007</a></h2>
-<p>Use File::Spec to concatinate a directory path to a file name.
-This is a safer than the previous assumptions.
-Corrected POD documentation.</p>
-<p>
-</p>
-<h2><a name="september_10__2002">September 10, 2002</a></h2>
-<p>Version 1.01 Changed internal documentation to POD documentation and
-support subdirectories</p>
-<p>
-</p>
-<h2><a name="march_13__1998">March 13, 1998</a></h2>
+
+<h2 id="return_dirs">return_dirs</h2>
+
+<dl>
+
+<dt id="return_dirs-0-1">return_dirs([0|1])</dt>
+<dd>
+
+<p>Set the attribute if a parameter is present.</p>
+
+<p>Return the state of the parameter.</p>
+
+</dd>
+</dl>
+
+<h2 id="return_files">return_files</h2>
+
+<dl>
+
+<dt id="return_files-0-1">return_files([0|1])</dt>
+<dd>
+
+<p>Set the attribute if a parameter is present.</p>
+
+<p>Return the state of the parameter.</p>
+
+</dd>
+</dl>
+
+<h2 id="ignore_file_list_reg">ignore_file_list_reg</h2>
+
+<dl>
+
+<dt id="ignore_file_list_reg1">ignore_file_list_reg()</dt>
+<dd>
+
+<p>Get the ist of regular expression used to ignore files.</p>
+
+</dd>
+</dl>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into my own copies if you provide them to me.</p>
+
+<h1 id="Modification-History">Modification History</h1>
+
+<h2 id="July-17-2009">July 17, 2009</h2>
+
+<p>Change some wording, and a few minor fixes such sa removing references to a logger.</p>
+
+<h2 id="November-1-2014">November 1, 2014</h2>
+
+<p>Support ignoring files and directories.</p>
+
+<h2 id="April-4-2007">April 4, 2007</h2>
+
+<p>Use File::Spec to concatinate a directory path to a file name. This is a safer than the previous assumptions. Corrected POD documentation.</p>
+
+<h2 id="September-10-2002">September 10, 2002</h2>
+
+<p>Version 1.01 Changed internal documentation to POD documentation and support subdirectories</p>
+
+<h2 id="March-13-1998">March 13, 1998</h2>
+
 <p>Version 1.00 First release</p>
+
 
 </body>
 
 </html>
+
+

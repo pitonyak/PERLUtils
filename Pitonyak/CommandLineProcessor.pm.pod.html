@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::CommandLineProcessor - Recognize and parse command line arguments.</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -10,188 +10,203 @@
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<li><a href="#description">DESCRIPTION</a></li>
-	<ul>
-
-		<li><a href="#die_on_error">die_on_error</a></li>
-		<li><a href="#clear">clear</a></li>
-		<li><a href="#clear_arg_config">clear_arg_config</a></li>
-		<li><a href="#clear_arg_values">clear_arg_values</a></li>
-		<li><a href="#get_processed_args">get_processed_args</a></li>
-		<li><a href="#push_processed_arg">push_processed_arg</a></li>
-		<li><a href="#process_args">process_args</a></li>
-		<li><a href="#process_args_from_file">process_args_from_file</a></li>
-		<li><a href="#configure">configure</a></li>
-		<li><a href="#copy">copy</a></li>
-		<li><a href="#get_class_attribute">get_class_attribute</a></li>
-		<li><a href="#new">new</a></li>
-		<li><a href="#is_argument">is_argument</a></li>
-		<li><a href="#get_argument_name">get_argument_name</a></li>
-		<li><a href="#arg_expects_value">arg_expects_value</a></li>
-		<li><a href="#contains_value">contains_value</a></li>
-		<li><a href="#get_value">get_value</a></li>
-	</ul>
-
-	<li><a href="#private_methods">Private Methods</a></li>
-	<ul>
-
-		<li><a href="#initialize">initialize</a></li>
-	</ul>
-
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#modification_history">Modification History</a></li>
-	<ul>
-
-		<li><a href="#march_13__1998">March 13, 1998</a></li>
-		<li><a href="#september_10__2002">September 10, 2002</a></li>
-		<li><a href="#may_29__2012">May 29, 2012</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#die_on_error">die_on_error</a></li>
+      <li><a href="#clear">clear</a></li>
+      <li><a href="#clear_arg_config">clear_arg_config</a></li>
+      <li><a href="#clear_arg_values">clear_arg_values</a></li>
+      <li><a href="#get_processed_args">get_processed_args</a></li>
+      <li><a href="#push_processed_arg">push_processed_arg</a></li>
+      <li><a href="#process_args">process_args</a></li>
+      <li><a href="#process_args_from_file">process_args_from_file</a></li>
+      <li><a href="#configure">configure</a></li>
+      <li><a href="#copy">copy</a></li>
+      <li><a href="#get_class_attribute">get_class_attribute</a></li>
+      <li><a href="#new">new</a></li>
+      <li><a href="#is_argument">is_argument</a></li>
+      <li><a href="#get_argument_name">get_argument_name</a></li>
+      <li><a href="#arg_expects_value">arg_expects_value</a></li>
+      <li><a href="#contains_value">contains_value</a></li>
+      <li><a href="#get_value">get_value</a></li>
+    </ul>
+  </li>
+  <li><a href="#Private-Methods">Private Methods</a>
+    <ul>
+      <li><a href="#initialize">initialize</a></li>
+    </ul>
+  </li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#Modification-History">Modification History</a>
+    <ul>
+      <li><a href="#March-13-1998">March 13, 1998</a></li>
+      <li><a href="#September-10-2002">September 10, 2002</a></li>
+      <li><a href="#May-29-2012">May 29, 2012</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
 <p>Pitonyak::CommandLineProcessor - Recognize and parse command line arguments.</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
-<p>After writing the same code to process arguments over and over again,
-I decided to write a processor that could handle most of the tasks for me.</p>
-<p>This processor will process the arguments and place them in an array
-after matching commands with arguments for me.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p>After writing the same code to process arguments over and over again, I decided to write a processor that could handle most of the tasks for me.</p>
+
+<p>This processor will process the arguments and place them in an array after matching commands with arguments for me.</p>
+
 <p>The processor also recognizes and parses arguments from text files.</p>
+
 <p>I keep this file here mostly for legacy reasons. If I was feeling industrious, I would replace it with GetOpt.</p>
-<p>
-</p>
-<hr />
-<h1><a name="description">DESCRIPTION</a></h1>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
 <p>More in depth description??</p>
-<p>
-</p>
-<h2><a name="die_on_error">die_on_error</a></h2>
-<dl>
-<dt><strong><a name="die_on_error" class="item"><code>Pitonyak::CommandLineProcessor::die_on_error()</code></a></strong></dt>
 
+<h2 id="die_on_error">die_on_error</h2>
+
+<dl>
+
+<dt id="Pitonyak::CommandLineProcessor::die_on_error"><code>Pitonyak::CommandLineProcessor::die_on_error()</code></dt>
 <dd>
+
 <p>Return the state of the initial die_on_error flag.</p>
-</dd>
-<dt><strong><code>$obj-&gt;die_on_error()</code></strong></dt>
 
+</dd>
+<dt id="obj-die_on_error"><code>$obj-&gt;die_on_error()</code></dt>
 <dd>
+
 <p>Return the state of the die_on_error flag.</p>
-</dd>
-<dt><strong><code>$obj-&gt;die_on_error(0|1)</code></strong></dt>
 
+</dd>
+<dt id="obj-die_on_error-0-1"><code>$obj-&gt;die_on_error(0|1)</code></dt>
 <dd>
+
 <p>Set the state of the die_on_error flag.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="clear">clear</a></h2>
-<dl>
-<dt><strong><a name="clear" class="item"><code>$obj-&gt;clear()</code></a></strong></dt>
 
+<h2 id="clear">clear</h2>
+
+<dl>
+
+<dt id="obj-clear"><code>$obj-&gt;clear()</code></dt>
 <dd>
+
 <p>Clear the argument configuration and argument values.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="clear_arg_config">clear_arg_config</a></h2>
-<dl>
-<dt><strong><a name="clear_arg_config" class="item"><code>$obj-&gt;clear_arg_config()</code></a></strong></dt>
 
+<h2 id="clear_arg_config">clear_arg_config</h2>
+
+<dl>
+
+<dt id="obj-clear_arg_config"><code>$obj-&gt;clear_arg_config()</code></dt>
 <dd>
+
 <p>Clear the argument configuration.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="clear_arg_values">clear_arg_values</a></h2>
-<dl>
-<dt><strong><a name="clear_arg_values" class="item"><code>$obj-&gt;clear_arg_values()</code></a></strong></dt>
 
+<h2 id="clear_arg_values">clear_arg_values</h2>
+
+<dl>
+
+<dt id="obj-clear_arg_values"><code>$obj-&gt;clear_arg_values()</code></dt>
 <dd>
+
 <p>Clear the argument values.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_processed_args">get_processed_args</a></h2>
-<dl>
-<dt><strong><a name="get_processed_args" class="item"><code>$obj-&gt;get_processed_args()</code></a></strong></dt>
 
+<h2 id="get_processed_args">get_processed_args</h2>
+
+<dl>
+
+<dt id="obj-get_processed_args"><code>$obj-&gt;get_processed_args()</code></dt>
 <dd>
+
 <p>Get a reference to all of the accumulated arguments.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="push_processed_arg">push_processed_arg</a></h2>
-<dl>
-<dt><strong><a name="push_processed_arg" class="item"><code>$obj-&gt;push_processed_arg($arg_name, $arg_value, $method_name)</code></a></strong></dt>
 
+<h2 id="push_processed_arg">push_processed_arg</h2>
+
+<dl>
+
+<dt id="obj-push_processed_arg-arg_name-arg_value-method_name"><code>$obj-&gt;push_processed_arg($arg_name, $arg_value, $method_name)</code></dt>
 <dd>
+
 <p>Push a processed argument set onto the stack.</p>
+
+
+
 <table BORDER='1' CELLPADDING="5">
 <TR><TH>Argument</TH>                <TH>Description</TH></TR>
 <TR><TD><CODE>arg_name</CODE></TD>   <TD>Argument name without the leading minus.</TD></TR>
 <TR><TD><CODE>arg_value</CODE></TD>  <TD>Value</TD></TR>
 <TR><TD><CODE>method_name</CODE></TD><TD>Name of the method to use to parse the argument/value.</TD></TR>
-</table></dd>
-</dl>
-<p>
-</p>
-<h2><a name="process_args">process_args</a></h2>
-<dl>
-<dt><strong><a name="process_args" class="item"><code>$obj-&gt;process_args(@arg_list)</code></a></strong></dt>
+</table>
 
-<dd>
-<p>Process each argument based on the current configuration.
-An argument list is built by calling <a href="#get_processed_args"><code>get_processed_args()</code></a>.</p>
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="process_args_from_file">process_args_from_file</a></h2>
-<dl>
-<dt><strong><a name="process_args_from_file" class="item"><code>$obj-&gt;process_args_from_file($file_name, ...)</code></a></strong></dt>
 
+<h2 id="process_args">process_args</h2>
+
+<dl>
+
+<dt id="obj-process_args-arg_list"><code>$obj-&gt;process_args(@arg_list)</code></dt>
 <dd>
-<p>Process arguments from each file. Empty lines are ignored.
-The general process is to open and read values from every file
-and then process the lines.</p>
+
+<p>Process each argument based on the current configuration. An argument list is built by calling <code>get_processed_args()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="configure">configure</a></h2>
-<dl>
-<dt><strong><a name="configure" class="item"><code>$obj-&gt;configure($cfg)</code></a></strong></dt>
 
+<h2 id="process_args_from_file">process_args_from_file</h2>
+
+<dl>
+
+<dt id="obj-process_args_from_file-file_name"><code>$obj-&gt;process_args_from_file($file_name, ...)</code></dt>
 <dd>
+
+<p>Process arguments from each file. Empty lines are ignored. The general process is to open and read values from every file and then process the lines.</p>
+
+</dd>
+</dl>
+
+<h2 id="configure">configure</h2>
+
+<dl>
+
+<dt id="obj-configure-cfg"><code>$obj-&gt;configure($cfg)</code></dt>
+<dd>
+
 <p>Configure this object using a configuration file. Typical values are as follows:</p>
+
+
+
 <table BORDER='1' CELLPADDING="5">
 <TR><TH>Key</TH>              <TH>Description</TH></TR>
 <TR><TD><CODE>die_on_error</CODE></TD>    <TD>If 1, an error causes program termination.</TD></TR>
 <TR><TD><CODE>arg_names</CODE></TD>       <TD>Comma separated list of expected argument names.</TD></TR>
 <TR><TD><CODE></CODE></TD>    <TD></TD></TR>
-</table><p>Each supported argument is assumed to its own entry. A typical examle might be:</p>
+</table>
+
+<p>Each supported argument is assumed to its own entry. A typical examle might be:</p>
+
+
+
 <table BORDER='1' CELLPADDING="10"><TR><TD><code>
 arg_names = s, ReadFile                                <br/>
 arg = s                                                <br/>
@@ -212,7 +227,12 @@ arg.${arg}.method_name              =                  <br/>
 arg.${arg}.description              = Read arguments from the specified text file.<br/>
 arg.${arg}.arg_is_file_name_to_read = 1                <br/>
 </code>
-</TD></TR></table><p>The supported argument configuration items are as follows:</p>
+</TD></TR></table>
+
+<p>The supported argument configuration items are as follows:</p>
+
+
+
 <table BORDER='1' CELLPADDING="5">
 <TR><TH>Key                                    </TH> <TH>Description</TH></TR>
 <TR><TD><CODE>case_sensitive           </CODE> </TD> <TD>Is this argument case sensitive?</TD></TR>
@@ -222,178 +242,184 @@ arg.${arg}.arg_is_file_name_to_read = 1                <br/>
 <TR><TD><CODE>method_name              </CODE> </TD> <TD>Method to call to process this argument.</TD></TR>
 <TR><TD><CODE>description              </CODE> </TD> <TD>Text description to print with help.</TD></TR>
 <TR><TD><CODE>arg_is_file_name_to_read </CODE> </TD> <TD>This argument causes arguments to be read from the specified file.</TD></TR>
-</table></dd>
-</dl>
-<p>
-</p>
-<h2><a name="copy">copy</a></h2>
-<dl>
-<dt><strong><a name="copy" class="item"><code>copy($obj)</code></a></strong></dt>
+</table>
 
+</dd>
+</dl>
+
+<h2 id="copy">copy</h2>
+
+<dl>
+
+<dt id="copy-obj">copy($obj)</dt>
 <dd>
+
 <p>Make a copy of one object into another</p>
+
 <p><code>$obj1-</code>copy($obj2)&gt; is the same as <code>$obj1 = $obj2</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_class_attribute">get_class_attribute</a></h2>
-<p>The get_class_attribute method utilizes the fact that
-<code>$obj-&gt;method(@parms)</code> is the same as
-<code>method($obj, @parms)</code>. This method does not perform type checking
-to verify that this is true.</p>
-<p>The <a href="#get_class_attribute"><code>get_class_attribute</code></a> method is rarely called directly.</p>
+
+<h2 id="get_class_attribute">get_class_attribute</h2>
+
+<p>The get_class_attribute method utilizes the fact that <code>$obj-&gt;method(@parms)</code> is the same as <code>method($obj, @parms)</code>. This method does not perform type checking to verify that this is true.</p>
+
+<p>The <code>get_class_attribute</code> method is rarely called directly.</p>
+
 <dl>
-<dt><strong><a name="get_class_attribute" class="item"><code>Pitonyak::ADPLogger::get_class_attribute($attribute_name)</code></a></strong></dt>
 
+<dt id="Pitonyak::ADPLogger::get_class_attribute-attribute_name"><code>Pitonyak::ADPLogger::get_class_attribute($attribute_name)</code></dt>
 <dd>
-<p>With only one paramter, the first parameter is
-assumed to be an attribute name and the default attribute value
-is returned.</p>
+
+<p>With only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned.</p>
+
 </dd>
-<dt><strong><code>$obj-&gt;get_class_attribute($attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name"><code>$obj-&gt;get_class_attribute($attribute_name)</code></dt>
 <dd>
-<p>With two arguments, the first is assumed
-to be a <code>ADPLogger</code> object and the second is
-assumed to be an attribute name.
-The attribute value for the object is returned.</p>
+
+<p>With two arguments, the first is assumed to be a <code>ADPLogger</code> object and the second is assumed to be an attribute name. The attribute value for the object is returned.</p>
+
 </dd>
-<dt><strong><code>$obj-&gt;get_class_attribute($attribute_value, $attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_value-attribute_name"><code>$obj-&gt;get_class_attribute($attribute_value, $attribute_name)</code></dt>
 <dd>
-<p>With three arguments, the first is assumed to be the object,
-the second is a new attribute value, and the third is the attribute
-name to set. Although the order seems odd, this is intentional.</p>
-<p>Consider the method <code>is_ok</code> defined as <a href="#get_class_attribute"><code>return get_class_attribute( @_, 'is_ok' );</code></a></p>
-<p>Remember that <code>@_</code> refers to the argument list passed to the method. In all cases, the last argument
-passed to <a href="#get_class_attribute"><code>get_class_attribute</code></a> is the attribute name. If the method is called directly,
-this is the only argument.</p>
+
+<p>With three arguments, the first is assumed to be the object, the second is a new attribute value, and the third is the attribute name to set. Although the order seems odd, this is intentional.</p>
+
+<p>Consider the method <code>is_ok</code> defined as <code>return get_class_attribute( @_, &#39;is_ok&#39; );</code></p>
+
+<p>Remember that <code>@_</code> refers to the argument list passed to the method. In all cases, the last argument passed to <code>get_class_attribute</code> is the attribute name. If the method is called directly, this is the only argument.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="new">new</a></h2>
-<dl>
-<dt><strong><a name="_obj" class="item"><code>$obj = new Pitonyak::CommandLineProcessor;</code></a></strong></dt>
 
+<h2 id="new">new</h2>
+
+<dl>
+
+<dt id="obj-new-Pitonyak::CommandLineProcessor"><code>$obj = new Pitonyak::CommandLineProcessor;</code></dt>
 <dd>
+
 <p>Generate a new object.</p>
-</dd>
-<dt><strong><a name="new" class="item"><code>$obj = $obj-&gt;new()</code></a></strong></dt>
 
+</dd>
+<dt id="obj-obj-new"><code>$obj = $obj-&gt;new()</code></dt>
 <dd>
+
 <p>Generate a new copy of an object.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="is_argument">is_argument</a></h2>
-<dl>
-<dt><strong><a name="is_argument" class="item"><code>$obj-&gt;is_argument($arg)</code></a></strong></dt>
 
+<h2 id="is_argument">is_argument</h2>
+
+<dl>
+
+<dt id="obj-is_argument-arg"><code>$obj-&gt;is_argument($arg)</code></dt>
 <dd>
+
 <p>Return 1 if <code>$arg</code> starts with a minus sign.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_argument_name">get_argument_name</a></h2>
-<dl>
-<dt><strong><a name="get_argument_name" class="item"><code>$obj-&gt;get_argument_name($arg)</code></a></strong></dt>
 
+<h2 id="get_argument_name">get_argument_name</h2>
+
+<dl>
+
+<dt id="obj-get_argument_name-arg"><code>$obj-&gt;get_argument_name($arg)</code></dt>
 <dd>
-<p>Obtain the argument name if <code>$arg</code> is preceded by a minus sign.
-Execpted use is something like:</p>
-<p><a href="#get_argument_name"><code>$arg_name = $obj-&gt;get_argument_name($arg) if $obj-&gt;is_argument($arg);</code></a></p>
+
+<p>Obtain the argument name if <code>$arg</code> is preceded by a minus sign. Execpted use is something like:</p>
+
+<p><code>$arg_name = $obj-&gt;get_argument_name($arg) if $obj-&gt;is_argument($arg);</code></p>
+
 <p>If $arg is not an argument, then undef is returned.</p>
-<p>The returned name is take from the argument hash, and is not the precise
-value of the argument. So, if &quot;filename&quot; is not case sensitive, then
-FileName, and filename will both return filename.</p>
+
+<p>The returned name is take from the argument hash, and is not the precise value of the argument. So, if &quot;filename&quot; is not case sensitive, then FileName, and filename will both return filename.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="arg_expects_value">arg_expects_value</a></h2>
-<dl>
-<dt><strong><a name="arg_expects_value" class="item"><code>$obj-&gt;arg_expects_value($arg)</code></a></strong></dt>
 
+<h2 id="arg_expects_value">arg_expects_value</h2>
+
+<dl>
+
+<dt id="obj-arg_expects_value-arg"><code>$obj-&gt;arg_expects_value($arg)</code></dt>
 <dd>
+
 <p>Return 1 if <code>$arg</code> expects an argument, 0, otherwise.</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="contains_value">contains_value</a></h2>
-<dl>
-<dt><strong><a name="contains_value" class="item"><code>$obj-&gt;contains_value($arg)</code></a></strong></dt>
 
-<dd>
-<p>Return 1 if <code>$arg</code> is of the form '-argument=value', otherwise,
-return 0.</p>
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_value">get_value</a></h2>
-<dl>
-<dt><strong><a name="get_value" class="item"><code>$obj-&gt;get_value($arg)</code></a></strong></dt>
 
-<dd>
-<p>If <code>$arg</code> is of the form '-argument=value', then return value.
-If it is not, then return undef.</p>
-</dd>
-</dl>
-<p>
-</p>
-<hr />
-<h1><a name="private_methods">Private Methods</a></h1>
-<p>
-</p>
-<h2><a name="initialize">initialize</a></h2>
-<dl>
-<dt><strong><a name="initialize" class="item"><code>initialize()</code></a></strong></dt>
+<h2 id="contains_value">contains_value</h2>
 
+<dl>
+
+<dt id="obj-contains_value-arg"><code>$obj-&gt;contains_value($arg)</code></dt>
 <dd>
-<p>The <a href="#initialize"><code>initialize()</code></a> method is called automatically when an object is created.
-The new method also calls <a href="#initialize"><code>initialize()</code></a> directly</p>
-<p>Initialize the data structure by copying values from the initial attributes hash
-into the newly created object. Finally, set the read properties hash to
-an empty reference.</p>
+
+<p>Return 1 if <code>$arg</code> is of the form &#39;-argument=value&#39;, otherwise, return 0.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into</p>
-<p>
-</p>
-<hr />
-<h1><a name="modification_history">Modification History</a></h1>
-<p>
-</p>
-<h2><a name="march_13__1998">March 13, 1998</a></h2>
+
+<h2 id="get_value">get_value</h2>
+
+<dl>
+
+<dt id="obj-get_value-arg"><code>$obj-&gt;get_value($arg)</code></dt>
+<dd>
+
+<p>If <code>$arg</code> is of the form &#39;-argument=value&#39;, then return value. If it is not, then return undef.</p>
+
+</dd>
+</dl>
+
+<h1 id="Private-Methods">Private Methods</h1>
+
+<h2 id="initialize">initialize</h2>
+
+<dl>
+
+<dt id="initialize1"><code>initialize()</code></dt>
+<dd>
+
+<p>The <code>initialize()</code> method is called automatically when an object is created. The new method also calls <code>initialize()</code> directly</p>
+
+<p>Initialize the data structure by copying values from the initial attributes hash into the newly created object. Finally, set the read properties hash to an empty reference.</p>
+
+</dd>
+</dl>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into</p>
+
+<h1 id="Modification-History">Modification History</h1>
+
+<h2 id="March-13-1998">March 13, 1998</h2>
+
 <p>Version 1.00 First release</p>
-<p>
-</p>
-<h2><a name="september_10__2002">September 10, 2002</a></h2>
+
+<h2 id="September-10-2002">September 10, 2002</h2>
+
 <p>Version 1.01 Changed internal documentation to POD documentation.</p>
-<p>
-</p>
-<h2><a name="may_29__2012">May 29, 2012</a></h2>
-<p>Version 1.02
-Fixed a bug so that optional parameters are read. Will still not read a parameter of the form &quot;-s 2&quot;, but it will handle &quot;-s=2&quot;.</p>
+
+<h2 id="May-29-2012">May 29, 2012</h2>
+
+<p>Version 1.02 Fixed a bug so that optional parameters are read. Will still not read a parameter of the form &quot;-s 2&quot;, but it will handle &quot;-s=2&quot;.</p>
+
 
 </body>
 
 </html>
+
+

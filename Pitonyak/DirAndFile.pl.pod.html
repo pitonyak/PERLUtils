@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::DirAndFile - General Directory utilities.</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -10,68 +10,50 @@
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#description">DESCRIPTION</a></li>
-	<ul>
-
-		<li><a href="#match_file_or_dir_attributes">match_file_or_dir_attributes</a></li>
-		<li><a href="#force_file_writable">force_file_writable</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#match_file_or_dir_attributes">match_file_or_dir_attributes</a></li>
+      <li><a href="#force_file_writable">force_file_writable</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
 <p>Pitonyak::DirAndFile - General Directory utilities.</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
-<p>Given two files or directories, set the attributes on the second argument to match those on the first.
-In other words, given the arguments file1.txt and file2.txt, the attributes on file2.txt are set to match
-those on file1.txt.</p>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.</p>
-<p>
-</p>
-<hr />
-<h1><a name="description">DESCRIPTION</a></h1>
-<p>
-</p>
-<h2><a name="match_file_or_dir_attributes">match_file_or_dir_attributes</a></h2>
-<dl>
-<dt><strong><a name="match_file_or_dir_attributes" class="item"><code>match_file_or_dir_attributes($src, $dst)</code></a></strong></dt>
 
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p>Given two files or directories, set the attributes on the second argument to match those on the first. In other words, given the arguments file1.txt and file2.txt, the attributes on file2.txt are set to match those on file1.txt.</p>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into my own copies if you provide them to me.</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<h2 id="match_file_or_dir_attributes">match_file_or_dir_attributes</h2>
+
+<dl>
+
+<dt id="match_file_or_dir_attributes-src-dst"><code>match_file_or_dir_attributes($src, $dst)</code></dt>
 <dd>
-<p>The source and destination contain the full path to the source and
-destination file or directory. On exit, the attributes on the source will
-be the same as on the destination.</p>
+
+<p>The source and destination contain the full path to the source and destination file or directory. On exit, the attributes on the source will be the same as on the destination.</p>
+
+
+
 <table BORDER='1' CELLPADDING="10">
 <TR><TH>Attribute</TH><TH>Checked</TH><TH>Description</TH></TR>
 <TR><TD>dev      </TD>No <TD></TD><TD>device number of filesystem                    </TD></TR>
@@ -86,23 +68,32 @@ be the same as on the destination.</p>
 <TR><TD>mtime    </TD>Yes<TD></TD><TD>last modify time in seconds since the epoch    </TD></TR>
 <TR><TD>ctime    </TD>No <TD></TD><TD>inode change time in seconds since the epoch   </TD></TR>
 <TR><TD>blksize  </TD>No <TD></TD><TD>preferred block size for file system I/O       </TD></TR>
-<TR><TD>blocks   </TD>No <TD></TD><TD>actual number of blocks allocated              </TD></TR><p>No attempt is made to change access on the containing directory so that
-the attributes of the differening files can be changed.</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="force_file_writable">force_file_writable</a></h2>
-<dl>
-<dt><strong><a name="force_file_writable" class="item"><code>force_file_writable($current_mode, $path)</code></a></strong></dt>
+<TR><TD>blocks   </TD>No <TD></TD><TD>actual number of blocks allocated              </TD></TR>
 
-<dd>
-<p>The first argument, <code>$current_mode</code>, is the current mode of the file.</p>
-<p>The second argument, <code>$parth</code>, is the full path to the file.</p>
-<p>On exit, the file or directory will be readable and writable.</p>
+<p>No attempt is made to change access on the containing directory so that the attributes of the differening files can be changed.</p>
+
 </dd>
 </dl>
+
+<h2 id="force_file_writable">force_file_writable</h2>
+
+<dl>
+
+<dt id="force_file_writable-current_mode-path"><code>force_file_writable($current_mode, $path)</code></dt>
+<dd>
+
+<p>The first argument, <code>$current_mode</code>, is the current mode of the file.</p>
+
+<p>The second argument, <code>$parth</code>, is the full path to the file.</p>
+
+<p>On exit, the file or directory will be readable and writable.</p>
+
+</dd>
+</dl>
+
 
 </body>
 
 </html>
+
+

@@ -85,6 +85,14 @@ $VERSION   = '1.04';
   recurse
   return_dirs
   return_files
+  ignore_file_list_reg
+  ignore_dir_list_reg
+  append_ignore_file_list
+  append_ignore_file_list_wild
+  append_ignore_file_list_reg
+  append_ignore_dir_list
+  append_ignore_dir_list_wild
+  append_ignore_dir_list_reg
 );
 
 use strict;
@@ -93,11 +101,16 @@ use File::Basename;
 use File::Spec;
 use Pitonyak::DeepCopy qw(deep_copy);
 
+# Note that the ignore file list is stored directly as a regular expression with escaped names.
+# Same is true of file specs, they would be converted to a regular expression.
+
 my %initial_attributes = (
   'recurse'        => 0,
   'return_dirs'    => 1,
   'return_files'   => 1,
   'case_sensitive' => 1,
+  'ignore_file_list_reg' => [],
+  'ignore_dir_list_reg' => [],
 );
 
 #************************************************************
@@ -232,7 +245,7 @@ sub initialize {
 
 =head2 get_class_attribute
 
-Remember that the call C<$obj-E<gt>method(@parms)> is the same as
+Remember that the call C<$obj-<gt>method(@parms)> is the same as
 C<method($obj, @parms)>.
 
 =over 4
@@ -250,11 +263,10 @@ to be a C<SafeGlob> object and the second parameter is
 assumed to be an attribute name.
 The attribute value for the object is returned.
 
-=item $obj->get_class_attribute($attribute_name, $attribute_value)
+=item $obj->get_class_attribute($attribute_value, $attribute_name)
 
 If three parameters are given, then the first parameter is the object,
-the second parameter
-is used to set a new value for the attribute,
+the second parameter is used to set a new value for the attribute,
 and the third parameter is the attribute name,
 The attribute value is then returned.
 
@@ -269,6 +281,59 @@ sub get_class_attribute {
   return $_[0]->{ $_[1] } if $#_ == 1;
   $_[0]->{ $_[2] } = $_[1];
   return $_[1];
+}
+
+#************************************************************
+
+=pod
+
+=head2 append_list_attribute
+
+Remember that the call C<$obj-<gt>method(@parms)> is the same as
+C<method($obj, @parms)>.
+
+=over 4
+
+=item SafeGlob::append_list_attribute($attribute_name)
+
+If there is only one paramter, the first parameter is
+assumed to be an attribute name and the default attribute value
+is returned. The returned value is a reference to an array
+so you should derference it if you want to use it as an array.
+
+=item $obj->append_list_attribute($attribute_name)
+
+If there are two parameters, then the first parameter is assumed
+to be a C<SafeGlob> object and the second parameter is
+assumed to be an attribute name.
+The attribute value for the object is returned.
+The returned value is a reference to an array
+so you should derference it if you want to use it as an array.
+
+=item $obj->append_list_attribute($attribute_values, $attribute_name)
+
+If more than three parameters are given, the first parameter is the object,
+the last parameter is the attribute name, and the rest are appended to
+the end of the list referenced by attribute name. 
+The current / new attribute value is then returned. The returned value is a reference to an array
+so derference it if you want to use it as an array.
+
+=back
+
+=cut
+
+#************************************************************
+
+sub append_list_attribute {
+  return $initial_attributes{ $_[0] } if $#_ == 0;
+  return $_[0]->{ $_[1] } if $#_ == 1;
+  
+  # More than two arguments, so, append them.
+  my $obj = shift;
+  my $name = pop(@_);
+  my $ref_array = $obj->{ $name };
+  push($ref_array, @_);
+  return $ref_array;
 }
 
 #************************************************************
@@ -294,7 +359,7 @@ The directory tree is recursed if the recursion flag is set.
 sub glob_regex {
   if ( $#_ < 1 )
   {
-    carp('glob_regex_dirs expected at least two parameters, a path and regular expression');
+    carp('glob_regex expected at least two parameters, a path and regular expression');
   }
 
   my $obj;
@@ -303,7 +368,7 @@ sub glob_regex {
     $obj = shift;
     if ( $#_ < 1 )
     {
-      carp('glob_regex_dirs expected at least two parameters, a path and regular expression');
+      carp('glob_regex expected at least two parameters, a path and regular expression');
     }
   }
   else
@@ -332,6 +397,8 @@ sub glob_regex {
 All regular expressions are assumed to follow the path.
 This returns the directories that match the regular expression in the given path.
 Recursion is done if the recurse parameter is set.
+
+Directory names that match the ignore regular expression list are not returned.
 
 =cut
 
@@ -376,6 +443,21 @@ sub glob_regex_dirs
     @dir_list = grep { /$regex/i } @orig_dir_list if not $obj->case_sensitive();
     @dir_list = grep { /$regex/ } @orig_dir_list  if $obj->case_sensitive();
 
+    my @regex_ignore = $obj->ignore_dir_list_reg();
+    if ($#regex_ignore >= 0 && $#dir_list >= 0)
+    {
+      my $regex_ignore_dirs = scalar(@regex_ignore) ? join ( '|', @regex_ignore ) : '';
+      @dir_list = grep { !/$regex_ignore_dirs/i } @dir_list if not $obj->case_sensitive();
+      @dir_list = grep { !/$regex_ignore_dirs/  } @dir_list if $obj->case_sensitive();
+    }
+
+    if ($#regex_ignore >= 0 && $#orig_dir_list >= 0)
+    {
+      my $regex_ignore_dirs = scalar(@regex_ignore) ? join ( '|', @regex_ignore ) : '';
+      @orig_dir_list = grep { !/$regex_ignore_dirs/i } @orig_dir_list if not $obj->case_sensitive();
+      @orig_dir_list = grep { !/$regex_ignore_dirs/  } @orig_dir_list if $obj->case_sensitive();
+    }
+    
     # Should we recurse the directory tree?
     if ( $obj->recurse() )
     {
@@ -404,6 +486,8 @@ sub glob_regex_dirs
 All regular expressions are assumed to follow the path.
 This returns the files that match the regular expression in the given path.
 Recursion is done if the recurse parameter is set.
+
+File names that match the ignore regular expression list are not returned.
 
 =cut
 
@@ -445,6 +529,15 @@ sub glob_regex_files
     @file_list = grep { /$regex/i && -f File::Spec->catfile($path, $_) } readdir(IND) if not $obj->case_sensitive();
     @file_list = grep { /$regex/  && -f File::Spec->catfile($path, $_) } readdir(IND) if $obj->case_sensitive();
     closedir(IND);
+    
+    my @regex_ignore = $obj->ignore_file_list_reg();
+    my $regex_ignore_files = scalar(@regex_ignore) ? join ( '|', @regex_ignore ) : '';
+    if ($#regex_ignore >= 0)
+    {
+      @file_list = grep { !/$regex_ignore_files/i } @file_list if not $obj->case_sensitive();
+      @file_list = grep { !/$regex_ignore_files/  } @file_list if $obj->case_sensitive();
+    }
+    #print "done ignoring \n";
 
     # Should we recurse the directory tree?
     if ( $obj->recurse() )
@@ -459,9 +552,18 @@ sub glob_regex_files
         else
         {
           # match the regular expression
-          push ( @file_list, map { File::Spec->catfile($a_dir, $_) } grep { /$regex/i && -f File::Spec->catfile($path_dir, $_) } readdir(IND) ) if not $obj->case_sensitive();
-          push ( @file_list, map { File::Spec->catfile($a_dir, $_) } grep { /$regex/ &&  -f File::Spec->catfile($path_dir, $_) } readdir(IND) ) if $obj->case_sensitive();
+          my @orig_file_list;
+          @orig_file_list = grep { /$regex/i && -f File::Spec->catfile($path_dir, $_) } readdir(IND) if not $obj->case_sensitive();
+          @orig_file_list = grep grep { /$regex/ &&  -f File::Spec->catfile($path_dir, $_) } readdir(IND) if $obj->case_sensitive();
           closedir(IND);
+
+          if ($#regex_ignore >= 0)
+          {
+            @orig_file_list = grep { !/$regex_ignore_files/i } @orig_file_list if not $obj->case_sensitive();
+            @orig_file_list = grep { !/$regex_ignore_files/  } @orig_file_list if $obj->case_sensitive();
+          }
+
+          push ( @file_list, map { File::Spec->catfile($a_dir, $_) } @orig_file_list ) 
         }
       }
     }
@@ -512,7 +614,15 @@ sub glob_spec
 
   my $path     = shift;
   my @reg_list = @_;
-  foreach (@reg_list)
+  spec_to_regex(@reg_list);
+  return $obj->glob_regex( $path, @reg_list );
+}
+
+# TODO, add POD docs
+
+sub spec_to_regex
+{
+  foreach (@_)
   {
     s/\./\\./go;     # Convert '.' to '\.'
     s/\^/\\^/go;     # Convert '^' to '\^'
@@ -521,7 +631,18 @@ sub glob_spec
     s/\*/.*/go;      # Convert '*' to '.*'
     $_ = "^$_\$";    # Place a '^' in front and '$' at the end.
   }
-  return $obj->glob_regex( $path, @reg_list );
+}
+
+sub escape_string_for_regexp
+{
+  foreach (@_)
+  {
+    s/\\/\\\\/go;     # Convert '\' to '\\'
+    s/\./\\./go;     # Convert '.' to '\.'
+    s/\^/\\^/go;     # Convert '^' to '\^'
+    s/\$/\\\$/go;    # Convert '$' to '\$'
+    s/\*/\\*/go;      # Convert '*' to '\\*'
+  }
 }
 
 #************************************************************
@@ -651,6 +772,78 @@ sub return_files
 
 =pod
 
+=head2 ignore_file_list_reg
+
+=over 4
+
+=item ignore_file_list_reg()
+
+Get the ist of regular expression used to ignore files.
+
+=back
+
+=cut
+
+#************************************************************
+
+sub ignore_file_list_reg
+{
+  return @{get_class_attribute( @_, 'ignore_file_list_reg' )};
+}
+
+sub ignore_dir_list_reg
+{
+  return @{get_class_attribute( @_, 'ignore_dir_list_reg' )};
+}
+
+#*****
+
+sub append_ignore_file_list
+{
+  my $obj= shift;
+  my @list = @_;
+  escape_string_for_regexp(@list);
+  return @{$obj->append_list_attribute( @list, 'ignore_file_list_reg' )};
+}
+
+sub append_ignore_file_list_wild
+{
+  my $obj= shift;
+  my @wild_list = @_;
+  spec_to_regex(@wild_list);
+  return @{$obj->append_list_attribute( @wild_list, 'ignore_file_list_reg' )};
+}
+
+sub append_ignore_file_list_reg
+{
+  return @{append_list_attribute( @_, 'ignore_file_list_reg' )};
+}
+
+sub append_ignore_dir_list
+{
+  my $obj= shift;
+  my @list = @_;
+  escape_string_for_regexp(@list);
+  return @{$obj->append_list_attribute( @list, 'ignore_dir_list_reg' )};
+}
+
+sub append_ignore_dir_list_wild
+{
+  my $obj= shift;
+  my @wild_list = @_;
+  spec_to_regex(@wild_list);
+  return @{$obj->append_list_attribute( @wild_list, 'ignore_dir_list_reg' )};
+}
+
+sub append_ignore_dir_list_reg
+{
+  return @{append_list_attribute( @_, 'ignore_dir_list_reg' )};
+}
+
+#************************************************************
+
+=pod
+
 =head1 COPYRIGHT
 
 Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)
@@ -674,6 +867,10 @@ my own copies if you provide them to me.
 
 Change some wording, and a few minor fixes such sa removing references to
 a logger.
+
+=head2 November 1, 2014
+
+Support ignoring files and directories.
 
 =head2 April 4, 2007
 

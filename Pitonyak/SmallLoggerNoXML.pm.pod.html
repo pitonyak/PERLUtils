@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::SmallLoggerNoXML - File andE&lt;sol&gt;or screen logging with message types</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -10,70 +10,60 @@
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<li><a href="#description">DESCRIPTION</a></li>
-	<ul>
-
-		<li><a href="#new">new</a></li>
-		<li><a href="#copy">copy</a></li>
-		<li><a href="#build_name">build_name</a></li>
-		<li><a href="#close_log">close_log</a></li>
-		<li><a href="#debug">debug</a></li>
-		<li><a href="#error">error</a></li>
-		<li><a href="#file_output">file_output</a></li>
-		<li><a href="#get_class_attribute">get_class_attribute</a></li>
-		<li><a href="#hold_log_open">hold_log_open</a></li>
-		<li><a href="#info">info</a></li>
-		<li><a href="#is_log_open">is_log_open</a></li>
-		<li><a href="#is_ok">is_ok</a></li>
-		<li><a href="#log_ext">log_ext</a></li>
-		<li><a href="#log_name">log_name</a></li>
-		<li><a href="#log_name_date">log_name_date</a></li>
-		<li><a href="#log_path">log_path</a></li>
-		<li><a href="#log_primary_name">log_primary_name</a></li>
-		<li><a href="#message_front">message_front</a></li>
-		<li><a href="#message_loc_format">message_loc_format</a></li>
-		<li><a href="#message_time_format">message_time_format</a></li>
-		<li><a href="#open_append">open_append</a></li>
-		<li><a href="#open_log">open_log</a></li>
-		<li><a href="#rebuild_name">rebuild_name</a></li>
-		<li><a href="#screen_output">screen_output</a></li>
-		<li><a href="#set_log_primary_name">set_log_primary_name</a></li>
-		<li><a href="#trace">trace</a></li>
-		<li><a href="#warn">warn</a></li>
-		<li><a href="#write_log">write_log</a></li>
-		<li><a href="#write_log_type">write_log_type</a></li>
-		<li><a href="#write_string_to_log">write_string_to_log</a></li>
-	</ul>
-
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#modification_history">Modification History</a></li>
-	<ul>
-
-		<li><a href="#may_13__2003">May 13, 2003</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#new">new</a></li>
+      <li><a href="#copy">copy</a></li>
+      <li><a href="#build_name">build_name</a></li>
+      <li><a href="#close_log">close_log</a></li>
+      <li><a href="#debug">debug</a></li>
+      <li><a href="#error">error</a></li>
+      <li><a href="#file_output">file_output</a></li>
+      <li><a href="#get_class_attribute">get_class_attribute</a></li>
+      <li><a href="#hold_log_open">hold_log_open</a></li>
+      <li><a href="#info">info</a></li>
+      <li><a href="#is_log_open">is_log_open</a></li>
+      <li><a href="#is_ok">is_ok</a></li>
+      <li><a href="#log_ext">log_ext</a></li>
+      <li><a href="#log_name">log_name</a></li>
+      <li><a href="#log_name_date">log_name_date</a></li>
+      <li><a href="#log_path">log_path</a></li>
+      <li><a href="#log_primary_name">log_primary_name</a></li>
+      <li><a href="#message_front">message_front</a></li>
+      <li><a href="#message_loc_format">message_loc_format</a></li>
+      <li><a href="#message_time_format">message_time_format</a></li>
+      <li><a href="#open_append">open_append</a></li>
+      <li><a href="#open_log">open_log</a></li>
+      <li><a href="#rebuild_name">rebuild_name</a></li>
+      <li><a href="#screen_output">screen_output</a></li>
+      <li><a href="#set_log_primary_name">set_log_primary_name</a></li>
+      <li><a href="#trace">trace</a></li>
+      <li><a href="#warn">warn</a></li>
+      <li><a href="#write_log">write_log</a></li>
+      <li><a href="#write_log_type">write_log_type</a></li>
+      <li><a href="#write_string_to_log">write_string_to_log</a></li>
+    </ul>
+  </li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#Modification-History">Modification History</a>
+    <ul>
+      <li><a href="#May-13-2003">May 13, 2003</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
-<p>Pitonyak::SmallLoggerNoXML - File and&sol;or screen logging with message types</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Pitonyak::SmallLoggerNoXML - File and/or screen logging with message types</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+
+
 <p><code>
 use Pitonyak::SmallLoggerNoXML;              <br/>
                                              <br/>
@@ -87,513 +77,527 @@ $log->warn("Hello I Warn you");              <br/>
 $log->debug("Hello I debug you");            <br/>
 $log->info("Hello I info you");              <br/>
 $log->error("Hello I error you");            <br/>
-</code></p><p>
-</p>
-<hr />
-<h1><a name="description">DESCRIPTION</a></h1>
-<p>
-</p>
-<h2><a name="new">new</a></h2>
-<dl>
-<dt><strong><a name="new" class="item"><code>new()</code></a></strong></dt>
+</code></p>
 
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<h2 id="new">new</h2>
+
+<dl>
+
+<dt id="new1">new()</dt>
 <dd>
-<p>Note that this is written in such a manner
-that it can be inherited. Also note that it
-is written such that $obj2 = $obj1-&gt;<a href="#new"><code>new()</code></a>
-is valid!</p>
+
+<p>Note that this is written in such a manner that it can be inherited. Also note that it is written such that $obj2 = $obj1-&gt;new() is valid!</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="copy">copy</a></h2>
-<dl>
-<dt><strong><a name="copy" class="item"><code>copy($small_logger_object)</code></a></strong></dt>
 
+<h2 id="copy">copy</h2>
+
+<dl>
+
+<dt id="copy-small_logger_object">copy($small_logger_object)</dt>
 <dd>
+
 <p>Make a copy of one SmallLoggerNoXML into another</p>
-<p><code>&lt;$obj1-</code>copy($obj2)&gt;&gt; is the same as <code>$obj1 = $obj2</code>.
-The file handle is not copied and the
-the receiving SmallLoggerNoXML is closed first.</p>
+
+<p><code>&lt;$obj1-</code>copy($obj2)&gt;&gt; is the same as <code>$obj1 = $obj2</code>. The file handle is not copied and the the receiving SmallLoggerNoXML is closed first.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="build_name">build_name</a></h2>
-<dl>
-<dt><strong><a name="build_name" class="item">$obj-&gt;build_name($path, $base_file_name, $time_format, $extension)</a></strong></dt>
 
+<h2 id="build_name">build_name</h2>
+
+<dl>
+
+<dt id="obj-build_name-path-base_file_name-time_format-extension">$obj-&gt;build_name($path, $base_file_name, $time_format, $extension)</dt>
 <dd>
+
 <p>Returns non-zero on success.</p>
-<p>The complete log file name will be named as
-<code>&quot;$path$base_file_name$time_format$extension&quot;</code>
-with some caveats.</p>
-<p>The <code>$time_format</code> is converted to a time date string and is used
-as part of the file name if it does not have a zero length.
-A popular format for this is '.YYYYMMDD.hhmmss' to have a log file
-that contains the date and time included as part of the file name.
-This is a good way to have a unique log file every time you run
-and yet still know the application to which it is attached.
-This should contain a leading '.' if one is desired.</p>
+
+<p>The complete log file name will be named as <code>&quot;$path$base_file_name$time_format$extension&quot;</code> with some caveats.</p>
+
+<p>The <code>$time_format</code> is converted to a time date string and is used as part of the file name if it does not have a zero length. A popular format for this is &#39;.YYYYMMDD.hhmmss&#39; to have a log file that contains the date and time included as part of the file name. This is a good way to have a unique log file every time you run and yet still know the application to which it is attached. This should contain a leading &#39;.&#39; if one is desired.</p>
+
 <p>The <code>$path</code> indicates where the log file will exist.</p>
-<p>The <code>$extension</code> should contain a leading '.' if one is desired.</p>
+
+<p>The <code>$extension</code> should contain a leading &#39;.&#39; if one is desired.</p>
+
 <p>If the file is open, it will be closed before the name is changed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="close_log">close_log</a></h2>
-<dl>
-<dt><strong><a name="close_log" class="item"><code>close_log()</code></a></strong></dt>
 
+<h2 id="close_log">close_log</h2>
+
+<dl>
+
+<dt id="close_log1">close_log()</dt>
 <dd>
+
 <p>If the file is open, it is closed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="debug">debug</a></h2>
-<dl>
-<dt><strong><a name="debug" class="item"><code>debug($message)</code></a></strong></dt>
 
+<h2 id="debug">debug</h2>
+
+<dl>
+
+<dt id="debug-message">debug($message)</dt>
 <dd>
-<p>This is used as an abreviation for <a href="#write_log_type"><code>write_log_type('D', $message);</code></a></p>
+
+<p>This is used as an abreviation for <code>write_log_type(&#39;D&#39;, $message);</code></p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="error">error</a></h2>
-<dl>
-<dt><strong><a name="error" class="item"><code>error($message)</code></a></strong></dt>
 
+<h2 id="error">error</h2>
+
+<dl>
+
+<dt id="error-message">error($message)</dt>
 <dd>
-<p>This is used as an abreviation for <a href="#write_log_type"><code>write_log_type('E', $message);</code></a></p>
+
+<p>This is used as an abreviation for <code>write_log_type(&#39;E&#39;, $message);</code></p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="file_output">file_output</a></h2>
-<p>When a message is written, a message type is included.
-I use one character to indicate the message type.
-The screen output hash is then checked to see if
-that message type should be logged.
-This is similar to how log4j does things.</p>
-<dl>
-<dt><strong><a name="file_output" class="item">SmallLoggerNoXML::file_output()</a></strong></dt>
 
+<h2 id="file_output">file_output</h2>
+
+<p>When a message is written, a message type is included. I use one character to indicate the message type. The screen output hash is then checked to see if that message type should be logged. This is similar to how log4j does things.</p>
+
+<dl>
+
+<dt id="SmallLoggerNoXML::file_output">SmallLoggerNoXML::file_output()</dt>
 <dd>
+
 <p>Return the default hash of values.</p>
-</dd>
-<dt><strong>$obj-&gt;<code>file_output()</code></strong></dt>
 
+</dd>
+<dt id="obj-file_output">$obj-&gt;file_output()</dt>
 <dd>
+
 <p>Return the current hash of values.</p>
-</dd>
-<dt><strong>$obj-&gt;file_output(HASH)</strong></dt>
 
+</dd>
+<dt id="obj-file_output-HASH">$obj-&gt;file_output(HASH)</dt>
 <dd>
+
 <p>Sets the hash to use for output.</p>
-</dd>
-<dt><strong>$obj-&gt;<code>file_output($message_type)</code></strong></dt>
 
+</dd>
+<dt id="obj-file_output-message_type">$obj-&gt;file_output($message_type)</dt>
 <dd>
+
 <p>Returns the output value for the specified <code>$message_type</code>.</p>
-<p><a href="#file_output"><code>$o-&gt;file_output('E')</code></a> is the same as
-<a href="#file_output"><code>$o-&gt;file_output()-&gt;{'E'}</code></a>.</p>
-</dd>
-<dt><strong>$obj-&gt;file_output($message_type, $message_value)</strong></dt>
 
+<p><code>$o-&gt;file_output(&#39;E&#39;)</code> is the same as <code>$o-&gt;file_output()-&gt;{&#39;E&#39;}</code>.</p>
+
+</dd>
+<dt id="obj-file_output-message_type-message_value">$obj-&gt;file_output($message_type, $message_value)</dt>
 <dd>
+
 <p>Sets and then returns the output value for the specified <code>$message_type</code>.</p>
-<p><a href="#file_output"><code>$o-&gt;file_output('E', 1)</code></a> is the same as
-<a href="#file_output"><code>$o-&gt;file_output()-&gt;{'E'} = 1</code></a>.</p>
+
+<p><code>$o-&gt;file_output(&#39;E&#39;, 1)</code> is the same as <code>$o-&gt;file_output()-&gt;{&#39;E&#39;} = 1</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_class_attribute">get_class_attribute</a></h2>
-<p>Remember that the call <code>$obj-&gt;method(@parms)</code> is the same as
-<code>method($obj, @parms)</code>.</p>
+
+<h2 id="get_class_attribute">get_class_attribute</h2>
+
+<p>Remember that the call <code>$obj-&gt;method(@parms)</code> is the same as <code>method($obj, @parms)</code>.</p>
+
 <dl>
-<dt><strong><a name="get_class_attribute" class="item">SmallLoggerNoXML::get_class_attribute($attribute_name)</a></strong></dt>
 
+<dt id="SmallLoggerNoXML::get_class_attribute-attribute_name">SmallLoggerNoXML::get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there is only one paramter, the first parameter is
-assumed to be an attribute name and the default attribute value
-is returned.</p>
+
+<p>If there is only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;<code>get_class_attribute($attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name">$obj-&gt;get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there are two parameters, then the first parameter is assumed
-to be a <code>SmallLoggerNoXML</code> object and the second parameter is
-assumed to be an attribute name.
-The attribute value for the object is returned.</p>
+
+<p>If there are two parameters, then the first parameter is assumed to be a <code>SmallLoggerNoXML</code> object and the second parameter is assumed to be an attribute name. The attribute value for the object is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;get_class_attribute($attribute_name, $attribute_value)</strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name-attribute_value">$obj-&gt;get_class_attribute($attribute_name, $attribute_value)</dt>
 <dd>
-<p>If three parameters are given, then the first parameter is the object,
-the second parameter
-is used to set a new value for the attribute,
-and the third parameter is the attribute name,
-The attribute value is then returned.</p>
+
+<p>If three parameters are given, then the first parameter is the object, the second parameter is used to set a new value for the attribute, and the third parameter is the attribute name, The attribute value is then returned.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="hold_log_open">hold_log_open</a></h2>
-<dl>
-<dt><strong><a name="hold_log_open" class="item">hold_log_open([0|1])</a></strong></dt>
 
+<h2 id="hold_log_open">hold_log_open</h2>
+
+<dl>
+
+<dt id="hold_log_open-0-1">hold_log_open([0|1])</dt>
 <dd>
-<p>If a message is written to the log and it is not yet open,
-it is opened.
-If the <em>hold_log_open</em> attribute is non-zero (the default value)
-then the file
-is left open, otherwise, it is closed after writing.
-Note <a href="#write_log"><code>write_log()</code></a> will only close
-the log if it opened the log, so you can
-clear hold_log_open and then manually open the
-the log before a lot of writing and then
-manually close the log.</p>
-<p>No value is required, in which case, only
-the status is returned and the value is not
-changed.</p>
-<p>If hold_log_open is set to true, you probably want open_append set to true as well.
-See <a href="#open_append"><code>open_append()</code></a> for more details.</p>
+
+<p>If a message is written to the log and it is not yet open, it is opened. If the <i>hold_log_open</i> attribute is non-zero (the default value) then the file is left open, otherwise, it is closed after writing. Note write_log() will only close the log if it opened the log, so you can clear hold_log_open and then manually open the the log before a lot of writing and then manually close the log.</p>
+
+<p>No value is required, in which case, only the status is returned and the value is not changed.</p>
+
+<p>If hold_log_open is set to true, you probably want open_append set to true as well. See open_append() for more details.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="info">info</a></h2>
-<dl>
-<dt><strong><a name="info" class="item"><code>info($message)</code></a></strong></dt>
 
+<h2 id="info">info</h2>
+
+<dl>
+
+<dt id="info-message">info($message)</dt>
 <dd>
-<p>This is used as an abreviation for <a href="#write_log_type"><code>write_log_type('I', $message);</code></a></p>
+
+<p>This is used as an abreviation for <code>write_log_type(&#39;I&#39;, $message);</code></p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="is_log_open">is_log_open</a></h2>
-<dl>
-<dt><strong><a name="is_log_open" class="item"><code>is_log_open()</code></a></strong></dt>
 
+<h2 id="is_log_open">is_log_open</h2>
+
+<dl>
+
+<dt id="is_log_open1">is_log_open()</dt>
 <dd>
+
 <p>Returns non-zero if the log is open and zero if it is closed.</p>
-<p>Do not attempt to set this directly, use the <a href="#open_log"><code>open_log()</code></a> or <a href="#close_log"><code>close_log()</code></a>
-methods instead.</p>
+
+<p>Do not attempt to set this directly, use the open_log() or close_log() methods instead.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="is_ok">is_ok</a></h2>
-<dl>
-<dt><strong><a name="is_ok" class="item">is_ok([0|1])</a></strong></dt>
 
+<h2 id="is_ok">is_ok</h2>
+
+<dl>
+
+<dt id="is_ok-0-1">is_ok([0|1])</dt>
 <dd>
+
 <p>Returns non-zero if the log object is ok and zero otherwise.</p>
-<p>Although you may set this, there is no real reason to do so.
-This will be set if there is a problem opening the file, for example.</p>
+
+<p>Although you may set this, there is no real reason to do so. This will be set if there is a problem opening the file, for example.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_ext">log_ext</a></h2>
-<dl>
-<dt><strong><a name="log_ext" class="item"><code>log_ext([$log_extension])</code></a></strong></dt>
 
+<h2 id="log_ext">log_ext</h2>
+
+<dl>
+
+<dt id="log_ext-log_extension">log_ext([$log_extension])</dt>
 <dd>
-<p>The default extension is '.log'. You can set a new one with this method.
-The current value is returned.</p>
+
+<p>The default extension is &#39;.log&#39;. You can set a new one with this method. The current value is returned.</p>
+
 <p>If the log is currently open, it will be closed when the name changes.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_name">log_name</a></h2>
-<dl>
-<dt><strong><a name="log_name" class="item"><code>log_name()</code></a></strong></dt>
 
+<h2 id="log_name">log_name</h2>
+
+<dl>
+
+<dt id="log_name1">log_name()</dt>
 <dd>
+
 <p>Returns Full path to and name of log file being used.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_name_date">log_name_date</a></h2>
-<dl>
-<dt><strong><a name="log_name_date" class="item"><code>log_name_date([$new_date_format])</code></a></strong></dt>
 
+<h2 id="log_name_date">log_name_date</h2>
+
+<dl>
+
+<dt id="log_name_date-new_date_format">log_name_date([$new_date_format])</dt>
 <dd>
-<p>The file name used for a log file contains a date format.
-This sets the date format portion to use.
-This may be an empty string.</p>
+
+<p>The file name used for a log file contains a date format. This sets the date format portion to use. This may be an empty string.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_path">log_path</a></h2>
-<dl>
-<dt><strong><a name="log_path" class="item"><code>log_path([$new_log_path])</code></a></strong></dt>
 
+<h2 id="log_path">log_path</h2>
+
+<dl>
+
+<dt id="log_path-new_log_path">log_path([$new_log_path])</dt>
 <dd>
-<p>This will optionally set a new location for the logfile.
-The current value is returned.</p>
+
+<p>This will optionally set a new location for the logfile. The current value is returned.</p>
+
 <p>If the log is currently open, it will be closed when the name changes.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_primary_name">log_primary_name</a></h2>
-<dl>
-<dt><strong><a name="log_primary_name" class="item"><code>log_primary_name([$new_primary_name])</code></a></strong></dt>
 
+<h2 id="log_primary_name">log_primary_name</h2>
+
+<dl>
+
+<dt id="log_primary_name-new_primary_name">log_primary_name([$new_primary_name])</dt>
 <dd>
-<p>This is the primary name for the logfile.
-Logs are assumed to be made of a primary name,
-date portion, and an extension.</p>
-<p>If the logfile is currently open, then the
-file is closed before changing the name.
-The default value is the base name of $0 with
-the extension removed. This is what is used
-if <a href="#set_log_primary_name"><code>set_log_primary_name()</code></a> is used.</p>
-<p>No value is required, in which case, only
-the primary name is returned and the value is not
-changed.</p>
+
+<p>This is the primary name for the logfile. Logs are assumed to be made of a primary name, date portion, and an extension.</p>
+
+<p>If the logfile is currently open, then the file is closed before changing the name. The default value is the base name of $0 with the extension removed. This is what is used if set_log_primary_name() is used.</p>
+
+<p>No value is required, in which case, only the primary name is returned and the value is not changed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="message_front">message_front</a></h2>
-<dl>
-<dt><strong><a name="message_front" class="item"><code>message_front([$front_string])</code></a></strong></dt>
 
+<h2 id="message_front">message_front</h2>
+
+<dl>
+
+<dt id="message_front-front_string">message_front([$front_string])</dt>
 <dd>
+
 <p>Returns the front lne used to write messages to the logs.</p>
-<p>A message is printed as
-<a href="#message_front"><code>$mesage_type message_front() message_time_format() message_loc_format()</code></a></p>
+
+<p>A message is printed as <code>$mesage_type message_front() message_time_format() message_loc_format()</code></p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="message_loc_format">message_loc_format</a></h2>
-<dl>
-<dt><strong><a name="message_loc_format" class="item"><code>message_loc_format([$location_format])</code></a></strong></dt>
 
+<h2 id="message_loc_format">message_loc_format</h2>
+
+<dl>
+
+<dt id="message_loc_format-location_format">message_loc_format([$location_format])</dt>
 <dd>
+
 <p>Returns the output format used to write message location information to the logs.</p>
-<p>This determines the format of the location
-information, if any, that is printed to the
-log file. The text with fields replaced will
-be used.
-The default value for the location format is <code>'(file):(sub):(line)'</code>.
-The <em>(package)</em> token is not used because the sub
-name contains the package.</p>
-<p>A message is printed as
-<a href="#message_front"><code>$mesage_type message_front() message_time_format() message_loc_format()</code></a></p>
+
+<p>This determines the format of the location information, if any, that is printed to the log file. The text with fields replaced will be used. The default value for the location format is <code>&#39;(file):(sub):(line)&#39;</code>. The <i>(package)</i> token is not used because the sub name contains the package.</p>
+
+<p>A message is printed as <code>$mesage_type message_front() message_time_format() message_loc_format()</code></p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="message_time_format">message_time_format</a></h2>
-<dl>
-<dt><strong><a name="message_time_format" class="item"><code>message_time_format([$time_format])</code></a></strong></dt>
 
+<h2 id="message_time_format">message_time_format</h2>
+
+<dl>
+
+<dt id="message_time_format-time_format">message_time_format([$time_format])</dt>
 <dd>
+
 <p>Returns the output format for the time information used to write messages to the logs.</p>
-<p>When a line is printed, it contains the message type,
-<a href="#message_front"><code>message_front()</code></a> formatted time/date stamp as stored by <a href="#message_time_format"><code>message_time_format()</code></a>,
-this location format string, and then finally the message.</p>
-<p>A message is printed as
-<a href="#message_front"><code>$mesage_type message_front() message_time_format() message_loc_format()</code></a></p>
+
+<p>When a line is printed, it contains the message type, message_front() formatted time/date stamp as stored by message_time_format(), this location format string, and then finally the message.</p>
+
+<p>A message is printed as <code>$mesage_type message_front() message_time_format() message_loc_format()</code></p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="open_append">open_append</a></h2>
-<dl>
-<dt><strong><a name="open_append" class="item">open_append([0|1])</a></strong></dt>
 
+<h2 id="open_append">open_append</h2>
+
+<dl>
+
+<dt id="open_append-0-1">open_append([0|1])</dt>
 <dd>
-<p>If the open_append attribute is set then log files are opened in append mode.
-If not, then the log file will over-write any existing file.
-If the hold_log_open attribute is set, you really probably
-want open_append set as well.</p>
+
+<p>If the open_append attribute is set then log files are opened in append mode. If not, then the log file will over-write any existing file. If the hold_log_open attribute is set, you really probably want open_append set as well.</p>
+
 <p>Returns the current value of the attribute.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="open_log">open_log</a></h2>
-<dl>
-<dt><strong><a name="open_log" class="item"><code>open_log()</code></a></strong></dt>
 
+<h2 id="open_log">open_log</h2>
+
+<dl>
+
+<dt id="open_log1">open_log()</dt>
 <dd>
+
 <p>Open the logfile. returns non-zero on success and zero on failure.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="rebuild_name">rebuild_name</a></h2>
-<dl>
-<dt><strong><a name="rebuild_name" class="item"><code>rebuild_name()</code></a></strong></dt>
 
+<h2 id="rebuild_name">rebuild_name</h2>
+
+<dl>
+
+<dt id="rebuild_name1">rebuild_name()</dt>
 <dd>
-<p>Causes the name of the log file to be rebuilt.
-Any date/time stamp portion is also redone.
-This calls <a href="#build_name"><code>build_name()</code></a> with appropriate parameters.</p>
+
+<p>Causes the name of the log file to be rebuilt. Any date/time stamp portion is also redone. This calls build_name() with appropriate parameters.</p>
+
 <p>This value is then returned.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="screen_output">screen_output</a></h2>
-<p>When a message is written, a message type is included.
-I use one character to indicate the message type.
-The screen output hash is then checked to see if
-that message type should be logged.
-This is similar to how log4j does things.
-See <a href="#file_output"><code>file_output()</code></a>.</p>
-<dl>
-<dt><strong><a name="screen_output" class="item">SmallLoggerNoXML::screen_output()</a></strong></dt>
 
+<h2 id="screen_output">screen_output</h2>
+
+<p>When a message is written, a message type is included. I use one character to indicate the message type. The screen output hash is then checked to see if that message type should be logged. This is similar to how log4j does things. See file_output().</p>
+
+<dl>
+
+<dt id="SmallLoggerNoXML::screen_output">SmallLoggerNoXML::screen_output()</dt>
 <dd>
+
 <p>Return the default hash of values.</p>
-</dd>
-<dt><strong>$obj-&gt;<code>screen_output()</code></strong></dt>
 
+</dd>
+<dt id="obj-screen_output">$obj-&gt;screen_output()</dt>
 <dd>
+
 <p>Return the current hash of values.</p>
-</dd>
-<dt><strong>$obj-&gt;screen_output(HASH)</strong></dt>
 
+</dd>
+<dt id="obj-screen_output-HASH">$obj-&gt;screen_output(HASH)</dt>
 <dd>
+
 <p>Sets the hash to use for output.</p>
-</dd>
-<dt><strong>$obj-&gt;<code>screen_output($message_type)</code></strong></dt>
 
+</dd>
+<dt id="obj-screen_output-message_type">$obj-&gt;screen_output($message_type)</dt>
 <dd>
+
 <p>Returns the output value for the specified <code>$message_type</code>.</p>
-<p><a href="#screen_output"><code>$o-&gt;screen_output('E')</code></a> is the same as
-<a href="#screen_output"><code>$o-&gt;screen_output()-&gt;{'E'}</code></a>.</p>
-</dd>
-<dt><strong>$obj-&gt;screen_output($message_type, $message_value)</strong></dt>
 
+<p><code>$o-&gt;screen_output(&#39;E&#39;)</code> is the same as <code>$o-&gt;screen_output()-&gt;{&#39;E&#39;}</code>.</p>
+
+</dd>
+<dt id="obj-screen_output-message_type-message_value">$obj-&gt;screen_output($message_type, $message_value)</dt>
 <dd>
+
 <p>Sets and then returns the output value for the specified <code>$message_type</code>.</p>
-<p><a href="#screen_output"><code>$o-&gt;screen_output('E', 1)</code></a> is the same as
-<a href="#screen_output"><code>$o-&gt;screen_output()-&gt;{'E'} = 1</code></a>.</p>
+
+<p><code>$o-&gt;screen_output(&#39;E&#39;, 1)</code> is the same as <code>$o-&gt;screen_output()-&gt;{&#39;E&#39;} = 1</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="set_log_primary_name">set_log_primary_name</a></h2>
-<dl>
-<dt><strong><a name="set_log_primary_name" class="item"><code>set_log_primary_name([$new_primary_name])</code></a></strong></dt>
 
+<h2 id="set_log_primary_name">set_log_primary_name</h2>
+
+<dl>
+
+<dt id="set_log_primary_name-new_primary_name">set_log_primary_name([$new_primary_name])</dt>
 <dd>
-<p>This will always set a new primary name. If
-a parameter is included, then it is used.
-If the parameter is not included, then the basename
-is take from $0 and then the portion before the last
-period is used. The <a href="#log_primary_name"><code>log_primary_name()</code></a> method
-is then used to set the primary name.</p>
+
+<p>This will always set a new primary name. If a parameter is included, then it is used. If the parameter is not included, then the basename is take from $0 and then the portion before the last period is used. The log_primary_name() method is then used to set the primary name.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="trace">trace</a></h2>
-<dl>
-<dt><strong><a name="trace" class="item"><code>trace($message)</code></a></strong></dt>
 
+<h2 id="trace">trace</h2>
+
+<dl>
+
+<dt id="trace-message">trace($message)</dt>
 <dd>
-<p>This is used as an abreviation for <a href="#write_log_type"><code>write_log_type('T', $message);</code></a></p>
+
+<p>This is used as an abreviation for <code>write_log_type(&#39;T&#39;, $message);</code></p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="warn">warn</a></h2>
-<dl>
-<dt><strong><a name="warn" class="item"><code>warn($message)</code></a></strong></dt>
 
+<h2 id="warn">warn</h2>
+
+<dl>
+
+<dt id="warn-message">warn($message)</dt>
 <dd>
-<p>This is used as an abreviation for <a href="#write_log_type"><code>write_log_type('W', $message);</code></a></p>
+
+<p>This is used as an abreviation for <code>write_log_type(&#39;W&#39;, $message);</code></p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="write_log">write_log</a></h2>
-<dl>
-<dt><strong><a name="write_log" class="item">write_log($message_type, $message)</a></strong></dt>
 
+<h2 id="write_log">write_log</h2>
+
+<dl>
+
+<dt id="write_log-message_type-message">write_log($message_type, $message)</dt>
 <dd>
-<p>This builds the log message to actually write (including time stamps and such)
-and then calls <a href="#write_string_to_log"><code>write_string_to_log()</code></a>.</p>
+
+<p>This builds the log message to actually write (including time stamps and such) and then calls write_string_to_log().</p>
+
 <p>returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="write_log_type">write_log_type</a></h2>
-<dl>
-<dt><strong><a name="write_log_type" class="item">write_log_type($message_type, $message)</a></strong></dt>
 
+<h2 id="write_log_type">write_log_type</h2>
+
+<dl>
+
+<dt id="write_log_type-message_type-message">write_log_type($message_type, $message)</dt>
 <dd>
-<p>The <code>$message_type</code> is usually a single character such as
-'D', 'E', 'W', 'T', 'I' etc. representing things such as
-debug, error, warning, trace, info, etc.</p>
+
+<p>The <code>$message_type</code> is usually a single character such as &#39;D&#39;, &#39;E&#39;, &#39;W&#39;, &#39;T&#39;, &#39;I&#39; etc. representing things such as debug, error, warning, trace, info, etc.</p>
+
 <p>The <code>$message_type</code> determines if the message should be printed to the file and/or screen.</p>
-<p>The <code>$message_type</code> is always printed as the first thing on the line.</p>
-<p>returns 1 if successful, 0 otherwise</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="write_string_to_log">write_string_to_log</a></h2>
-<dl>
-<dt><strong><a name="write_string_to_log" class="item">write_string_to_log($to_screen, $to_file, $message)</a></strong></dt>
 
-<dd>
-<p>This writes the <code>$message</code> to the screen if <code>$to_screen</code> evaluates to true.
-This writes the <code>$message</code> to the file if <code>$to_file</code> evaluates to true.</p>
+<p>The <code>$message_type</code> is always printed as the first thing on the line.</p>
+
 <p>returns 1 if successful, 0 otherwise</p>
-<p>This will open the file if it must.
-This will never close the file unless it
-opened the file and <a href="#hold_log_open"><code>hold_log_open()</code></a> is false.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.</p>
-<p>
-</p>
-<hr />
-<h1><a name="modification_history">Modification History</a></h1>
-<p>
-</p>
-<h2><a name="may_13__2003">May 13, 2003</a></h2>
-<p>Version 1.00 First release branched from SmallLogger to NOT use XML
-I needed it rather quickly so here it is!</p>
+
+<h2 id="write_string_to_log">write_string_to_log</h2>
+
+<dl>
+
+<dt id="write_string_to_log-to_screen-to_file-message">write_string_to_log($to_screen, $to_file, $message)</dt>
+<dd>
+
+<p>This writes the <code>$message</code> to the screen if <code>$to_screen</code> evaluates to true. This writes the <code>$message</code> to the file if <code>$to_file</code> evaluates to true.</p>
+
+<p>returns 1 if successful, 0 otherwise</p>
+
+<p>This will open the file if it must. This will never close the file unless it opened the file and hold_log_open() is false.</p>
+
+</dd>
+</dl>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into my own copies if you provide them to me.</p>
+
+<h1 id="Modification-History">Modification History</h1>
+
+<h2 id="May-13-2003">May 13, 2003</h2>
+
+<p>Version 1.00 First release branched from SmallLogger to NOT use XML I needed it rather quickly so here it is!</p>
+
 
 </body>
 
 </html>
+
+

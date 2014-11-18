@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::ADPLogger - Generate simple log messages to the screen and/or a log file.</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -10,110 +10,88 @@
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<li><a href="#description">DESCRIPTION</a></li>
-	<ul>
-
-		<li><a href="#configure">configure</a></li>
-		<li><a href="#copy">copy</a></li>
-		<li><a href="#file_output">file_output</a></li>
-		<li><a href="#get_class_attribute">get_class_attribute</a></li>
-		<li><a href="#get_log_full_name">get_log_full_name</a></li>
-		<li><a href="#is_ok">is_ok</a></li>
-		<li><a href="#log_methods">Log Methods</a></li>
-		<ul>
-
-			<li><a href="#debug">debug</a></li>
-			<li><a href="#error">error</a></li>
-			<li><a href="#fatal">fatal</a></li>
-			<li><a href="#info">info</a></li>
-			<li><a href="#trace">trace</a></li>
-			<li><a href="#warn">warn</a></li>
-			<li><a href="#write_string_to_log">write_string_to_log</a></li>
-		</ul>
-
-		<li><a href="#log_name">log_name</a></li>
-		<li><a href="#log_path">log_path</a></li>
-		<li><a href="#max_logs">max_logs</a></li>
-		<li><a href="#max_size">max_size</a></li>
-		<li><a href="#new">new</a></li>
-		<li><a href="#screen_output">screen_output</a></li>
-	</ul>
-
-	<li><a href="#private_methods">Private Methods</a></li>
-	<ul>
-
-		<li><a href="#initialize">initialize</a></li>
-		<li><a href="#close_log">close_log</a></li>
-		<li><a href="#is_log_open">is_log_open</a></li>
-		<li><a href="#open_log">open_log</a></li>
-		<li><a href="#check_log_length">check_log_length</a></li>
-		<li><a href="#write_log">write_log</a></li>
-	</ul>
-
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#modification_history">Modification History</a></li>
-	<ul>
-
-		<li><a href="#march_13__1998">March 13, 1998</a></li>
-		<li><a href="#september_10__2002">September 10, 2002</a></li>
-		<li><a href="#january_18__2006">January 18, 2006</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#configure">configure</a></li>
+      <li><a href="#copy">copy</a></li>
+      <li><a href="#file_output">file_output</a></li>
+      <li><a href="#get_class_attribute">get_class_attribute</a></li>
+      <li><a href="#get_log_full_name">get_log_full_name</a></li>
+      <li><a href="#is_ok">is_ok</a></li>
+      <li><a href="#Log-Methods">Log Methods</a>
+        <ul>
+          <li><a href="#debug">debug</a></li>
+          <li><a href="#error">error</a></li>
+          <li><a href="#fatal">fatal</a></li>
+          <li><a href="#info">info</a></li>
+          <li><a href="#trace">trace</a></li>
+          <li><a href="#warn">warn</a></li>
+          <li><a href="#write_string_to_log">write_string_to_log</a></li>
+        </ul>
+      </li>
+      <li><a href="#log_name1">log_name</a></li>
+      <li><a href="#log_path1">log_path</a></li>
+      <li><a href="#max_logs1">max_logs</a></li>
+      <li><a href="#max_size1">max_size</a></li>
+      <li><a href="#new">new</a></li>
+      <li><a href="#screen_output">screen_output</a></li>
+    </ul>
+  </li>
+  <li><a href="#Private-Methods">Private Methods</a>
+    <ul>
+      <li><a href="#initialize">initialize</a></li>
+      <li><a href="#close_log">close_log</a></li>
+      <li><a href="#is_log_open">is_log_open</a></li>
+      <li><a href="#open_log">open_log</a></li>
+      <li><a href="#check_log_length">check_log_length</a></li>
+      <li><a href="#write_log">write_log</a></li>
+    </ul>
+  </li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#Modification-History">Modification History</a>
+    <ul>
+      <li><a href="#March-13-1998">March 13, 1998</a></li>
+      <li><a href="#September-10-2002">September 10, 2002</a></li>
+      <li><a href="#January-18-2006">January 18, 2006</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
 <p>Pitonyak::ADPLogger - Generate simple log messages to the screen and/or a log file.</p>
-<p>The ADPLogger is wrtten such that it can be inherited.</p>
-<p>Messages contain date and time information, a text string identifying the type,
-the line number from which the message was logged, and the text of the message itself.</p>
-<p>YYYY.MM.DD hh:mm:ss &lt;type&gt;:&lt;line&gt; &lt;message&gt;</p>
-<p>Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
-<p><code>
-use Pitonyak::ADPLogger;              <br/><br/>
-my $log = new Pitonyak::ADPLogger();  <br/>
-# send debug output to the screen     <br/>
-$log->log_path('./logs/');            <br/>
-$log->log_name('TestLog');            <br/>
-$log->max_size(10000);                <br/>
-$log->max_logs(9);                    <br/>
-# send debug output to the screen     <br/>
-$log->screen_output('DEBUG', 1);      <br/>
-$log->debug("Debug 1");               <br/>
-$log->warn("Hello I Warn you");       <br/>
-$log->debug(3, "Hello I debug you");  <br/>
-$log->info("Hello I info you");       <br/>
-$log->error("Hello I error you");     <br/>
-</code></p><p>
-</p>
-<hr />
-<h1><a name="description">DESCRIPTION</a></h1>
-<p>
-</p>
-<h2><a name="configure">configure</a></h2>
-<dl>
-<dt><strong><a name="configure" class="item"><code>$log-&gt;configure(ConfigFileParser)</code></a></strong></dt>
 
+<p>The ADPLogger is wrtten such that it can be inherited.</p>
+
+<p>Messages contain date and time information, a text string identifying the type, the line number from which the message was logged, and the text of the message itself.</p>
+
+<p>YYYY.MM.DD hh:mm:ss &lt;type&gt;:&lt;line&gt; &lt;message&gt;</p>
+
+<p>Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+
+
+
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<h2 id="configure">configure</h2>
+
+<dl>
+
+<dt id="log-configure-ConfigFileParser"><code>$log-&gt;configure(ConfigFileParser)</code></dt>
 <dd>
-<p>Configure the log object using a ConfigFileParser. A typical
-configuration section to configure a ADPLogger is:</p>
+
+<p>Configure the log object using a ConfigFileParser. A typical configuration section to configure a ADPLogger is:</p>
+
+
+
 <p><code>
 log_name = FtpPoller&nbsp;&nbsp;&nbsp;&nbsp;    # The extension .log is appended automatically  <br/>
 max_size = 100000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       # Limit the size to 100,000 characters          <br/>
@@ -135,614 +113,618 @@ log_file_output_warn&nbsp;&nbsp;&nbsp;    = 1                           <br/>
 log_file_output_info&nbsp;&nbsp;&nbsp;    = 1                           <br/>
 log_file_output_debug&nbsp;&nbsp;   = 0                                 <br/>
 log_file_output_trace&nbsp;&nbsp;   = 0                                 <br/>
-</code></p><p>Supported properties include:</p>
+</code></p>
+
+<p>Supported properties include:</p>
+
 <dl>
-<dt><strong><a name="log_path" class="item">log_path</a></strong></dt>
 
+<dt id="log_path">log_path</dt>
 <dd>
-<p>Passes the value associated with 'log_path' to <a href="#log_path"><code>$log-&gt;log_path()</code></a>.</p>
+
+<p>Passes the value associated with &#39;log_path&#39; to <code>$log-&gt;log_path()</code>.</p>
+
 </dd>
-<dt><strong><a name="log_name" class="item">log_name</a></strong></dt>
-
+<dt id="log_name">log_name</dt>
 <dd>
-<p>Passes the value associated with 'log_name' to <a href="#log_name"><code>$log-&gt;log_name()</code></a>.</p>
+
+<p>Passes the value associated with &#39;log_name&#39; to <code>$log-&gt;log_name()</code>.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_debug" class="item">log_file_output_debug</a></strong></dt>
-
+<dt id="log_file_output_debug">log_file_output_debug</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_debug'
-to <a href="#file_output"><code>$log-&gt;file_output('DEBUG', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_debug&#39; to <code>$log-&gt;file_output(&#39;DEBUG&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_err" class="item">log_file_output_err</a></strong></dt>
-
+<dt id="log_file_output_err">log_file_output_err</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_err'
-to <a href="#file_output"><code>$log-&gt;file_output('ERR', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_err&#39; to <code>$log-&gt;file_output(&#39;ERR&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_fatal" class="item">log_file_output_fatal</a></strong></dt>
-
+<dt id="log_file_output_fatal">log_file_output_fatal</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_fatal'
-to <a href="#file_output"><code>$log-&gt;file_output('FATAL', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_fatal&#39; to <code>$log-&gt;file_output(&#39;FATAL&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_info" class="item">log_file_output_info</a></strong></dt>
-
+<dt id="log_file_output_info">log_file_output_info</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_info'
-to <a href="#file_output"><code>$log-&gt;file_output('INFO', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_info&#39; to <code>$log-&gt;file_output(&#39;INFO&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_trace" class="item">log_file_output_trace</a></strong></dt>
-
+<dt id="log_file_output_trace">log_file_output_trace</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_trace'
-to <a href="#file_output"><code>$log-&gt;file_output('TRACE', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_trace&#39; to <code>$log-&gt;file_output(&#39;TRACE&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_file_output_warn" class="item">log_file_output_warn</a></strong></dt>
-
+<dt id="log_file_output_warn">log_file_output_warn</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_file_output_warn'
-to <a href="#file_output"><code>$log-&gt;file_output('WARN', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_file_output_warn&#39; to <code>$log-&gt;file_output(&#39;WARN&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_debug" class="item">log_screen_output_debug</a></strong></dt>
-
+<dt id="log_screen_output_debug">log_screen_output_debug</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_debug'
-to <a href="#screen_output"><code>$log-&gt;screen_output('DEBUG', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_debug&#39; to <code>$log-&gt;screen_output(&#39;DEBUG&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_err" class="item">log_screen_output_err</a></strong></dt>
-
+<dt id="log_screen_output_err">log_screen_output_err</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_err'
-to <a href="#screen_output"><code>$log-&gt;screen_output('ERR', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_err&#39; to <code>$log-&gt;screen_output(&#39;ERR&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_fatal" class="item">log_screen_output_fatal</a></strong></dt>
-
+<dt id="log_screen_output_fatal">log_screen_output_fatal</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_fatal'
-to <a href="#screen_output"><code>$log-&gt;screen_output('FATAL', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_fatal&#39; to <code>$log-&gt;screen_output(&#39;FATAL&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_info" class="item">log_screen_output_info</a></strong></dt>
-
+<dt id="log_screen_output_info">log_screen_output_info</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_info'
-to <a href="#screen_output"><code>$log-&gt;screen_output('INFO', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_info&#39; to <code>$log-&gt;screen_output(&#39;INFO&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_trace" class="item">log_screen_output_trace</a></strong></dt>
-
+<dt id="log_screen_output_trace">log_screen_output_trace</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_trace'
-to <a href="#screen_output"><code>$log-&gt;screen_output('TRACE', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_trace&#39; to <code>$log-&gt;screen_output(&#39;TRACE&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="log_screen_output_warn" class="item">log_screen_output_warn</a></strong></dt>
-
+<dt id="log_screen_output_warn">log_screen_output_warn</dt>
 <dd>
-<p>Passes the configuration value associated with 'log_screen_output_warn'
-to <a href="#screen_output"><code>$log-&gt;screen_output('WARN', $value)</code></a>.
-The requested logging level, must be less than this value for a message
-to be printed.</p>
+
+<p>Passes the configuration value associated with &#39;log_screen_output_warn&#39; to <code>$log-&gt;screen_output(&#39;WARN&#39;, $value)</code>. The requested logging level, must be less than this value for a message to be printed.</p>
+
 </dd>
-<dt><strong><a name="max_logs" class="item">max_logs</a></strong></dt>
-
+<dt id="max_logs">max_logs</dt>
 <dd>
-<p>Passes the value associated with 'max_logs' to <a href="#max_logs"><code>$log-&gt;max_logs()</code></a>.</p>
+
+<p>Passes the value associated with &#39;max_logs&#39; to <code>$log-&gt;max_logs()</code>.</p>
+
 </dd>
-<dt><strong><a name="max_size" class="item">max_size</a></strong></dt>
-
+<dt id="max_size">max_size</dt>
 <dd>
-<p>Passes the value associated with 'max_size' to <a href="#max_size"><code>$log-&gt;max_size()</code></a>.</p>
+
+<p>Passes the value associated with &#39;max_size&#39; to <code>$log-&gt;max_size()</code>.</p>
+
 </dd>
 </dl>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="copy">copy</a></h2>
-<dl>
-<dt><strong><a name="copy" class="item"><code>$log1-&gt;copy($log2)</code></a></strong></dt>
 
+<h2 id="copy">copy</h2>
+
+<dl>
+
+<dt id="log1-copy-log2"><code>$log1-&gt;copy($log2)</code></dt>
 <dd>
+
 <p>Copy one ADPLogger into another</p>
-<p><a href="#copy"><code>$log1-&gt;copy($log2)</code></a> is the same as <code>$log1 = $log2</code>.</p>
+
+<p><code>$log1-&gt;copy($log2)</code> is the same as <code>$log1 = $log2</code>.</p>
+
 <p>Open file handels are closed before the copy is performed, and the file handle itself is not copied.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="file_output">file_output</a></h2>
-<p>Each message has a type.
-Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
-<dl>
-<dt><strong><a name="file_output" class="item"><code>ADPLogger::file_output()</code></a></strong></dt>
 
+<h2 id="file_output">file_output</h2>
+
+<p>Each message has a type. Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
+
+<dl>
+
+<dt id="ADPLogger::file_output"><code>ADPLogger::file_output()</code></dt>
 <dd>
+
 <p>Return the default hash of values used for logging output to a file.</p>
-</dd>
-<dt><strong><code>$log-&gt;file_output()</code></strong></dt>
 
-<dd>
-<p>Return the current hash of values used for logging output to a file.
-For example:
-<a href="#file_output"><code>$log-&gt;file_output('ERR')</code></a> returns 1 if ERR output is logged to the file,
-and 0 if it is not. This is the same as <a href="#file_output"><code>$log-&gt;file_output()-&gt;{'ERR'}</code></a>.</p>
 </dd>
-<dt><strong><code>$log-&gt;file_output(\%hash)</code></strong></dt>
-
+<dt id="log-file_output"><code>$log-&gt;file_output()</code></dt>
 <dd>
+
+<p>Return the current hash of values used for logging output to a file. For example: <code>$log-&gt;file_output(&#39;ERR&#39;)</code> returns 1 if ERR output is logged to the file, and 0 if it is not. This is the same as <code>$log-&gt;file_output()-&gt;{&#39;ERR&#39;}</code>.</p>
+
+</dd>
+<dt id="log-file_output-hash"><code>$log-&gt;file_output(\%hash)</code></dt>
+<dd>
+
 <p>Use the hash reference to configure logging output to a file.</p>
-</dd>
-<dt><strong><code>$log-&gt;file_output($message_type)</code></strong></dt>
 
-<dd>
-<p>Returns the output value for the specified <code>$message_type</code>. For example:
-<a href="#file_output"><code>$log-&gt;file_output('ERR')</code></a> returns 1 if ERR output is logged to the file,
-and 0 if it is not. This is the same as <a href="#file_output"><code>$log-&gt;file_output()-&gt;{'ERR'}</code></a>.</p>
 </dd>
-<dt><strong>$obj-&gt;file_output($message_type, $message_value)</strong></dt>
-
+<dt id="log-file_output-message_type"><code>$log-&gt;file_output($message_type)</code></dt>
 <dd>
-<p>Sets and then returns the output value for the specified <code>$message_type</code>.
-For example:
-<a href="#file_output"><code>$log-&gt;file_output('ERR', 1)</code></a> causes ERR output to be logged to the file and
-it returns the value 1 because the value was set to 1. The same can be accomplished
-using <a href="#file_output"><code>$log-&gt;file_output()-&gt;{'ERR'} = 1</code></a>.</p>
+
+<p>Returns the output value for the specified <code>$message_type</code>. For example: <code>$log-&gt;file_output(&#39;ERR&#39;)</code> returns 1 if ERR output is logged to the file, and 0 if it is not. This is the same as <code>$log-&gt;file_output()-&gt;{&#39;ERR&#39;}</code>.</p>
+
+</dd>
+<dt id="obj-file_output-message_type-message_value">$obj-&gt;file_output($message_type, $message_value)</dt>
+<dd>
+
+<p>Sets and then returns the output value for the specified <code>$message_type</code>. For example: <code>$log-&gt;file_output(&#39;ERR&#39;, 1)</code> causes ERR output to be logged to the file and it returns the value 1 because the value was set to 1. The same can be accomplished using <code>$log-&gt;file_output()-&gt;{&#39;ERR&#39;} = 1</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_class_attribute">get_class_attribute</a></h2>
-<p>The get_class_attribute method utilizes the fact that
-<code>$obj-&gt;method(@parms)</code> is the same as
-<code>method($obj, @parms)</code>. This method does not perform type checking
-to verify that this is true.</p>
-<p>The <a href="#get_class_attribute"><code>get_class_attribute</code></a> method is rarely called directly.</p>
+
+<h2 id="get_class_attribute">get_class_attribute</h2>
+
+<p>The get_class_attribute method utilizes the fact that <code>$obj-&gt;method(@parms)</code> is the same as <code>method($obj, @parms)</code>. This method does not perform type checking to verify that this is true.</p>
+
+<p>The <code>get_class_attribute</code> method is rarely called directly.</p>
+
 <dl>
-<dt><strong><a name="get_class_attribute" class="item"><code>ADPLogger::get_class_attribute($attribute_name)</code></a></strong></dt>
 
+<dt id="ADPLogger::get_class_attribute-attribute_name"><code>ADPLogger::get_class_attribute($attribute_name)</code></dt>
 <dd>
-<p>With only one paramter, the first parameter is
-assumed to be an attribute name and the default attribute value
-is returned.</p>
+
+<p>With only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned.</p>
+
 </dd>
-<dt><strong><code>$obj-&gt;get_class_attribute($attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name"><code>$obj-&gt;get_class_attribute($attribute_name)</code></dt>
 <dd>
-<p>With two arguments, the first is assumed
-to be a <code>ADPLogger</code> object and the second is
-assumed to be an attribute name.
-The attribute value for the object is returned.</p>
-<pre>
 
-=item C&lt;&lt; $obj-&gt;get_class_attribute($attribute_value, $attribute_name) &gt;&gt;</pre>
-<p>With three arguments, the first is assumed to be the object,
-the second is a new attribute value, and the third is the attribute
-name to set. Although the order seems odd, this is intentional.</p>
-<p>Consider the method <a href="#is_ok"><code>is_ok</code></a> defined as <a href="#get_class_attribute"><code>return get_class_attribute( @_, 'is_ok' );</code></a></p>
-<p>Remember that <code>@_</code> refers to the argument list passed to the method. In all cases, the last argument
-passed to <a href="#get_class_attribute"><code>get_class_attribute</code></a> is the attribute name. If the method is called directly,
-this is the only argument.</p>
+<p>With two arguments, the first is assumed to be a <code>ADPLogger</code> object and the second is assumed to be an attribute name. The attribute value for the object is returned.</p>
+
+</dd>
+<dt id="obj-get_class_attribute-attribute_value-attribute_name"><code>$obj-&gt;get_class_attribute($attribute_value, $attribute_name)</code></dt>
+<dd>
+
+<p>With three arguments, the first is assumed to be the object, the second is a new attribute value, and the third is the attribute name to set. Although the order seems odd, this is intentional.</p>
+
+<p>Consider the method <code>is_ok</code> defined as <code>return get_class_attribute( @_, &#39;is_ok&#39; );</code></p>
+
+<p>Remember that <code>@_</code> refers to the argument list passed to the method. In all cases, the last argument passed to <code>get_class_attribute</code> is the attribute name. If the method is called directly, this is the only argument.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_log_full_name">get_log_full_name</a></h2>
-<dl>
-<dt><strong><a name="get_log_full_name" class="item"><code>$log-&gt;get_log_full_name()</code></a></strong></dt>
 
+<h2 id="get_log_full_name">get_log_full_name</h2>
+
+<dl>
+
+<dt id="log-get_log_full_name"><code>$log-&gt;get_log_full_name()</code></dt>
 <dd>
-<p>Build and return the full path to the log file. Remember that <a href="#log_path"><code>$log-&gt;log_path()</code></a>
-returns a string with a trailing '/', so the value returned is equivalent to:</p>
-<p><a href="#log_path"><code>$log-&gt;log_path().$log-&gt;log_name().'.log'</code></a></p>
+
+<p>Build and return the full path to the log file. Remember that <code>$log-&gt;log_path()</code> returns a string with a trailing &#39;/&#39;, so the value returned is equivalent to:</p>
+
+<p><code>$log-&gt;log_path().$log-&gt;log_name().&#39;.log&#39;</code></p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="is_ok">is_ok</a></h2>
+
+<h2 id="is_ok">is_ok</h2>
+
 <dl>
-<dt><strong><a name="is_ok" class="item"><code>$log-&gt;is_ok()</code></a></strong></dt>
 
+<dt id="log-is_ok"><code>$log-&gt;is_ok()</code></dt>
 <dd>
-<p>Return 1 if the log file is considered OK, and 0 otherwise.
-If a value of 0 is returned, then no output will be sent to
-the file.</p>
+
+<p>Return 1 if the log file is considered OK, and 0 otherwise. If a value of 0 is returned, then no output will be sent to the file.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;is_ok(0|1)</code></strong></dt>
-
+<dt id="log-is_ok-0-1"><code>$log-&gt;is_ok(0|1)</code></dt>
 <dd>
-<p>Set the state of the log file to OK (1), or not OK (0).
-The value is usually not set externally, but rather, it is set
-automatically when the file is opened or closed.</p>
+
+<p>Set the state of the log file to OK (1), or not OK (0). The value is usually not set externally, but rather, it is set automatically when the file is opened or closed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_methods">Log Methods</a></h2>
-<p>All output methods accept a single string argument,
-which is written to the log file or the screen depending
-on the type and configuration. In all cases, a 1 is returned
-if the method is successful, and 0 otherwise.</p>
-<p>
-</p>
-<h3><a name="debug">debug</a></h3>
+
+<h2 id="Log-Methods">Log Methods</h2>
+
+<p>All output methods accept a single string argument, which is written to the log file or the screen depending on the type and configuration. In all cases, a 1 is returned if the method is successful, and 0 otherwise.</p>
+
+<h3 id="debug">debug</h3>
+
 <dl>
-<dt><strong><a name="debug" class="item"><code>$log-&gt;debug($message)</code></a></strong></dt>
 
+<dt id="log-debug-message"><code>$log-&gt;debug($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'DEBUG' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with log level one of type &#39;DEBUG&#39; using <code>write_log()</code>.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;debug($log_level, $message)</code></strong></dt>
-
+<dt id="log-debug-log_level-message"><code>$log-&gt;debug($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'DEBUG' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;DEBUG&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="error">error</a></h3>
+
+<h3 id="error">error</h3>
+
 <dl>
-<dt><strong><a name="error" class="item"><code>$log-&gt;error($message)</code></a></strong></dt>
 
+<dt id="log-error-message"><code>$log-&gt;error($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'ERR' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with log level one of type &#39;ERR&#39; using <code>write_log()</code>.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;error($log_level, $message)</code></strong></dt>
-
+<dt id="log-error-log_level-message"><code>$log-&gt;error($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'ERR' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;ERR&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="fatal">fatal</a></h3>
+
+<h3 id="fatal">fatal</h3>
+
 <dl>
-<dt><strong><a name="fatal" class="item"><code>$log-&gt;fatal($message)</code></a></strong></dt>
 
+<dt id="log-fatal-message"><code>$log-&gt;fatal($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'FATAL' using <a href="#write_log"><code>write_log()</code></a> and then die.</p>
+
+<p>Write a message with log level one of type &#39;FATAL&#39; using <code>write_log()</code> and then die.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;fatal($log_level, $message)</code></strong></dt>
-
+<dt id="log-fatal-log_level-message"><code>$log-&gt;fatal($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'FATAL' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;FATAL&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="info">info</a></h3>
+
+<h3 id="info">info</h3>
+
 <dl>
-<dt><strong><a name="info" class="item"><code>$log-&gt;info($message)</code></a></strong></dt>
 
+<dt id="log-info-message"><code>$log-&gt;info($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'INFO' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with log level one of type &#39;INFO&#39; using <code>write_log()</code>.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;info($log_level, $message)</code></strong></dt>
-
+<dt id="log-info-log_level-message"><code>$log-&gt;info($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'INFO' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;INFO&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="trace">trace</a></h3>
+
+<h3 id="trace">trace</h3>
+
 <dl>
-<dt><strong><a name="trace" class="item"><code>$log-&gt;trace($message)</code></a></strong></dt>
 
+<dt id="log-trace-message"><code>$log-&gt;trace($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'TRACE' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with log level one of type &#39;TRACE&#39; using <code>write_log()</code>.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;trace($log_level, $message)</code></strong></dt>
-
+<dt id="log-trace-log_level-message"><code>$log-&gt;trace($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'TRACE' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;TRACE&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="warn">warn</a></h3>
+
+<h3 id="warn">warn</h3>
+
 <dl>
-<dt><strong><a name="warn" class="item"><code>$log-&gt;warn($message)</code></a></strong></dt>
 
+<dt id="log-warn-message"><code>$log-&gt;warn($message)</code></dt>
 <dd>
-<p>Write a message with log level one of type 'WARN' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with log level one of type &#39;WARN&#39; using <code>write_log()</code>.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;warn($log_level, $message)</code></strong></dt>
-
+<dt id="log-warn-log_level-message"><code>$log-&gt;warn($log_level, $message)</code></dt>
 <dd>
-<p>Write a message with the specified log level of type 'WARN' using <a href="#write_log"><code>write_log()</code></a>.</p>
+
+<p>Write a message with the specified log level of type &#39;WARN&#39; using <code>write_log()</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h3><a name="write_string_to_log">write_string_to_log</a></h3>
-<p>Write a string directly to the log file and do not format the string in any
-way. One might argue that this is dangerous.</p>
-<dl>
-<dt><strong><a name="write_string_to_log" class="item"><code>$log-&gt;write_string_to_log($to_screen, $to_file, $message)</code></a></strong></dt>
 
+<h3 id="write_string_to_log">write_string_to_log</h3>
+
+<p>Write a string directly to the log file and do not format the string in any way. One might argue that this is dangerous.</p>
+
+<dl>
+
+<dt id="log-write_string_to_log-to_screen-to_file-message"><code>$log-&gt;write_string_to_log($to_screen, $to_file, $message)</code></dt>
 <dd>
+
 <p>Write the <code>$message</code> to the screen if <code>$to_screen</code> evaluates to true.</p>
+
 <p>Write the <code>$message</code> to the file if <code>$to_file</code> evaluates to true.</p>
+
 <p>Return 1 if successful, 0 otherwise.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_name">log_name</a></h2>
-<p>The log_name is the base log name without the '.log' file extension.
-The full log name is built by concatinating log_path, log_name, and '.log';</p>
-<dl>
-<dt><strong><code>log_name()</code></strong></dt>
 
+<h2 id="log_name1">log_name</h2>
+
+<p>The log_name is the base log name without the &#39;.log&#39; file extension. The full log name is built by concatinating log_path, log_name, and &#39;.log&#39;;</p>
+
+<dl>
+
+<dt id="log_name2"><code>log_name()</code></dt>
 <dd>
+
 <p>Return the default base log file name.</p>
-</dd>
-<dt><strong><code>$log-&gt;log_name()</code></strong></dt>
 
+</dd>
+<dt id="log-log_name"><code>$log-&gt;log_name()</code></dt>
 <dd>
+
 <p>Return the base log file name for the log object.</p>
-</dd>
-<dt><strong><code>$log-&gt;log_name(base_name)</code></strong></dt>
 
+</dd>
+<dt id="log-log_name-base_name"><code>$log-&gt;log_name(base_name)</code></dt>
 <dd>
-<p>Set the base log file name, used for the next log output.
-Do not include a file extension, because '.log' is automatically added.</p>
+
+<p>Set the base log file name, used for the next log output. Do not include a file extension, because &#39;.log&#39; is automatically added.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="log_path">log_path</a></h2>
-<p>The log_path identifies the directory containing the log file.
-The full log name is built by concatinating log_path, log_name, and '.log';</p>
+
+<h2 id="log_path1">log_path</h2>
+
+<p>The log_path identifies the directory containing the log file. The full log name is built by concatinating log_path, log_name, and &#39;.log&#39;;</p>
+
 <dl>
-<dt><strong><code>log_path()</code></strong></dt>
 
+<dt id="log_path2"><code>log_path()</code></dt>
 <dd>
-<p>Return the default path during initialization, which is './'.</p>
+
+<p>Return the default path during initialization, which is &#39;./&#39;.</p>
+
 </dd>
-<dt><strong><code>$log-&gt;log_path()</code></strong></dt>
-
+<dt id="log-log_path"><code>$log-&gt;log_path()</code></dt>
 <dd>
+
 <p>Return the the path to the current log file.</p>
-</dd>
-<dt><strong><code>$log-&gt;log_path(path)</code></strong></dt>
 
+</dd>
+<dt id="log-log_path-path"><code>$log-&gt;log_path(path)</code></dt>
 <dd>
-<p>Set the path for the log file, which will be used for the next log output.
-If the provided path does not contain '/' or '\', then '/' is appended to
-to the path. The path itself is not checked for validity.</p>
-<p>If the provided path is an empty string, then the path is set to the
-default value.</p>
+
+<p>Set the path for the log file, which will be used for the next log output. If the provided path does not contain &#39;/&#39; or &#39;\&#39;, then &#39;/&#39; is appended to to the path. The path itself is not checked for validity.</p>
+
+<p>If the provided path is an empty string, then the path is set to the default value.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="max_logs">max_logs</a></h2>
-<p>When the maximum log file size is exceeded, filename.log is
-renamed to filename.log.1 before more text is written to filename.log.
-The max_logs argument sets the maximum number of &quot;rolled&quot; log files.
-So, setting this to 2 allows for filename.log.1 and filename.log.2.</p>
-<dl>
-<dt><strong><code>$log-&gt;max_logs()</code></strong></dt>
 
+<h2 id="max_logs1">max_logs</h2>
+
+<p>When the maximum log file size is exceeded, filename.log is renamed to filename.log.1 before more text is written to filename.log. The max_logs argument sets the maximum number of &quot;rolled&quot; log files. So, setting this to 2 allows for filename.log.1 and filename.log.2.</p>
+
+<dl>
+
+<dt id="log-max_logs"><code>$log-&gt;max_logs()</code></dt>
 <dd>
+
 <p>Return the maximum number of logs when the log files are rolled.</p>
-</dd>
-<dt><strong><code>$log-&gt;max_logs(max number of rolled logs)</code></strong></dt>
 
+</dd>
+<dt id="log-max_logs-max-number-of-rolled-logs"><code>$log-&gt;max_logs(max number of rolled logs)</code></dt>
 <dd>
+
 <p>Set the maximum number of logs when the log files are rolled.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="max_size">max_size</a></h2>
-<p>Maximum size for each log file. This value is checked before
-a new message is written to the file. If the file is too large,
-then the file is rolled into filename.log.1 and a new file is started.</p>
-<dl>
-<dt><strong><code>$log-&gt;max_size()</code></strong></dt>
 
+<h2 id="max_size1">max_size</h2>
+
+<p>Maximum size for each log file. This value is checked before a new message is written to the file. If the file is too large, then the file is rolled into filename.log.1 and a new file is started.</p>
+
+<dl>
+
+<dt id="log-max_size"><code>$log-&gt;max_size()</code></dt>
 <dd>
+
 <p>Return the current maximum size.</p>
-</dd>
-<dt><strong><code>$log-&gt;max_size(max desired log size)</code></strong></dt>
 
+</dd>
+<dt id="log-max_size-max-desired-log-size"><code>$log-&gt;max_size(max desired log size)</code></dt>
 <dd>
+
 <p>Set the maximum file size.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="new">new</a></h2>
-<dl>
-<dt><strong><a name="new" class="item"><code>$log2 = $log1-&gt;new()</code></a></strong></dt>
 
+<h2 id="new">new</h2>
+
+<dl>
+
+<dt id="log2-log1-new"><code>$log2 = $log1-&gt;new()</code></dt>
 <dd>
+
 <p>Generate a new copy of a log object.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="screen_output">screen_output</a></h2>
-<p>Each message has a type.
-Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
-<dl>
-<dt><strong><a name="screen_output" class="item"><code>ADPLogger::screen_output()</code></a></strong></dt>
 
+<h2 id="screen_output">screen_output</h2>
+
+<p>Each message has a type. Supported message types include ERR, WARN, INFO, DEBUG, and TRACE.</p>
+
+<dl>
+
+<dt id="ADPLogger::screen_output"><code>ADPLogger::screen_output()</code></dt>
 <dd>
+
 <p>Return the default hash of values used for logging output to a file.</p>
-</dd>
-<dt><strong><code>$log-&gt;screen_output()</code></strong></dt>
 
-<dd>
-<p>Return the current hash of values used for logging output to a file.
-For example:
-<a href="#screen_output"><code>$log-&gt;screen_output('ERR')</code></a> returns 1 if ERR output is logged to the file,
-and 0 if it is not. This is the same as <a href="#screen_output"><code>$log-&gt;screen_output()-&gt;{'ERR'}</code></a>.</p>
 </dd>
-<dt><strong><code>$log-&gt;screen_output(\%hash)</code></strong></dt>
-
+<dt id="log-screen_output"><code>$log-&gt;screen_output()</code></dt>
 <dd>
+
+<p>Return the current hash of values used for logging output to a file. For example: <code>$log-&gt;screen_output(&#39;ERR&#39;)</code> returns 1 if ERR output is logged to the file, and 0 if it is not. This is the same as <code>$log-&gt;screen_output()-&gt;{&#39;ERR&#39;}</code>.</p>
+
+</dd>
+<dt id="log-screen_output-hash"><code>$log-&gt;screen_output(\%hash)</code></dt>
+<dd>
+
 <p>Use the hash reference to configure logging output to a file.</p>
-</dd>
-<dt><strong><code>$log-&gt;screen_output($message_type)</code></strong></dt>
 
-<dd>
-<p>Returns the output value for the specified <code>$message_type</code>. For example:
-<a href="#screen_output"><code>$log-&gt;screen_output('ERR')</code></a> returns 1 if ERR output is logged to the file,
-and 0 if it is not. This is the same as <a href="#screen_output"><code>$log-&gt;screen_output()-&gt;{'ERR'}</code></a>.</p>
 </dd>
-<dt><strong>$obj-&gt;screen_output($message_type, $message_value)</strong></dt>
-
+<dt id="log-screen_output-message_type"><code>$log-&gt;screen_output($message_type)</code></dt>
 <dd>
-<p>Sets and then returns the output value for the specified <code>$message_type</code>.
-For example:
-<a href="#screen_output"><code>$log-&gt;screen_output('ERR', 1)</code></a> causes ERR output to be logged to the file and
-it returns the value 1 because the value was set to 1. The same can be accomplished
-using <a href="#screen_output"><code>$log-&gt;screen_output()-&gt;{'ERR'} = 1</code></a>.</p>
+
+<p>Returns the output value for the specified <code>$message_type</code>. For example: <code>$log-&gt;screen_output(&#39;ERR&#39;)</code> returns 1 if ERR output is logged to the file, and 0 if it is not. This is the same as <code>$log-&gt;screen_output()-&gt;{&#39;ERR&#39;}</code>.</p>
+
+</dd>
+<dt id="obj-screen_output-message_type-message_value">$obj-&gt;screen_output($message_type, $message_value)</dt>
+<dd>
+
+<p>Sets and then returns the output value for the specified <code>$message_type</code>. For example: <code>$log-&gt;screen_output(&#39;ERR&#39;, 1)</code> causes ERR output to be logged to the file and it returns the value 1 because the value was set to 1. The same can be accomplished using <code>$log-&gt;screen_output()-&gt;{&#39;ERR&#39;} = 1</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="private_methods">Private Methods</a></h1>
-<p>
-</p>
-<h2><a name="initialize">initialize</a></h2>
-<dl>
-<dt><strong><a name="initialize" class="item"><code>initialize()</code></a></strong></dt>
 
+<h1 id="Private-Methods">Private Methods</h1>
+
+<h2 id="initialize">initialize</h2>
+
+<dl>
+
+<dt id="initialize1"><code>initialize()</code></dt>
 <dd>
-<p>The <a href="#initialize"><code>initialize()</code></a> method is called automatically when an object is created.
-The new method also calls <a href="#initialize"><code>initialize()</code></a> directly</p>
-<p>Initialize the data structure by copying values from the initial attributes hash
-into the newly created object. An IO File handle is created and added to the object
-if it does not already exist.</p>
+
+<p>The <code>initialize()</code> method is called automatically when an object is created. The new method also calls <code>initialize()</code> directly</p>
+
+<p>Initialize the data structure by copying values from the initial attributes hash into the newly created object. An IO File handle is created and added to the object if it does not already exist.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="close_log">close_log</a></h2>
-<dl>
-<dt><strong><a name="close_log" class="item"><code>close_log()</code></a></strong></dt>
 
+<h2 id="close_log">close_log</h2>
+
+<dl>
+
+<dt id="close_log1">close_log()</dt>
 <dd>
+
 <p>Close the open file handle if the file handle exists and is open.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="is_log_open">is_log_open</a></h2>
-<dl>
-<dt><strong><a name="is_log_open" class="item"><code>$log-&gt;is_log_open()</code></a></strong></dt>
 
+<h2 id="is_log_open">is_log_open</h2>
+
+<dl>
+
+<dt id="log-is_log_open"><code>$log-&gt;is_log_open()</code></dt>
 <dd>
+
 <p>Returns non-zero if the log is open and zero if it is closed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="open_log">open_log</a></h2>
-<dl>
-<dt><strong><a name="open_log" class="item"><code>$log-&gt;open_log()</code></a></strong></dt>
 
+<h2 id="open_log">open_log</h2>
+
+<dl>
+
+<dt id="log-open_log"><code>$log-&gt;open_log()</code></dt>
 <dd>
-<p>Open the logfile. returns non-zero on success and zero on failure.
-If the log file is already open, as checked by <a href="#is_log_open"><code>$log-&gt;is_log_open()</code></a>,
-then the file is assumed to already be open.</p>
+
+<p>Open the logfile. returns non-zero on success and zero on failure. If the log file is already open, as checked by <code>$log-&gt;is_log_open()</code>, then the file is assumed to already be open.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="check_log_length">check_log_length</a></h2>
-<dl>
-<dt><strong><a name="check_log_length" class="item"><code>$log-&gt;check_log_length()</code></a></strong></dt>
 
+<h2 id="check_log_length">check_log_length</h2>
+
+<dl>
+
+<dt id="log-check_log_length"><code>$log-&gt;check_log_length()</code></dt>
 <dd>
-<p><a href="#check_log_length"><code>check_log_length()</code></a> is called before the log file is opened by
-<a href="#open_log"><code>open_log()</code></a>.
-If the current log file has size greater than <a href="#max_size"><code>max_size()</code></a>,
-then the log files are rolled.</p>
+
+<p><code>check_log_length()</code> is called before the log file is opened by <code>open_log()</code>. If the current log file has size greater than <code>max_size()</code>, then the log files are rolled.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="write_log">write_log</a></h2>
-<dl>
-<dt><strong><a name="write_log" class="item"><code>$log-&gt;write_log($message_type, $log_level, $message)</code></a></strong></dt>
 
+<h2 id="write_log">write_log</h2>
+
+<dl>
+
+<dt id="log-write_log-message_type-log_level-message"><code>$log-&gt;write_log($message_type, $log_level, $message)</code></dt>
 <dd>
-<p>The message type is immediately checked to see if the
-message should be written to the file or the screen.
-The message is logged if if the stated log_level is less or equal to
-the configured log level.
-If the message will not be written, then <a href="#write_log"><code>write_log()</code></a>
-immediately returns.</p>
-<p>The line number of the calling function is obtained and
-the current date and time is determined. Finlly, the
-message text to write is created in the form:</p>
+
+<p>The message type is immediately checked to see if the message should be written to the file or the screen. The message is logged if if the stated log_level is less or equal to the configured log level. If the message will not be written, then <code>write_log()</code> immediately returns.</p>
+
+<p>The line number of the calling function is obtained and the current date and time is determined. Finlly, the message text to write is created in the form:</p>
+
 <p>YYYY.MM.DD hh:mm:ss &lt;type&gt;:&lt;line&gt; &lt;message&gt;</p>
-<p><a href="#write_string_to_log"><code>$log-&gt;write_string_to_log()</code></a> is used to perform the actual write.</p>
+
+<p><code>$log-&gt;write_string_to_log()</code> is used to perform the actual write.</p>
+
 <p>Returns 1 if successful, 0 otherwise</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.</p>
-<p>
-</p>
-<hr />
-<h1><a name="modification_history">Modification History</a></h1>
-<p>ADPLogger is taken from Pitonyak::SmallADPLogger, but
-significant funcationality has been removed.</p>
-<p>
-</p>
-<h2><a name="march_13__1998">March 13, 1998</a></h2>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into my own copies if you provide them to me.</p>
+
+<h1 id="Modification-History">Modification History</h1>
+
+<p>ADPLogger is taken from Pitonyak::SmallADPLogger, but significant funcationality has been removed.</p>
+
+<h2 id="March-13-1998">March 13, 1998</h2>
+
 <p>First release of Pitonyak::SmallADPLogger.</p>
-<p>
-</p>
-<h2><a name="september_10__2002">September 10, 2002</a></h2>
+
+<h2 id="September-10-2002">September 10, 2002</h2>
+
 <p>Version 1.01 Changed internal documentation to POD</p>
-<p>
-</p>
-<h2><a name="january_18__2006">January 18, 2006</a></h2>
-<p>Version 1.02 Gutted the original code to create ADPLogger.
-The ADPLogger can use a Properties file for configuration, but
-there are also fewer options for configuration.</p>
+
+<h2 id="January-18-2006">January 18, 2006</h2>
+
+<p>Version 1.02 Gutted the original code to create ADPLogger. The ADPLogger can use a Properties file for configuration, but there are also fewer options for configuration.</p>
+
 
 </body>
 
 </html>
+
+

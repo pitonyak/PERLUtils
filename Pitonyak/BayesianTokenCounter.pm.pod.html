@@ -2,9 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Pitonyak::BayesianTokenCounter - I use this to decide if a piece of email is SPAM.
-This counts tokens in &quot;good&quot; files and &quot;bad&quot; files and then does a statistical analysis of
-which tokens belong in which group.</title>
+<title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:root@localhost" />
 </head>
@@ -12,65 +10,53 @@ which tokens belong in which group.</title>
 <body style="background-color: white">
 
 
-<!-- INDEX BEGIN -->
-<div name="index">
-<p><a name="__index__"></a></p>
 
-<ul>
-
-	<li><a href="#name">NAME</a></li>
-	<li><a href="#synopsis">SYNOPSIS</a></li>
-	<li><a href="#description">DESCRIPTION</a></li>
-	<ul>
-
-		<li><a href="#new">new</a></li>
-		<li><a href="#copy">copy</a></li>
-		<li><a href="#build_probabilities">build_probabilities</a></li>
-		<li><a href="#case_sensitive">case_sensitive</a></li>
-		<li><a href="#fast_mime_decode">fast_mime_decode</a></li>
-		<li><a href="#file_name">file_name</a></li>
-		<li><a href="#get_class_attribute">get_class_attribute</a></li>
-		<li><a href="#ignore_headers">ignore_headers</a></li>
-		<li><a href="#max_token_len">max_token_len</a></li>
-		<li><a href="#min_token_len">min_token_len</a></li>
-		<li><a href="#num_files">num_files</a></li>
-		<li><a href="#num_tokens">num_tokens</a></li>
-		<li><a href="#processmimemessage">ProcessMimeMessage</a></li>
-		<li><a href="#purge_tokens_with_count_less_than">purge_tokens_with_count_less_than</a></li>
-		<li><a href="#rate_tokens">rate_tokens</a></li>
-		<li><a href="#read_from_file">read_from_file</a></li>
-		<li><a href="#set_log">set_log</a></li>
-		<li><a href="#skip_html_comments">skip_html_comments</a></li>
-		<li><a href="#tokenize_file">tokenize_file</a></li>
-		<li><a href="#tokenize_string">tokenize_string</a></li>
-		<li><a href="#tokens">tokens</a></li>
-		<li><a href="#write_to_file">write_to_file</a></li>
-	</ul>
-
-	<li><a href="#copyright">COPYRIGHT</a></li>
-	<li><a href="#modification_history">Modification History</a></li>
-	<ul>
-
-		<li><a href="#march_13__1998">March 13, 1998</a></li>
-		<li><a href="#september_10__2002">September 10, 2002</a></li>
-	</ul>
-
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#new">new</a></li>
+      <li><a href="#copy">copy</a></li>
+      <li><a href="#build_probabilities">build_probabilities</a></li>
+      <li><a href="#case_sensitive">case_sensitive</a></li>
+      <li><a href="#fast_mime_decode">fast_mime_decode</a></li>
+      <li><a href="#file_name">file_name</a></li>
+      <li><a href="#get_class_attribute">get_class_attribute</a></li>
+      <li><a href="#ignore_headers">ignore_headers</a></li>
+      <li><a href="#max_token_len">max_token_len</a></li>
+      <li><a href="#min_token_len">min_token_len</a></li>
+      <li><a href="#num_files">num_files</a></li>
+      <li><a href="#num_tokens">num_tokens</a></li>
+      <li><a href="#ProcessMimeMessage">ProcessMimeMessage</a></li>
+      <li><a href="#purge_tokens_with_count_less_than">purge_tokens_with_count_less_than</a></li>
+      <li><a href="#rate_tokens">rate_tokens</a></li>
+      <li><a href="#read_from_file">read_from_file</a></li>
+      <li><a href="#set_log">set_log</a></li>
+      <li><a href="#skip_html_comments">skip_html_comments</a></li>
+      <li><a href="#tokenize_file">tokenize_file</a></li>
+      <li><a href="#tokenize_string">tokenize_string</a></li>
+      <li><a href="#tokens">tokens</a></li>
+      <li><a href="#write_to_file">write_to_file</a></li>
+    </ul>
+  </li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#Modification-History">Modification History</a>
+    <ul>
+      <li><a href="#March-13-1998">March 13, 1998</a></li>
+      <li><a href="#September-10-2002">September 10, 2002</a></li>
+    </ul>
+  </li>
 </ul>
 
-<hr name="index" />
-</div>
-<!-- INDEX END -->
+<h1 id="NAME">NAME</h1>
 
-<p>
-</p>
-<h1><a name="name">NAME</a></h1>
-<p>Pitonyak::BayesianTokenCounter - I use this to decide if a piece of email is SPAM.
-This counts tokens in &quot;good&quot; files and &quot;bad&quot; files and then does a statistical analysis of
-which tokens belong in which group.</p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Pitonyak::BayesianTokenCounter - I use this to decide if a piece of email is SPAM. This counts tokens in &quot;good&quot; files and &quot;bad&quot; files and then does a statistical analysis of which tokens belong in which group.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+
+
 <code>
 use File::Basename; <BR>
 use strict; <BR>
@@ -132,231 +118,237 @@ my $prob = $probability_tokens->rate_tokens($token_list); <BR>
  <BR>
 $log->warn("The file has probability $prob of beeing SPAM") if ($prob > 0.9); <BR>
 $log->info("Finished!"); <BR>
-</code><p>
-</p>
-<hr />
-<h1><a name="description">DESCRIPTION</a></h1>
-<p>This contains methods to create, read, and write token files.
-A token file that contains probabilities can also be created.
-After tokenizing a file, it can be compared against the good and bad tokens and a guess made
-to see if the file is a good or bad file.</p>
-<p>The initial ideas came from
-<a href="http://www.paulgraham.com/spam.html">http://www.paulgraham.com/spam.html</a>
-And then Gary Arnold did an implementation.
-<a href="http://www.garyarnold.com/projects.php">http://www.garyarnold.com/projects.php</a>
-Gary's initial code did not meet my needs so I wrote my own.</p>
-<p>I placed a limit on the length of a token.
-There is a <em>max_token_len</em> and <em>min_token_len</em> attribute that may be set.</p>
-<p>This code ignores PGP signatures. I am on several mailing lists with members that have PGP signatures.
-These signatures are long and I did not want them in the token lists.
-Deep down inside, I think that perhaps if a piece of email contains a PGP signature, then I should
-probably just assume that it is NOT SPAM.</p>
-<p>Some of my email is pre-filtered by SPAM Assasin which inserts certain headers into my email.
-Although SPAM Assasin does a good job, I did not want my token filters to be based on this.
-The <em>ignore_headers</em> attribute contains these values.</p>
-<p>I list the content types that I know. Some content types I will accept, and others I will simply ignore.
-Check out the <em>content_types</em> attribute.</p>
-<p>
-</p>
-<h2><a name="new">new</a></h2>
-<dl>
-<dt><strong><a name="new" class="item"><code>new()</code></a></strong></dt>
+</code>
 
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This contains methods to create, read, and write token files. A token file that contains probabilities can also be created. After tokenizing a file, it can be compared against the good and bad tokens and a guess made to see if the file is a good or bad file.</p>
+
+<p>The initial ideas came from http://www.paulgraham.com/spam.html And then Gary Arnold did an implementation. http://www.garyarnold.com/projects.php Gary&#39;s initial code did not meet my needs so I wrote my own.</p>
+
+<p>I placed a limit on the length of a token. There is a <i>max_token_len</i> and <i>min_token_len</i> attribute that may be set.</p>
+
+<p>This code ignores PGP signatures. I am on several mailing lists with members that have PGP signatures. These signatures are long and I did not want them in the token lists. Deep down inside, I think that perhaps if a piece of email contains a PGP signature, then I should probably just assume that it is NOT SPAM.</p>
+
+<p>Some of my email is pre-filtered by SPAM Assasin which inserts certain headers into my email. Although SPAM Assasin does a good job, I did not want my token filters to be based on this. The <i>ignore_headers</i> attribute contains these values.</p>
+
+<p>I list the content types that I know. Some content types I will accept, and others I will simply ignore. Check out the <i>content_types</i> attribute.</p>
+
+<h2 id="new">new</h2>
+
+<dl>
+
+<dt id="new1">new()</dt>
 <dd>
-<p>Note that this is written in such a manner
-that it can be inherited. Also note that it
-is written such that $obj2 = $obj1-&gt;<a href="#new"><code>new()</code></a>
-is valid!</p>
+
+<p>Note that this is written in such a manner that it can be inherited. Also note that it is written such that $obj2 = $obj1-&gt;new() is valid!</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="copy">copy</a></h2>
-<dl>
-<dt><strong><a name="copy" class="item"><code>copy($object)</code></a></strong></dt>
 
+<h2 id="copy">copy</h2>
+
+<dl>
+
+<dt id="copy-object">copy($object)</dt>
 <dd>
+
 <p>Make a copy of this object</p>
-<p><a href="#copy"><code>$obj1-&gt;copy($obj2)</code></a> is the same as <code>$obj1 = $obj2</code>.</p>
+
+<p><code>$obj1-&gt;copy($obj2)</code> is the same as <code>$obj1 = $obj2</code>.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="build_probabilities">build_probabilities</a></h2>
-<dl>
-<dt><strong><a name="build_probabilities" class="item">build_probabilities($good_token_list, $bad_token_list)</a></strong></dt>
 
+<h2 id="build_probabilities">build_probabilities</h2>
+
+<dl>
+
+<dt id="build_probabilities-good_token_list-bad_token_list">build_probabilities($good_token_list, $bad_token_list)</dt>
 <dd>
+
 <p>returns the Baysian probability tokens for the input tokens.</p>
-<p>The initial ideas came from
-<a href="http://www.paulgraham.com/spam.html">http://www.paulgraham.com/spam.html</a>
-And then Gary Arnold did an implementation.
-<a href="http://www.garyarnold.com/projects.php">http://www.garyarnold.com/projects.php</a>
-Unfortunately for me, Gary Arnold did not produce
-code that met my needs and I also wanted to be able
-to avoid certain attachements so I had to write my
-own code!</p>
+
+<p>The initial ideas came from http://www.paulgraham.com/spam.html And then Gary Arnold did an implementation. http://www.garyarnold.com/projects.php Unfortunately for me, Gary Arnold did not produce code that met my needs and I also wanted to be able to avoid certain attachements so I had to write my own code!</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="case_sensitive">case_sensitive</a></h2>
-<dl>
-<dt><strong><a name="case_sensitive" class="item">case_sensitive([0|1])</a></strong></dt>
 
+<h2 id="case_sensitive">case_sensitive</h2>
+
+<dl>
+
+<dt id="case_sensitive-0-1">case_sensitive([0|1])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the boolean for turning on considering tokens case sensitive.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="fast_mime_decode">fast_mime_decode</a></h2>
-<dl>
-<dt><strong><a name="fast_mime_decode" class="item">fast_mime_decode([0|1])</a></strong></dt>
 
+<h2 id="fast_mime_decode">fast_mime_decode</h2>
+
+<dl>
+
+<dt id="fast_mime_decode-0-1">fast_mime_decode([0|1])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the boolean for using a fast mime decode algorithm.</p>
-<p>If this evaluates to true then my own
-processing is used to find and decode mime
-attachements. This is much faster but does
-not use the standard methods that were
-written by someone who probably has a better
-understanding of how this works.</p>
+
+<p>If this evaluates to true then my own processing is used to find and decode mime attachements. This is much faster but does not use the standard methods that were written by someone who probably has a better understanding of how this works.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="file_name">file_name</a></h2>
-<dl>
-<dt><strong><a name="file_name" class="item"><code>file_name([$new_file_name])</code></a></strong></dt>
 
+<h2 id="file_name">file_name</h2>
+
+<dl>
+
+<dt id="file_name-new_file_name">file_name([$new_file_name])</dt>
 <dd>
-<p>Returns, and optionally sets, the current file_name. This is the name of the file that
-will be read or written.</p>
+
+<p>Returns, and optionally sets, the current file_name. This is the name of the file that will be read or written.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="get_class_attribute">get_class_attribute</a></h2>
-<p>Remember that the call <code>$obj-&gt;method(@parms)</code> is the same as
-<code>method($obj, @parms)</code>.</p>
+
+<h2 id="get_class_attribute">get_class_attribute</h2>
+
+<p>Remember that the call <code>$obj-&gt;method(@parms)</code> is the same as <code>method($obj, @parms)</code>.</p>
+
 <dl>
-<dt><strong><a name="get_class_attribute" class="item">SmallLogger::get_class_attribute($attribute_name)</a></strong></dt>
 
+<dt id="SmallLogger::get_class_attribute-attribute_name">SmallLogger::get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there is only one paramter, the first parameter is
-assumed to be an attribute name and the default attribute value
-is returned.</p>
+
+<p>If there is only one paramter, the first parameter is assumed to be an attribute name and the default attribute value is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;<code>get_class_attribute($attribute_name)</code></strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name">$obj-&gt;get_class_attribute($attribute_name)</dt>
 <dd>
-<p>If there are two parameters, then the first parameter is assumed
-to be a <code>SmallLogger</code> object and the second parameter is
-assumed to be an attribute name.
-The attribute value for the object is returned.</p>
+
+<p>If there are two parameters, then the first parameter is assumed to be a <code>SmallLogger</code> object and the second parameter is assumed to be an attribute name. The attribute value for the object is returned.</p>
+
 </dd>
-<dt><strong>$obj-&gt;get_class_attribute($attribute_name, $attribute_value)</strong></dt>
-
+<dt id="obj-get_class_attribute-attribute_name-attribute_value">$obj-&gt;get_class_attribute($attribute_name, $attribute_value)</dt>
 <dd>
-<p>If three parameters are given, then the first parameter is the object,
-the second parameter
-is used to set a new value for the attribute,
-and the third parameter is the attribute name,
-The attribute value is then returned.</p>
+
+<p>If three parameters are given, then the first parameter is the object, the second parameter is used to set a new value for the attribute, and the third parameter is the attribute name, The attribute value is then returned.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="ignore_headers">ignore_headers</a></h2>
-<dl>
-<dt><strong><a name="pitonyak_bayesiantokencounter_ignore_headers" class="item">Pitonyak::BayesianTokenCounter::ignore_headers</a></strong></dt>
 
+<h2 id="ignore_headers">ignore_headers</h2>
+
+<dl>
+
+<dt id="Pitonyak::BayesianTokenCounter::ignore_headers">Pitonyak::BayesianTokenCounter::ignore_headers</dt>
 <dd>
+
 <p>Returns the default ignore_headers hash reference</p>
-</dd>
-<dt><strong><a name="ignore_headers" class="item">$obj-&gt;<code>ignore_headers($hash_ref)</code></a></strong></dt>
 
+</dd>
+<dt id="obj-ignore_headers-hash_ref">$obj-&gt;ignore_headers($hash_ref)</dt>
 <dd>
+
 <p>Sets the current ignore_headers hash to the parameter.</p>
-</dd>
-<dt><strong>$obj-&gt;ignore_headers($key, [0|1])</strong></dt>
 
+</dd>
+<dt id="obj-ignore_headers-key-0-1">$obj-&gt;ignore_headers($key, [0|1])</dt>
 <dd>
+
 <p>Return the state of the current header and optionally set it</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="max_token_len">max_token_len</a></h2>
-<dl>
-<dt><strong><a name="max_token_len" class="item"><code>max_token_len([$max_token_len])</code></a></strong></dt>
 
+<h2 id="max_token_len">max_token_len</h2>
+
+<dl>
+
+<dt id="max_token_len-max_token_len">max_token_len([$max_token_len])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the the max token length accepted.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="min_token_len">min_token_len</a></h2>
-<dl>
-<dt><strong><a name="min_token_len" class="item"><code>min_token_len([$max_token_len])</code></a></strong></dt>
 
+<h2 id="min_token_len">min_token_len</h2>
+
+<dl>
+
+<dt id="min_token_len-max_token_len">min_token_len([$max_token_len])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the the min token length accepted.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="num_files">num_files</a></h2>
-<dl>
-<dt><strong><a name="num_files" class="item"><code>num_files([$num_files])</code></a></strong></dt>
 
+<h2 id="num_files">num_files</h2>
+
+<dl>
+
+<dt id="num_files-num_files">num_files([$num_files])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the numbers of files processed.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="num_tokens">num_tokens</a></h2>
-<dl>
-<dt><strong><a name="num_tokens" class="item"><code>num_tokens()</code></a></strong></dt>
 
+<h2 id="num_tokens">num_tokens</h2>
+
+<dl>
+
+<dt id="num_tokens1">num_tokens()</dt>
 <dd>
+
 <p>Get the current number of tokens in this object.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="processmimemessage">ProcessMimeMessage</a></h2>
-<dl>
-<dt><strong><a name="processmimemessage" class="item"><code>ProcessMimeMessage($text)</code></a></strong></dt>
 
+<h2 id="ProcessMimeMessage">ProcessMimeMessage</h2>
+
+<dl>
+
+<dt id="ProcessMimeMessage-text">ProcessMimeMessage($text)</dt>
 <dd>
-<p>This assumes that the text string is a single email message.
-The text and html portions are processed out and returned.</p>
+
+<p>This assumes that the text string is a single email message. The text and html portions are processed out and returned.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="purge_tokens_with_count_less_than">purge_tokens_with_count_less_than</a></h2>
-<dl>
-<dt><strong><a name="purge_tokens_with_count_less_than" class="item"><code>purge_tokens_with_count_less_than($lower_limit)</code></a></strong></dt>
 
+<h2 id="purge_tokens_with_count_less_than">purge_tokens_with_count_less_than</h2>
+
+<dl>
+
+<dt id="purge_tokens_with_count_less_than-lower_limit">purge_tokens_with_count_less_than($lower_limit)</dt>
 <dd>
+
 <p>Delete tokens that occure fewer than the specified number of times</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="rate_tokens">rate_tokens</a></h2>
-<dl>
-<dt><strong><a name="rate_tokens" class="item"><code>rate_tokens($tokens_to_rate)</code></a></strong></dt>
 
+<h2 id="rate_tokens">rate_tokens</h2>
+
+<dl>
+
+<dt id="rate_tokens-tokens_to_rate">rate_tokens($tokens_to_rate)</dt>
 <dd>
+
 <p>Returns the probability that the given tokens are bad tokens.</p>
+
 <p>It is assumed that this token object is a probability token object</p>
+
 <p>The calling code will look something like this:</p>
+
+
+
 <code>
 my $log = new Pitonyak::SmallLogger; <BR>
 my $token_list = new Pitonyak::BayesianTokenCounter; <BR>
@@ -366,124 +358,134 @@ $token_list->read_from_file($config_file); <BR>
 my $file_tokens = new Pitonyak::BayesianTokenCounter; <BR>
 $file_tokens->tokenize_file($file_name); <BR>
 my $prob = $token_list->rate_tokens($file_tokens); <BR>
-</code></dd>
-</dl>
-<p>
-</p>
-<h2><a name="read_from_file">read_from_file</a></h2>
-<dl>
-<dt><strong><a name="read_from_file" class="item">Pitonyak::BayesianTokenCounter::read_from_file($file_name)</a></strong></dt>
+</code>
 
+</dd>
+</dl>
+
+<h2 id="read_from_file">read_from_file</h2>
+
+<dl>
+
+<dt id="Pitonyak::BayesianTokenCounter::read_from_file-file_name">Pitonyak::BayesianTokenCounter::read_from_file($file_name)</dt>
 <dd>
+
 <p>This will create an appropriate object and then read the file.</p>
-</dd>
-<dt><strong>$obj-&gt;<code>read_from_file($file_name)</code></strong></dt>
 
+</dd>
+<dt id="obj-read_from_file-file_name">$obj-&gt;read_from_file($file_name)</dt>
 <dd>
+
 <p>Read the current file and then return the object used to read it.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="set_log">set_log</a></h2>
-<dl>
-<dt><strong><a name="set_log" class="item"><code>set_log([$logger_instance])</code></a></strong></dt>
 
+<h2 id="set_log">set_log</h2>
+
+<dl>
+
+<dt id="set_log-logger_instance">set_log([$logger_instance])</dt>
 <dd>
-<p>If the logger instance is not present, then any existing logger will be deleted
-from the object.</p>
-<p>If the object is present, then it must be an instance of Pitonyak::SmallLogger
-and it is set as the object to use.</p>
+
+<p>If the logger instance is not present, then any existing logger will be deleted from the object.</p>
+
+<p>If the object is present, then it must be an instance of Pitonyak::SmallLogger and it is set as the object to use.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="skip_html_comments">skip_html_comments</a></h2>
-<dl>
-<dt><strong><a name="skip_html_comments" class="item">skip_html_comments([0|1])</a></strong></dt>
 
+<h2 id="skip_html_comments">skip_html_comments</h2>
+
+<dl>
+
+<dt id="skip_html_comments-0-1">skip_html_comments([0|1])</dt>
 <dd>
+
 <p>Returns, and optionally sets, the true/false value for skipping HTML coments.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="tokenize_file">tokenize_file</a></h2>
-<dl>
-<dt><strong><a name="tokenize_file" class="item">Pitonyak::BayesianTokenCounter::tokenize_file($file_name)</a></strong></dt>
 
+<h2 id="tokenize_file">tokenize_file</h2>
+
+<dl>
+
+<dt id="Pitonyak::BayesianTokenCounter::tokenize_file-file_name">Pitonyak::BayesianTokenCounter::tokenize_file($file_name)</dt>
 <dd>
+
 <p>An object is created and then the file is tokenized into the object</p>
-</dd>
-<dt><strong>$obj-&gt;<code>tokenize_file($file_name)</code></strong></dt>
 
-<dd>
-<p>If the $file_name is '-', then STDIN is read. If not, then the file is opened from disk and read.
-The file is then tokenized.</p>
 </dd>
-</dl>
-<p>
-</p>
-<h2><a name="tokenize_string">tokenize_string</a></h2>
-<dl>
-<dt><strong><a name="tokenize_string" class="item"><code>tokenize_string(@strings_to_tokenize)</code></a></strong></dt>
-
+<dt id="obj-tokenize_file-file_name">$obj-&gt;tokenize_file($file_name)</dt>
 <dd>
-<p>This assumes that the list of strings is a mail message to be tokenized.
-In the program, the entire file is read into a single variable and then
-this is called.</p>
+
+<p>If the $file_name is &#39;-&#39;, then STDIN is read. If not, then the file is opened from disk and read. The file is then tokenized.</p>
+
 </dd>
 </dl>
-<p>
-</p>
-<h2><a name="tokens">tokens</a></h2>
-<dl>
-<dt><strong><a name="tokens" class="item"><code>tokens([$token_hash_ref])</code></a></strong></dt>
 
+<h2 id="tokenize_string">tokenize_string</h2>
+
+<dl>
+
+<dt id="tokenize_string-strings_to_tokenize">tokenize_string(@strings_to_tokenize)</dt>
 <dd>
+
+<p>This assumes that the list of strings is a mail message to be tokenized. In the program, the entire file is read into a single variable and then this is called.</p>
+
+</dd>
+</dl>
+
+<h2 id="tokens">tokens</h2>
+
+<dl>
+
+<dt id="tokens-token_hash_ref">tokens([$token_hash_ref])</dt>
+<dd>
+
 <p>Returns, and optionally sets, the internal token hash.</p>
-</dd>
-</dl>
-<p>
-</p>
-<h2><a name="write_to_file">write_to_file</a></h2>
-<dl>
-<dt><strong><a name="write_to_file" class="item"><code>write_to_file([$file_name])</code></a></strong></dt>
 
-<dd>
-<p>Write the tokens to either the current file name, or to the new
-file name as specified by the parameter.</p>
-<p>This can be slow because the tokens are sorted by frequencey and name.</p>
 </dd>
 </dl>
-<p>
-</p>
-<hr />
-<h1><a name="copyright">COPYRIGHT</a></h1>
-<p>Copyright 1998-2012, Andrew Pitonyak (<a href="mailto:perlboy@pitonyak.org">perlboy@pitonyak.org</a>)</p>
-<p>I Andrew Pitonyak wrote this code for my own use and I own it.
-That said, you may do as you desire with this code. Use it,
-change it, whatever, just don't claim that it is your own.</p>
-<p>Also, what ever you do with the code is your own problem.
-Although many of my libraries are in production use, I make
-no claims to usability, suitability, or reliability.</p>
-<p>Although you may do as you desire with the code, I do
-appreciate knowing what was done with my code and
-interesting changes made by you may be incorporated into
-my own copies if you provide them to me.</p>
-<p>
-</p>
-<hr />
-<h1><a name="modification_history">Modification History</a></h1>
-<p>
-</p>
-<h2><a name="march_13__1998">March 13, 1998</a></h2>
+
+<h2 id="write_to_file">write_to_file</h2>
+
+<dl>
+
+<dt id="write_to_file-file_name">write_to_file([$file_name])</dt>
+<dd>
+
+<p>Write the tokens to either the current file name, or to the new file name as specified by the parameter.</p>
+
+<p>This can be slow because the tokens are sorted by frequencey and name.</p>
+
+</dd>
+</dl>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright 1998-2012, Andrew Pitonyak (perlboy@pitonyak.org)</p>
+
+<p>I Andrew Pitonyak wrote this code for my own use and I own it. That said, you may do as you desire with this code. Use it, change it, whatever, just don&#39;t claim that it is your own.</p>
+
+<p>Also, what ever you do with the code is your own problem. Although many of my libraries are in production use, I make no claims to usability, suitability, or reliability.</p>
+
+<p>Although you may do as you desire with the code, I do appreciate knowing what was done with my code and interesting changes made by you may be incorporated into my own copies if you provide them to me.</p>
+
+<h1 id="Modification-History">Modification History</h1>
+
+<h2 id="March-13-1998">March 13, 1998</h2>
+
 <p>Version 1.00 First release</p>
-<p>
-</p>
-<h2><a name="september_10__2002">September 10, 2002</a></h2>
+
+<h2 id="September-10-2002">September 10, 2002</h2>
+
 <p>Version 1.01 Changed internal documentation to POD documentation. Added parameter checking.</p>
+
 
 </body>
 
 </html>
+
+
